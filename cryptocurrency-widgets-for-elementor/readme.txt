@@ -1,20 +1,19 @@
 === Cryptocurrency Widgets For Elementor ===
 Contributors: narinder-singh,satindersingh,coolplugins
-Tags:cryptocurrency, elementor, elementor widget, crypto widgets, cryptocurrency widgets
-Requires at least:6.0
+Tags: cryptocurrency,crypto price,bitcoin widget,elementor addon,crypto donations
+Requires at least:5.0
 Tested up to: 6.6
-Requires PHP: 7.2
-Stable tag:1.6.3
+Requires PHP:7.2
+Stable tag:1.6.4
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Use **Cryptocurrency Widget for Elementor** Addon and showcase the top 250 cryptocurrencies listed by market cap and beautiful Coins Price cards and label in your website.
-
+Easily display cryptocurrency prices and accept crypto donations on your Elementor site. Generate customizable widgets for 250+ coins, including Bitcoin, Ethereum, and more, with real-time data and stylish layouts.
 
 == Description ==
 
-Generate cryptocurrency price widgets & coins list shortcodes – Bitcoin, BNB, Ethereum, ADA, USDT, etc using **Cryptocurrency Widgets Pro for Elementor**.
-Utilize the Cryptocurrency Widget for Elementor Addon to elegantly display the top 250 cryptocurrencies by market capitalization, along with stunning Coins Price cards and labels on your website.
+**Cryptocurrency Widgets For Elementor** lets you easily create cryptocurrency price widgets and coin list shortcodes for over 250 coins, including Bitcoin, Ethereum, Binance Coin, and Cardano. Display real-time market data in elegant, customizable layouts directly on your Elementor-powered website.
+
 
 <a href="https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-for-elementor/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=free-price-widget-demo">View Price Widgets Demo</a>
 
@@ -101,21 +100,60 @@ Open the WordPress admin panel and go to Plugins >> Add New and Search **“Cryp
 After installation & plugin activation, create a page and edit the page with elementor, in the elementor search bar type Cryptocurrency Widget. From the search result drag Cryptocurrency Widget to your desired location on the page. By default it will add a Card layout, you change the layout from the widget settings panel. Also can style the individual widget from the style tab colors options according to your requirement.
 
 == Frequently Asked Questions ==
-#### Can I display real-time live price changes?
+= Can I display real-time live price changes? =
 
 We are using CoinGecko, CoinMarketCap and Coinpaprika API in our free version of the crypto price widget, it can show only the current price but doesn’t support real-time price updates.
 
-#### Can I choose my local currency other than USD($)?
+= Can I choose my local currency other than USD($)? =
 
 Yes, you can display crypto coins' prices in your local currency. we have integrated 32 fiat currencies:- **USD, GBP, EUR, INR, JPY, CNY, ILS, KRW, RUB, DKK, PLN, AUD, BRL, MXN, SEK, CAD, HKD, MYR, SGD, CHF, HUF, NOK, THB, CLP, IDR, NZD, TRY, PHP, TWD, CZK, PKR, ZAR**.
 
-#### Are you using any third-party APIs?
+= Are you using any third-party APIs? =
 
 YES, we are using coingecko.com APIs in our free version. So plugin functionality totally depends on third-party APIs. (We can’t provide any support if there is any downtime in third-party APIs)
 
-#### Do you have any support email for extra questions?
+= Do you have any support email for extra questions? =
 
 Yes, you can contact us anytime at **contact@coolplugins.net**. We strive to respond to all inquiries within 24 hours.
+
+= Can I customize the widget layout? =  
+Yes, the plugin offers four different layouts: Coins Price Card, Coins Price Label, Coins List, and Top Gainers/Losers. You can also customize elements like symbol display, market cap, price changes, and more in each layout.
+
+= Does the plugin support custom styling? =  
+Yes, you can further customize the appearance of the widgets through Elementor's styling options. This allows you to adjust the colors, fonts, and layout to match your website design.
+
+= Can I select a specific time range for price changes? =  
+Yes, depending on the layout, you can display price changes over different time ranges, such as 1 hour, 24 hours, 7 days, or 30 days.
+
+= Is the plugin compatible with all Elementor themes? =  
+Yes, the plugin is fully compatible with any theme that supports Elementor. It seamlessly integrates with your existing theme design and functionality.
+
+= Does this plugin support multi-currency or fiat conversion? =  
+Currently, the plugin focuses on cryptocurrency prices and does not include fiat currency conversion. However, it pulls real-time market data for accurate cryptocurrency pricing.
+
+= Is there an option to add more than 250 coins? =  
+By default, the plugin supports the top 250 cryptocurrencies by market cap. However, you can customize the coin list to display your preferred coins within this range.
+
+= How often is the market data updated? =  
+The plugin fetches real-time data, ensuring your coin price widgets and lists are always up to date with the latest market changes.
+
+= Can I accept donations in multiple cryptocurrencies at once? =  
+Yes, the donation widget supports over 50 cryptocurrencies, allowing you to accept multiple types of crypto donations on your Elementor pages.
+
+= Is MetaMask the only payment option for donations? =  
+The plugin integrates seamlessly with MetaMask, but you can also display your cryptocurrency wallet address and QR code for manual donations.
+
+= Is the donation feature secure? =  
+Yes, the donation feature is secure, especially with MetaMask integration, which uses a trusted and widely adopted crypto wallet solution. Transactions are handled directly between users and their wallets.
+
+= Will the plugin slow down my website? =  
+No, the plugin is optimized for performance and designed to work efficiently with Elementor. It fetches only necessary data, minimizing the impact on your website's speed.
+
+= Does this plugin work with caching plugins? =  
+Yes, the plugin is compatible with most caching plugins. However, to ensure real-time updates of cryptocurrency data, make sure dynamic content is excluded from caching.
+
+= How can I report security bugs?
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/cryptocurrency-widgets-for-elementor)
 
 == Screenshots ==
 1.  Add coins Widgets  Demo. 
@@ -128,6 +166,11 @@ Yes, you can contact us anytime at **contact@coolplugins.net**. We strive to res
 8. Cryptocurrency Donation Widget 
 
 == Changelog ==
+<strong>Version 1.6.4| 07/10/2024<strong>
+<pre>
+Fixed: Top gainer loser widget issue.
+fixed: fixed the minor security issue.
+</pre>
 <strong>Version 1.6.3| 27/05/2024<strong>
 <pre>
 Improved: Code improvement.

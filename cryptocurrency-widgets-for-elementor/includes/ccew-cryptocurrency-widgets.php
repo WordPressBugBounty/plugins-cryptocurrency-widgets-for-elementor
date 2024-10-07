@@ -7,7 +7,6 @@ use Elementor\Controls_Manager;
 class ccew__Widget extends \Elementor\Widget_Base
 
 {
-
     public function __construct($data = array(), $args = null)
     {
         parent::__construct($data, $args);
@@ -45,7 +44,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             $script = array('ccew-call-ajax');
     
 
-        if ($widget_type == 'list' || $widget_type == 'card') {
+        if ($widget_type == 'list' || $widget_type == 'card' || $widget_type == 'top_gainer_loser') {
             array_push($script, 'ccew-anychart-core', 'ccew-anychart-sparkline', 'ccew-chart', 'ccew-anychart-area', 'small-chart');
         } elseif ($widget_type == 'advanced_table') {
             array_push($script, 'ccew-numeral', 'ccew-table-sort', 'ccew-datatable', 'ccew-headFixer');
@@ -101,10 +100,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $remember_message = '';
 
         $api_option = get_option('openexchange-api-settings');
-        $api = (isset($api_option['coingecko_api'])) ? $api_option['coingecko_api'] : "";
+        $api = (isset($api_option['coingecko_api'])) ? sanitize_text_field($api_option['coingecko_api']) : "";
 
         if (empty($api_option['openexchangerate_api'])) {
-            $remember_message = "<span style='color:red;'>Remember to add <a href='https://openexchangerates.org/signup/free' target='blank'>Openexchangerates.org</a> free API key for crypto to fiat price conversions.</span><br><span style='color:red;'><a href=" . get_admin_url(null, 'admin.php?page=openexchange-api-settings') . " target='blank'>Click here</a> to enter Open Exchange rates API Key </span>";
+            $remember_message = "<span style='color:red;'>Remember to add <a href='https://openexchangerates.org/signup/free' target='_blank'>Openexchangerates.org</a> free API key for crypto to fiat price conversions.</span><br><span style='color:red;'><a href='" . esc_url(get_admin_url(null, 'admin.php?page=openexchange-api-settings')) . "' target='_blank'>Click here</a> to enter Open Exchange rates API Key </span>";
         }
         $currencies_arr = array(
             'USD' => 'USD',
@@ -161,7 +160,6 @@ class ccew__Widget extends \Elementor\Widget_Base
                     'top_gainer_loser' => 'Top Gainer/Loser',
                     'advanced_table' => 'Advanced Table',
                 ),
-
                 'default' => 'card',
             )
         );
@@ -864,8 +862,8 @@ class ccew__Widget extends \Elementor\Widget_Base
         $api_option = get_option('openexchange-api-settings');
         $api = (isset($api_option['coingecko_api'])) ? $api_option['coingecko_api'] : "";
 
-        $selected_api = get_option("ccew-api-settings");
-        $user_selected_api = (!isset($selected_api['select_api']) && empty($selected_api['select_api'])) ? 'coin_gecko' : $selected_api['select_api'];
+            $selected_api = get_option("ccew-api-settings");
+            $user_selected_api = (!isset($selected_api['select_api']) && empty($selected_api['select_api'])) ? 'coin_gecko' : sanitize_text_field($selected_api['select_api']);
             if (isset($selected_api['select_api'])) {
                 if (($selected_api['select_api'] == 'coin_gecko') && (!ccew_check_user())) {
                     echo ('Please enter Coingecko Free Api Key to get this plugin works.');

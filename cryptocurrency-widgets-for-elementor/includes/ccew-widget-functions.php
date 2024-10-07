@@ -92,7 +92,7 @@ function ccew_widget_insert_data()
     $cache = get_transient($data_cache_name);
 
     $api_option1 = get_option('openexchange-api-settings');
-    $coingecko_api_key = (isset($api_option1['coingecko_api'])) ? $api_option1['coingecko_api'] : "";
+    $coingecko_api_key = (isset($api_option1['coingecko_api'])) ? sanitize_text_field($api_option1['coingecko_api']) : ""; // Added sanitization
     $coingecko_api_cache_time = isset($api_option1['select_cache_time']) ? (int) $api_option1['select_cache_time'] : 10;
 
     if (!ccew_check_user()) {

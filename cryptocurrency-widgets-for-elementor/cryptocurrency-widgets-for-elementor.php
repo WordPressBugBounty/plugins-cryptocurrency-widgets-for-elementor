@@ -5,19 +5,19 @@
  * Author:Cool Plugins
  * Author URI:https://coolplugins.net/
  * Plugin URI:https://cryptocurrencyplugins.com/
- * Version: 1.6.3
+ * Version: 1.6.4
  * License: GPL2
  * Text Domain:ccew
  * Domain Path: languages
  *
- * Elementor tested up to:3.21.8
+ * Elementor tested up to:3.24.5
  * */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-define('CCEW_VERSION', '1.6.3');
+define('CCEW_VERSION', '1.6.4');
 define('CCEW_FILE', __FILE__);
 define('CCEW_DIR', plugin_dir_path(CCEW_FILE));
 define('CCEW_URL', plugin_dir_url(CCEW_FILE));
@@ -133,9 +133,8 @@ endif;
         $check_data = get_option('ccew_data_save');
 
         if ($check_data != 'true') {
-
             $api = get_option('ccew-api-settings');
-            $api = (!isset($api['select_api']) && empty($api['select_api'])) ? 'coin_gecko' : $api['select_api'];
+            $api = (!isset($api['select_api']) && empty($api['select_api'])) ? 'coin_gecko' : sanitize_text_field($api['select_api']);
 
             $data = ($api == 'coin_gecko') ? ccew_widget_insert_data() : ccew_widget_coin_peprika_insert_data();
 
