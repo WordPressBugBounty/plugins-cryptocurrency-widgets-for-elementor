@@ -27,7 +27,7 @@ class ccew_elementor_register {
 	public function ccew_editor_styles() {
 		wp_enqueue_style(
 			'ccew-editor-styles',
-			CCEW_URL . 'assets/css/ccew-editor-styles.css',
+			esc_url(CCEW_URL . 'assets/css/ccew-editor-styles.css'),
 			array()
 		);
 	}
@@ -43,8 +43,8 @@ class ccew_elementor_register {
 	 * @access private
 	 */
 	private function ccew_widget_includes() {
-		require_once CCEW_DIR . 'includes/ccew-cryptocurrency-widgets.php';
-		require_once CCEW_DIR . 'donation-box/ccew-donation-box-widget.php';
+		require_once esc_html(CCEW_DIR) . 'includes/ccew-cryptocurrency-widgets.php';
+		require_once esc_html(CCEW_DIR) . 'donation-box/ccew-donation-box-widget.php';
 
 	}
 

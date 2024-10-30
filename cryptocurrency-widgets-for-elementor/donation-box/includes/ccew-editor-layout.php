@@ -38,27 +38,27 @@ if (all_coin_wall_add!=="") {
 		var title_content = title.replace('[coin-name]', coin_name[0].toUpperCase() + coin_name.slice(1)),
 		desc_content = description.replace('[coin-name]', coin_name[0].toUpperCase() + coin_name.slice(1)),
 		coin_logo = settings.ccewd_url +'/donation-box/assets/logos/'+address.ccewd_coin_list+'.svg';
-		logo_html += '<img src="'+coin_logo+ '"> ';
+		logo_html += '<img src="{{{coin_logo}}}"> ';
 		logo_html += coin_name;
-		coin_links += '<li class="ccewd-coins ' +active_tab+ '" id="' +address.ccewd_coin_list+ '" data-tab="' +address.ccewd_coin_list+ '-tab"> '+logo_html +'</li>';
+		coin_links += '<li class="ccewd-coins {{{active_tab}}}" id="{{{address.ccewd_coin_list}}}" data-tab="{{{address.ccewd_coin_list}}}-tab">{{logo_html}}</li>';
 
 		if (design_type == 'list') {
 			if (address.ccewd_coin_list !== 'metamask' && (address.ccewd_wallet_address!=="")) {
 				classic_list += '<li class="ccewd-classic-list">';
 				classic_list += '<h2 class="ccewd-title">' +title_content+ '</h2>';
-				classic_list += '<div id="qrcode-'+address.ccewd_coin_list+'-classic-wallet-address-'+random+'" class="ccewd_qr_code" data-qr-id="qrcode-'+address.ccewd_coin_list+'-classic-wallet-address-'+random+'">';
-				classic_list += '</div><div class="ccewd_classic_input_add"><input type="text" class="wallet-address-input" id="' +address.ccewd_coin_list+'-classic-wallet-address-'+random+'" name="' +address.ccewd_coin_list+'-classic-wallet-address" value="' +address.ccewd_wallet_address+ '" data-input-id-js="' +address.ccewd_coin_list+'-classic-wallet-address-'+random+'">';
-				classic_list += '<button class="ccewd_btn" data-clipboard-target="#' +address.ccewd_coin_list+'-classic-wallet-address-'+random+'">COPY</button></div>';
+				classic_list += '<div id="qrcode-{{{address.ccewd_coin_list}}}-classic-wallet-address-{{{random}}}" class="ccewd_qr_code" data-qr-id="qrcode-{{{address.ccewd_coin_list}}}-classic-wallet-address-{{{random}}}">';
+				classic_list += '</div><div class="ccewd_classic_input_add"><input type="text" class="wallet-address-input" id="{{{address.ccewd_coin_list}}-classic-wallet-address-{{{random}}}" name="{{{address.ccewd_coin_list}}}-classic-wallet-address" value="{{{address.ccewd_wallet_address}}}" data-input-id-js="{{{address.ccewd_coin_list}}}-classic-wallet-address-{{{random}}}">';
+				classic_list += '<button class="ccewd_btn" data-clipboard-target="#{{{address.ccewd_coin_list}}}-classic-wallet-address-{{{random}}}">COPY</button></div>';
 
 				if (address.ccewd_wallet_address_meta!=="") {
-					classic_list += '<div class="ccewd_tag"><span class="ccewd_tag_heading">Tag/Note:- </span>' +address.ccewd_wallet_address_meta+'</div>';
+					classic_list += '<div class="ccewd_tag"><span class="ccewd_tag_heading">Tag/Note:- </span>{{address.ccewd_wallet_address_meta}}</div>';
 				}
 				classic_list += '</li>';
 			} else if (address.ccewd_coin_list == 'metamask' && address.ccewd_wallet_address!=="") {
-				classic_list += '<li class="ccewd-classic-list"><h2 class="ccewd-title">' +cdb_metamask_title+'</h2>';
-				classic_list += '<div class="tip-button" data-metamask-address="' +metamask_wall_add+'" data-metamask-amount="'+metamask_price +'"></div>';
+				classic_list += '<li class="ccewd-classic-list"><h2 class="ccewd-title">{{cdb_metamask_title}}</h2>';
+				classic_list += '<div class="tip-button" data-metamask-address="{{{metamask_wall_add}}}" data-metamask-amount="{{{metamask_price}}}"></div>';
 				if (address.ccewd_wallet_address_meta!=="") {
-					classic_list += '<div class="ccewd_tag"><span class="ccewd_tag_heading">Tag/Note:- </span>' +address.ccewd_wallet_address_meta+'</div>';
+					classic_list += '<div class="ccewd_tag"><span class="ccewd_tag_heading">Tag/Note:- </span>{{{address.ccewd_wallet_address_meta}}}</div>';
 				}
 				classic_list += '<div class="message"></div></li>';
 			} else {
@@ -72,22 +72,22 @@ if (all_coin_wall_add!=="") {
 			}
 
 		} else {
-			coin_tabs += '<div class="ccewd-tabs-content ' +active_tab+'" id="' +address.ccewd_coin_list+'-tab">';
+			coin_tabs += '<div class="ccewd-tabs-content {{{active_tab}}}" id="{{{address.ccewd_coin_list}}}-tab">';
 
 			if (address.ccewd_coin_list !== 'metamask' && (address.ccewd_wallet_address!=="")) {
-				coin_tabs += '<div id="qrcode-'+address.ccewd_coin_list+'-wallet-address-'+random+'" class="ccewd_qr_code" data-qr-id="qrcode-'+address.ccewd_coin_list+'-wallet-address-'+random+'">';
-				coin_tabs += '</div><div class="ccewd_input_add"><h2 class="ccewd-title">' +title_content+ '</h2> <p class="ccewd-desc">' +desc_content+ '</p>';
+				coin_tabs += '<div id="qrcode-{{{address.ccewd_coin_list}}}-wallet-address-{{{random}}}" class="ccewd_qr_code" data-qr-id="qrcode-{{{address.ccewd_coin_list}}}-wallet-address-{{{random}}}">';
+				coin_tabs += '</div><div class="ccewd_input_add"><h2 class="ccewd-title">{{title_content}}</h2> <p class="ccewd-desc">{{desc_content}}</p>';
 				if (address.ccewd_wallet_address_meta!=="") {
-					coin_tabs += '<div class="ccewd_tag"><span class="ccewd_tag_heading">Tag/Note:- </span>' +address.ccewd_wallet_address_meta+'</div>';
+					coin_tabs += '<div class="ccewd_tag"><span class="ccewd_tag_heading">Tag/Note:- </span>{{address.ccewd_wallet_address_meta}}</div>';
 				}
-				coin_tabs += ' <input type="text" class="wallet-address-input"  id="' +address.ccewd_coin_list+'-wallet-address-'+random+'" name="' +address.ccewd_coin_list+'-wallet-address" value="' +address.ccewd_wallet_address+ '" data-input-id-js="'+address.ccewd_coin_list+'-wallet-address-'+random+'">';
+				coin_tabs += ' <input type="text" class="wallet-address-input"  id="{{{address.ccewd_coin_list}}}-wallet-address-{{{random}}}" name="{{{address.ccewd_coin_list}}}-wallet-address" value="{{{address.ccewd_wallet_address}}}" data-input-id-js="{{{address.ccewd_coin_list}}}-wallet-address-{{{random}}}">';
 
-				coin_tabs += '<button class="ccewd_btn" data-clipboard-target="#' +address.ccewd_coin_list+'-wallet-address-'+random+'">COPY</button></div>';
+				coin_tabs += '<button class="ccewd_btn" data-clipboard-target="#{{{address.ccewd_coin_list}}}-wallet-address-{{{random}}}">COPY</button></div>';
 			} else if (address.ccewd_coin_list == 'metamask' && address.ccewd_wallet_address!=="") {			
-				coin_tabs += '<div class="cdb-metamask-wrapper" ><h2 class="ccewd-title">' +cdb_metamask_title+'</h2><p class="ccewd-desc">' +metamask_description+'</p>';
-				coin_tabs += '<div class="tip-button" data-metamask-address="' +metamask_wall_add+'" data-metamask-amount="'+metamask_price +'"></div>';
+				coin_tabs += '<div class="cdb-metamask-wrapper" ><h2 class="ccewd-title">{{cdb_metamask_title}}</h2><p class="ccewd-desc">{{metamask_description}}</p>';
+				coin_tabs += '<div class="tip-button" data-metamask-address="{{{metamask_wall_add}}}" data-metamask-amount="{{{metamask_price}}}"></div>';
 				if (address.ccewd_wallet_address_meta!=="") {
-					coin_tabs += '<div class="ccewd_tag"><span class="ccewd_tag_heading">Tag/Note:- </span>' +address.ccewd_wallet_address_meta+'</div>';
+					coin_tabs += '<div class="ccewd_tag"><span class="ccewd_tag_heading">Tag/Note:- </span>{{{address.ccewd_wallet_address_meta}}}</div>';
 				}
 				coin_tabs += '<div class="message"></div></div>';
 			} else {
@@ -115,7 +115,7 @@ if (all_coin_wall_add!=="") {
 
 	} else {
 		output += '<div class="ccewd-container" id="ccewd-random-' + random +'">';
-		output += '<ul class="ccewd-tabs" id="ccewd-coin-list">' +coin_links +'</ul>';
+		output += '<ul class="ccewd-tabs" id="ccewd-coin-list">{{coin_links}}</ul>';
 		output += coin_tabs;
 		output += '</div>';
 

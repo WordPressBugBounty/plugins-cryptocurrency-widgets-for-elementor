@@ -105,7 +105,7 @@ function ccew_widget_insert_data()
     }
 
     $coin_info = array();
-    $api_url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d&x_cg_demo_api_key=' . $coingecko_api_key;
+    $api_url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d&x_cg_demo_api_key=' . urlencode($coingecko_api_key);
     $request = wp_remote_get(
         $api_url,
         array(
@@ -126,10 +126,10 @@ function ccew_widget_insert_data()
             if (contains_emoji($coin->name) || contains_emoji($coin->symbol) ||  contains_emoji($coin->id)) {
                 continue;
             }
-            $response['coin_id'] = $coin->id;
-            $response['rank'] = $coin->market_cap_rank;
-            $response['name'] = $coin->name;
-            $response['symbol'] = strtoupper($coin->symbol);
+            $response['coin_id'] = sanitize_text_field($coin->id); // Added sanitization
+            $response['rank'] = intval($coin->market_cap_rank); // Ensure rank is an integer
+            $response['name'] = sanitize_text_field($coin->name); // Added sanitization
+            $response['symbol'] = strtoupper(sanitize_text_field($coin->symbol)); // Added sanitization
             $response['price'] = ccew_set_default_if_empty($coin->current_price, 0.00);
             $response['percent_change_1h'] = ccew_set_default_if_empty($coin->price_change_percentage_1h_in_currency);
             $response['percent_change_24h'] = ccew_set_default_if_empty($coin->price_change_percentage_24h_in_currency);
@@ -142,7 +142,7 @@ function ccew_widget_insert_data()
             $response['total_supply'] = ccew_set_default_if_empty($coin->total_supply);
             $response['circulating_supply'] = ccew_set_default_if_empty($coin->circulating_supply);
             $response['7d_chart'] = json_encode($coin->sparkline_in_7d->price);
-            $response['logo'] = $coin->image;
+            $response['logo'] = esc_url($coin->image); // Added sanitization
             $response['coin_last_update'] = gmdate('Y-m-d h:i:s');
             $coin_data[] = $response;
 
@@ -167,8 +167,10 @@ function ccew_widget_insert_data()
  */
 function ccew_single_coin_peprika_update($coin_id)
 {
+    // Sanitize the coin_id to prevent injection attacks
+    $coin_id = sanitize_text_field($coin_id);
 
-    $api_url = 'https://api.coinpaprika.com/v1/tickers/' . $coin_id;
+    $api_url = 'https://api.coinpaprika.com/v1/tickers/' . urlencode($coin_id);
     $request = wp_remote_get(
         $api_url,
         array(
@@ -186,9 +188,9 @@ function ccew_single_coin_peprika_update($coin_id)
     if (is_array($coin_info) && !empty($coin_info)) {
         $coin = $coin_info;
         $response['coin_id'] = ccew_coin_array($coin['id']);
-        $response['rank'] = $coin['rank'];
-        $response['name'] = $coin['name'];
-        $response['symbol'] = strtoupper($coin['symbol']);
+        $response['rank'] = intval($coin['rank']); // Ensure rank is an integer
+        $response['name'] = sanitize_text_field($coin['name']); // Added sanitization
+        $response['symbol'] = strtoupper(sanitize_text_field($coin['symbol'])); // Added sanitization
         $response['price'] = ccew_set_default_if_empty($coin['quotes']['USD']['price'], 0.00);
         $response['percent_change_1h'] = ccew_set_default_if_empty($coin['quotes']['USD']['percent_change_1h']);
         $response['percent_change_24h'] = ccew_set_default_if_empty($coin['quotes']['USD']['percent_change_24h']);
@@ -266,7 +268,7 @@ function ccew_coin_peprik_historical_data($coin_id)
 
     // if (empty($coin_data) || $coin_data == false) {
     $seven_day = strtotime("-2 week");
-    $api_url = 'https://api.coinpaprika.com/v1/tickers/' . $coin_id . '/historical?start=' . $seven_day . '&interval=1d';
+    $api_url = 'https://api.coinpaprika.com/v1/tickers/' . urlencode($coin_id) . '/historical?start=' . urlencode($seven_day) . '&interval=1d';
     $request = wp_remote_get(
         $api_url,
         array(
@@ -301,9 +303,12 @@ function ccew_coin_peprik_historical_data($coin_id)
 function ccew_single_coin_update($coin_id)
 {
     $api_option1 = get_option('openexchange-api-settings');
-    $coingecko_api_key = (isset($api_option1['coingecko_api'])) ? $api_option1['coingecko_api'] : "";
+    $coingecko_api_key = (isset($api_option1['coingecko_api'])) ? sanitize_text_field($api_option1['coingecko_api']) : "";
 
-    $api_url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=' . $coin_id . '&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d&x_cg_demo_api_key=' . $coingecko_api_key;
+    // Sanitize the coin_id to prevent injection attacks
+    $coin_id = sanitize_text_field($coin_id);
+
+    $api_url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=' . urlencode($coin_id) . '&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=1h%2C24h%2C7d%2C30d&x_cg_demo_api_key=' . urlencode($coingecko_api_key);
     $request = wp_remote_get(
         $api_url,
         array(
@@ -321,24 +326,24 @@ function ccew_single_coin_update($coin_id)
     if (is_array($coin_info) && !empty($coin_info)) {
         ccew_track_coingecko_api_hit();
         $coin = $coin_info[0];
-        $response['coin_id'] = $coin->id;
-        $response['rank'] = $coin->market_cap_rank;
-        $response['name'] = $coin->name;
-        $response['symbol'] = strtoupper($coin->symbol);
-        $response['price'] = ccew_set_default_if_empty($coin->current_price, 0.00);
-        $response['percent_change_1h'] = ccew_set_default_if_empty($coin->price_change_percentage_1h_in_currency);
-        $response['percent_change_24h'] = ccew_set_default_if_empty($coin->price_change_percentage_24h_in_currency);
-        $response['percent_change_7d'] = ccew_set_default_if_empty($coin->price_change_percentage_7d_in_currency);
-        $response['percent_change_30d'] = ccew_set_default_if_empty($coin->price_change_percentage_30d_in_currency);
-        $response['high_24h'] = ccew_set_default_if_empty($coin->high_24h);
-        $response['low_24h'] = ccew_set_default_if_empty($coin->low_24h);
-        $response['market_cap'] = ccew_set_default_if_empty($coin->market_cap, 0);
-        $response['total_volume'] = ccew_set_default_if_empty($coin->total_volume);
-        $response['total_supply'] = ccew_set_default_if_empty($coin->total_supply);
-        $response['circulating_supply'] = ccew_set_default_if_empty($coin->circulating_supply);
+        $response['coin_id'] = sanitize_text_field($coin->id);
+        $response['rank'] = intval($coin->market_cap_rank);
+        $response['name'] = sanitize_text_field($coin->name);
+        $response['symbol'] = strtoupper(sanitize_text_field($coin->symbol));
+        $response['price'] = ccew_set_default_if_empty(floatval($coin->current_price), 0.00);
+        $response['percent_change_1h'] = ccew_set_default_if_empty(floatval($coin->price_change_percentage_1h_in_currency));
+        $response['percent_change_24h'] = ccew_set_default_if_empty(floatval($coin->price_change_percentage_24h_in_currency));
+        $response['percent_change_7d'] = ccew_set_default_if_empty(floatval($coin->price_change_percentage_7d_in_currency));
+        $response['percent_change_30d'] = ccew_set_default_if_empty(floatval($coin->price_change_percentage_30d_in_currency));
+        $response['high_24h'] = ccew_set_default_if_empty(floatval($coin->high_24h));
+        $response['low_24h'] = ccew_set_default_if_empty(floatval($coin->low_24h));
+        $response['market_cap'] = ccew_set_default_if_empty(floatval($coin->market_cap), 0);
+        $response['total_volume'] = ccew_set_default_if_empty(floatval($coin->total_volume));
+        $response['total_supply'] = ccew_set_default_if_empty(floatval($coin->total_supply));
+        $response['circulating_supply'] = ccew_set_default_if_empty(floatval($coin->circulating_supply));
         $response['7d_chart'] = json_encode($coin->sparkline_in_7d->price);
-        $response['logo'] = $coin->image;
-        $response['coin_last_update'] = gmdate('Y-m-d h:i:s');
+        $response['logo'] = esc_url($coin->image); // Sanitize URL
+        $response['coin_last_update'] = gmdate('Y-m-d H:i:s');
         $coin_data[] = $response;
         $DB = new ccew_database();
         $DB->ccew_insert($coin_data);
@@ -374,8 +379,10 @@ function ccew_widget_get_coin_data($coin_id)
         return false;
     }
     $DB = new ccew_database();
-    $coin_data_available = $DB->coin_exists_by_id($coin_id);
-    if ($coin_data_available == true) {
+    // Use prepared statements to prevent SQL injection
+    $coin_data_available = $DB->coin_exists_by_id(sanitize_text_field($coin_id));
+    
+    if ($coin_data_available) {
         $updated = $DB->check_coin_latest_update($coin_id);
         if ($updated == true) {
             return ccew_coin_data_return($coin_id);
@@ -541,7 +548,7 @@ function ccew_set_default_if_empty($value, $default = 'N/A')
 function ccew_get_coin_logo($coin_id, $size = 32, $HTML = true)
 {
     $logo_html = '';
-    //$DB = new ccew_database();
+    //$DB = new ccew_database(); 
     $coin_icon = ccew_coin_list_logos_default($coin_id);
     $logo_html = '<img id="' . esc_attr($coin_id) . '" alt="' . esc_attr($coin_id) . '" src="' . esc_url($coin_icon) . '" onerror="this.src = \'https://res.cloudinary.com/pinkborder/image/upload/coinmarketcap-coolplugins/128x128/default-logo.png\';">';
 
@@ -677,7 +684,7 @@ function ccew_usd_conversions($currency)
             return false;
         } else {
             $request = wp_remote_get(
-                'https://openexchangerates.org/api/latest.json?app_id=' . $api . '',
+                'https://openexchangerates.org/api/latest.json?app_id=' . urlencode($api),
                 array(
                     'timeout' => 120,
                     'sslverify' => true,
@@ -786,12 +793,12 @@ function ccew_coin_list_logos_default($coin_id, $size = 32)
 {
     $logo_html = '';
     $coin_logo_info = array();
-    $coin_svg = CCEW_DIR . '/assets/images/logos/' . $coin_id . '.svg';
-    $coin_pngs = CCEW_DIR . '/assets/images/logos/' . $coin_id . '.png';
+    $coin_svg = esc_url(CCEW_DIR . '/assets/images/logos/' . $coin_id . '.svg');
+    $coin_pngs = esc_url(CCEW_DIR . '/assets/images/logos/' . $coin_id . '.png');
     if (file_exists($coin_svg)) {
-        return $logo_path = CCEW_URL . 'assets/images/logos/' . $coin_id . '.svg';
+        return $logo_path = esc_url(CCEW_URL . 'assets/images/logos/' . $coin_id . '.svg');
     } else if (file_exists($coin_pngs)) {
-        return $logo_path = CCEW_URL . 'assets/images/logos/' . $coin_id . '.png';
+        return $logo_path = esc_url(CCEW_URL . 'assets/images/logos/' . $coin_id . '.png');
     } else {
         $api = get_option('ccew-api-settings');
         $api = (!isset($api['select_api']) && empty($api['select_api'])) ? "coin_gecko" : $api['select_api'];
@@ -801,11 +808,11 @@ function ccew_coin_list_logos_default($coin_id, $size = 32)
             return $coin_icon;
 
         } else if ($api == "coin_paprika") {
-            return 'https://static.coinpaprika.com/coin/' . ccew_coin_array($coin_id, true) . '/logo.png';
+            return esc_url('https://static.coinpaprika.com/coin/' . ccew_coin_array($coin_id, true) . '/logo.png');
 
         }
 
-        return $logo_path = CCEW_URL . 'assets/images/default-logo.png';
+        return $logo_path = esc_url(CCEW_URL . 'assets/images/default-logo.png');
 
     }
 }

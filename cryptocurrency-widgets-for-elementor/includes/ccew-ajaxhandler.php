@@ -1,16 +1,16 @@
 <?php
 function ccew_getData()
 {
-    if (!isset($_POST['nonce']) || !wp_verify_nonce(esc_sql($_POST['nonce']), 'ccew-create-widget')) {
+    if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field($_POST['nonce']), 'ccew-create-widget')) {
         die('Please refresh window and check it again');
     }
-    $settings = isset($_POST['settings']) ? esc_sql($_POST['settings']) : null;
+    $settings = isset($_POST['settings']) ? $_POST['settings'] : null;
     if ($settings !== null) {
         // Layout Settings
         // $settings = filter_var_array($_POST['settings'],FILTER_SANITIZE_STRING);
-        $widget_type = $settings['widget_type'];
-        $fiat_currency = $settings['fiat_currency'];
-        $number_formating = $settings['number_formating'];
+        $widget_type = sanitize_text_field($settings['widget_type']);
+        $fiat_currency = sanitize_text_field($settings['fiat_currency']);
+        $number_formating = sanitize_text_field($settings['number_formating']);
         $api = get_option('ccew-api-settings');
         $api = (!isset($api['select_api']) && empty($api['select_api'])) ? "coin_gecko" : $api['select_api'];
         if ($fiat_currency == 'USD') {
@@ -21,45 +21,45 @@ function ccew_getData()
         $content = '';
 
         if ($settings['widget_type'] == 'list') {
-            $display_24h_changes = $settings['display_24h_changes'];
-            $ccew_display_table_head = $settings['ccew_display_table_head'];
-            $numberof_coins = (!empty($settings['numberof_coins'])) ? $settings['numberof_coins'] : '';
-            $display_graph = $settings['display_graph'];
+            $display_24h_changes = sanitize_text_field($settings['display_24h_changes']);
+            $ccew_display_table_head = sanitize_text_field($settings['ccew_display_table_head']);
+            $numberof_coins = (!empty($settings['numberof_coins'])) ? sanitize_text_field($settings['numberof_coins']) : '';
+            $display_graph = sanitize_text_field($settings['display_graph']);
             $sortby = 'list';
         } elseif ($settings['widget_type'] == 'top_gainer_loser') {
-            $display_24h_changes = $settings['display_24h_changes'];
-            $numberof_coins = $settings['numberof_coins'];
-            $sortby = $settings['sortby'];
-            $display_graph = $settings['display_graph'];
+            $display_24h_changes = sanitize_text_field($settings['display_24h_changes']);
+            $numberof_coins = sanitize_text_field($settings['numberof_coins']);
+            $sortby = sanitize_text_field($settings['sortby']);
+            $display_graph = sanitize_text_field($settings['display_graph']);
         } elseif ($settings['widget_type'] == 'card') {
-            $card_style = $settings['ccew_widget_style'];
-            $ccew_card2_changes = $settings['ccew_card2_changes'];
-            $display_24h_changes = $settings['display_24h_changes'];
-            $ccew_display_chart_offset = $settings['ccew_display_chart_offset'];
-            $ccew_chart_color = $settings['ccew_chart_color'];
-            $ccew_chart_border_color = $settings['ccew_chart_border_color'];
-            $selected_coin = $settings['selected_coin'];
-            $display_high_low = $settings['display_high_low'];
-            $display_1h_changes = $settings['display_1h_changes'];
-            $display_7d_changes = $settings['display_7d_changes'];
-            $display_30d_changes = $settings['display_30d_changes'];
-            $display_rank = $settings['display_rank'];
-            $display_marketcap = $settings['display_marketcap'];
-            $coin_symbol_visibility = $settings['coin_symbol_visibility'];
+            $card_style = sanitize_text_field($settings['ccew_widget_style']);
+            $ccew_card2_changes = sanitize_text_field($settings['ccew_card2_changes']);
+            $display_24h_changes = sanitize_text_field($settings['display_24h_changes']);
+            $ccew_display_chart_offset = sanitize_text_field($settings['ccew_display_chart_offset']);
+            $ccew_chart_color = sanitize_text_field($settings['ccew_chart_color']);
+            $ccew_chart_border_color = sanitize_text_field($settings['ccew_chart_border_color']);
+            $selected_coin = sanitize_text_field($settings['selected_coin']);
+            $display_high_low = sanitize_text_field($settings['display_high_low']);
+            $display_1h_changes = sanitize_text_field($settings['display_1h_changes']);
+            $display_7d_changes = sanitize_text_field($settings['display_7d_changes']);
+            $display_30d_changes = sanitize_text_field($settings['display_30d_changes']);
+            $display_rank = sanitize_text_field($settings['display_rank']);
+            $display_marketcap = sanitize_text_field($settings['display_marketcap']);
+            $coin_symbol_visibility = sanitize_text_field($settings['coin_symbol_visibility']);
             // Layout Settings
         } elseif ($settings['widget_type'] == 'advanced_table') {
-            $current_page = isset($_POST['draw']) && (int) $_POST['draw'] ? esc_sql($_POST['draw']) : 1;
-            $start_point = isset($_POST['start']) ? esc_sql($_POST['start']) : 0;
+            $current_page = isset($_POST['draw']) && (int) $_POST['draw'] ? sanitize_text_field($_POST['draw']) : 1;
+            $start_point = isset($_POST['start']) ? sanitize_text_field($_POST['start']) : 0;
             $coin_no = $start_point + 1;
-            $numberof_coins = (!empty($settings['numberof_coins'])) ? $settings['numberof_coins'] : '';
-            $data_length = isset($_POST['length']) ? esc_sql($_POST['length']) : 10;
-            $required_coins = $settings['required_coins'];
+            $numberof_coins = (!empty($settings['numberof_coins'])) ? sanitize_text_field($settings['numberof_coins']) : '';
+            $data_length = isset($_POST['length']) ? sanitize_text_field($_POST['length']) : 10;
+            $required_coins = sanitize_text_field($settings['required_coins']);
             $Total_DBRecords = '1000';
             $order_col_name = 'market_cap';
             $order_type = 'DESC';
         } else {
-            $display_24h_changes = $settings['display_24h_changes'];
-            $selected_coin = $settings['selected_coin'];
+            $display_24h_changes = sanitize_text_field($settings['display_24h_changes']);
+            $selected_coin = sanitize_text_field($settings['selected_coin']);
         }
 
         if ($widget_type == 'list' || $widget_type == 'top_gainer_loser') {
@@ -108,8 +108,8 @@ function ccew_getData()
             if ($widget_type == 'advanced_table') {
                 $coin = (array) $coin;
             }
-            $coin_name = $coin['name'];
-            $coin_id = $coin['coin_id'];
+            $coin_name = sanitize_text_field($coin['name']);
+            $coin_id = sanitize_text_field($coin['coin_id']);
             $coin_logo_html = ccew_get_coin_logo(ccew_coin_array($coin_id), $size = 32);
             $currency_symbol = ccew_currency_symbol($fiat_currency);
             $coin_price = $coin['price'] * $fiat_c_rate;
@@ -165,6 +165,7 @@ function ccew_getData()
                     $coin_paprika_id = ccew_coin_array($coin_id, true);
 
                     $updated_data = ccew_save_chart7day($coin_paprika_id);
+                    
                     $chartprice = $updated_data;
 
                 } else {
@@ -184,14 +185,28 @@ function ccew_getData()
                     $changes = $currency_symbol . ccew_value_format_number($changes);
                 }
             }
-            if ($widget_type !== 'advanced_table') {
+
+            $exist_widget_files=array('card','label','list');
+
+            if ($widget_type !== 'advanced_table' && in_array($widget_type, $exist_widget_files)) {
                 $price = $currency_symbol . $coin_price;
                 $market_cap = $currency_symbol . $market_cap;
                 $volume = $currency_symbol . $volume;
                 $supply = $supply . ' ' . $symbol;
                 $high_24h = $currency_symbol . $high_24h;
                 $low_24h = $currency_symbol . $low_24h;
-                require CCEW_DIR . 'layouts/ccew-' . $widget_type . '.php';
+                $widget_layout = sanitize_file_name($widget_type); 
+                
+                // File path ko define aur validate karna
+                $file_path = esc_attr(CCEW_DIR) . 'layouts/ccew-' . $widget_layout . '.php';
+                
+                // Validate karna ki file exist karti hai aur woh sirf layouts directory mein hi hai
+                if (file_exists($file_path) && strpos(realpath($file_path), realpath(CCEW_DIR . 'layouts/')) === 0) {
+                    require $file_path;
+                } else {
+                    // Agar file invalid ya directory ke bahar hai toh error handle karna
+                    wp_die('Invalid widget type specified.');
+                }
             }
 
             if ($widget_type == 'advanced_table') {

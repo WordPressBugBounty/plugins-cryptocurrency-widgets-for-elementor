@@ -26,9 +26,10 @@ if ( ! class_exists( 'ccew_review_notice' ) ) {
 		 * Ajax callback for dismissing the review notice
 		 */
 		public function ccew_dismiss_review_notice() {
-			  // Check for nonce security
-			if ( ! wp_verify_nonce( $_POST['nonce'], 'ccew-nonce' ) ) {
-				die( 'You don\'t have permission hide notice.' );
+			// Check for nonce security
+			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'ccew-nonce' ) ) {
+				wp_send_json_error( 'You don\'t have permission to hide notice.' );
+				return;
 			}
 			update_option( 'ccew-alreadyRated', 'yes' );
 			wp_send_json_success();
@@ -57,10 +58,11 @@ if ( ! class_exists( 'ccew_review_notice' ) ) {
 			$install_date = new DateTime( $installation_date );
 			$current_date = new DateTime();
 			$diff         = $install_date->diff( $current_date );
+			
 			$diff_days    = $diff->days;
 
 			// Check if installation days is greater than or equal to 3
-			if ( $diff_days >= 3 ) {
+			if ( $diff_days >= 3) {
 				echo wp_kses_post( $this->ccew_create_notice_content() );
 			}
 		}
@@ -69,15 +71,15 @@ if ( ! class_exists( 'ccew_review_notice' ) ) {
 		 * Generate the HTML content for the review notice
 		 */
 		public function ccew_create_notice_content() {
-			$ajax_url           = admin_url( 'admin-ajax.php' );
-			$ajax_callback      = 'ccew_dismiss_notice';
-			$wrap_cls           = 'notice notice-info is-dismissible';
-			$img_path           = CCEW_URL . 'assets/images/ccew-logo.png';
-			$p_name             = 'Cryptocurrency Widgets For Elementor';
-			$like_it_text       = 'Rate Now! ★★★★★';
-			$already_rated_text = esc_html__( 'I already rated it', 'ccew' );
-			$not_like_it_text   = esc_html__( 'No, not good enough, I do not like to rate it!', 'ccew' );
-			$not_interested     = esc_html__( 'Not Interested', 'cool-timeline' );
+			$ajax_url           = esc_url(admin_url('admin-ajax.php'));
+			$ajax_callback      = esc_attr('ccew_dismiss_notice');
+			$wrap_cls           = esc_attr('notice notice-info is-dismissible');
+			$img_path           = esc_url(CCEW_URL . 'assets/images/ccew-logo.png');
+			$p_name             = esc_html__('Cryptocurrency Widgets For Elementor', 'ccew');
+			$like_it_text       = esc_html__('Rate Now! ★★★★★', 'ccew');
+			$already_rated_text = esc_html__('I already rated it', 'ccew');
+			$not_like_it_text   = esc_html__('No, not good enough, I do not like to rate it!', 'ccew');
+			$not_interested     = esc_html__('Not Interested', 'cool-timeline');
 			$p_link             = esc_url( 'https://wordpress.org/support/plugin/cryptocurrency-widgets-for-elementor/reviews/#new-post' );
 
 			$nonce   = wp_create_nonce( 'ccew-nonce' );

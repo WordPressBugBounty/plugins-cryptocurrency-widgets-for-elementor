@@ -11,22 +11,26 @@ class ccew__Widget extends \Elementor\Widget_Base
     {
         parent::__construct($data, $args);
 
-        wp_register_style('ccew-card', CCEW_URL . 'assets/css/ccew-card.css', array(), CCEW_VERSION);
-        wp_register_style('ccew-label', CCEW_URL . 'assets/css/ccew-label.min.css', array(), CCEW_VERSION);
-        wp_register_style('ccew-common-styles', CCEW_URL . 'assets/css/ccew-common-styles.css', array(), CCEW_VERSION);
-        wp_register_style('ccew-icons-style', CCEW_URL . 'assets/css/ccew-icons.min.css', array(), CCEW_VERSION);
-        wp_register_style('ccew-list-style', CCEW_URL . 'assets/css/ccew-list.css', array(), CCEW_VERSION);
-        wp_register_style('ccew-custom-datatable-style', CCEW_URL . 'assets/css/ccew-custom-datatable.css', array(), CCEW_VERSION);
-        wp_register_script('ccew-anychart-core', CCEW_URL . 'assets/js/ccew-anychart-core.js', array('elementor-frontend'), CCEW_VERSION, true);
-        wp_register_script('ccew-anychart-sparkline', CCEW_URL . 'assets/js/ccew-anychart-sparkline.js', array('elementor-frontend'), CCEW_VERSION, true);
-        wp_register_script('ccew-anychart-area', CCEW_URL . 'assets/js/ccew-anychart-area.js', array('elementor-frontend'), CCEW_VERSION, true);
-        wp_register_script('small-chart', CCEW_URL . 'assets/js/small-chart.js', array('elementor-frontend'), CCEW_VERSION, true);
-        wp_register_script('ccew-call-ajax', CCEW_URL . 'assets/js/ccew-call-ajax.js', array('elementor-frontend'), CCEW_VERSION, true);
-        wp_register_script('ccew-numeral', CCEW_URL . 'assets/js/numeral.min.js', array('elementor-frontend'), CCEW_VERSION, true);
-        wp_register_script('ccew-table-sort', CCEW_URL . 'assets/js/tablesort.min.js', array('elementor-frontend'), CCEW_VERSION, true);
-        wp_register_script('ccew-datatable', CCEW_URL . 'assets/js/jquery.dataTables.min.js', array('elementor-frontend'), CCEW_VERSION, true);
-        wp_register_script('ccew-headFixer', CCEW_URL . 'assets/js/tableHeadFixer.js', array('elementor-frontend'), CCEW_VERSION, true);
+        wp_register_style('ccew-card', esc_url(CCEW_URL) . 'assets/css/ccew-card.css', array(), esc_attr(CCEW_VERSION));
+        wp_register_style('ccew-label', esc_url(CCEW_URL) . 'assets/css/ccew-label.min.css', array(), esc_attr(CCEW_VERSION));
+        wp_register_style('ccew-common-styles', esc_url(CCEW_URL) . 'assets/css/ccew-common-styles.css', array(), esc_attr(CCEW_VERSION));
+        wp_register_style('ccew-icons-style', esc_url(CCEW_URL) . 'assets/css/ccew-icons.min.css', array(), esc_attr(CCEW_VERSION));
+        wp_register_style('ccew-list-style', esc_url(CCEW_URL) . 'assets/css/ccew-list.css', array(), esc_attr(CCEW_VERSION));
+        wp_register_style('ccew-custom-datatable-style', esc_url(CCEW_URL) . 'assets/css/ccew-custom-datatable.css', array(), esc_attr(CCEW_VERSION));
+        add_action( 'elementor/frontend/after_enqueue_scripts', array( $this, 'ccew_enqueue_cryptowidget_scripts' ) );
+    }
 
+    public function ccew_enqueue_cryptowidget_scripts() {
+        wp_register_script('ccew-anychart-core', esc_url(CCEW_URL) . 'assets/js/ccew-anychart-core.js', array('elementor-frontend'), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-anychart-sparkline', esc_url(CCEW_URL) . 'assets/js/ccew-anychart-sparkline.js', array('elementor-frontend'), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-anychart-area', esc_url(CCEW_URL) . 'assets/js/ccew-anychart-area.js', array('elementor-frontend'), esc_attr(CCEW_VERSION), true);
+        wp_register_script('small-chart', esc_url(CCEW_URL) . 'assets/js/small-chart.js', array('elementor-frontend'), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-call-ajax', esc_url(CCEW_URL) . 'assets/js/ccew-call-ajax.js', array('elementor-frontend'), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-numeral', esc_url(CCEW_URL) . 'assets/js/numeral.min.js', array('elementor-frontend'), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-table-sort', esc_url(CCEW_URL) . 'assets/js/tablesort.min.js', array('elementor-frontend'), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-datatable', esc_url(CCEW_URL) . 'assets/js/jquery.dataTables.min.js', array('elementor-frontend'), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-headFixer', esc_url(CCEW_URL) . 'assets/js/tableHeadFixer.js', array('elementor-frontend'), esc_attr(CCEW_VERSION), true);
+        
     }
 
     public function get_script_depends()
@@ -834,17 +838,17 @@ class ccew__Widget extends \Elementor\Widget_Base
                 'show_label' => false,
                 'raw' => '<ul class="ccew-promotion-plugins">
 							<div class="ccew_cmc_demo">
-							 <div class="ccew_logo_container"><a href="'.CCEW_DEMO_URL.'/demo/coins-marketcap/'.CCEW_UTM.'" target="_blank"><img src="' . CCEW_URL . 'assets/images/coinmarketcap-logo.png" alt="Cryptocurrency widget for elementor" style="max-width:80px;"></a></div>
+							 <div class="ccew_logo_container"><a href="'.esc_url(CCEW_DEMO_URL.'/demo/coins-marketcap/'.CCEW_UTM).'" target="_blank"><img src="' . esc_url(CCEW_URL) . 'assets/images/coinmarketcap-logo.png" alt="Cryptocurrency widget for elementor" style="max-width:80px;"></a></div>
 							 <div class="ccew_cmc_def">
 							<strong>Coins MarketCap</strong>
 							Coins Marketcap plugin creates a fully automatic crypto coins price listing website that dynamically generates 2500+ coins pages.
-							</div><div class="ccew_link_wrap"><a class="ccew_demo_link" href="'.CCEW_DEMO_URL.'/demo/coins-marketcap/'.CCEW_UTM.'" target="_blank"><button class="ccew-custom-primry-btn">View Demos </button> </a> <a class="ccew_demo_buyk" href="https://cryptocurrencyplugins.com/wordpress-plugin/coins-marketcap/?utm_source=widget_settings&utm_medium=inside&utm_campaign=get-pro-cmc&utm_content=buy-now" target="_blank"><button class="ccew-custom-primry-btn">Buy Pro</button></a></div>
+							</div><div class="ccew_link_wrap"><a class="ccew_demo_link" href="'.esc_url(CCEW_DEMO_URL.'/demo/coins-marketcap/'.CCEW_UTM).'" target="_blank"><button class="ccew-custom-primry-btn">View Demos </button> </a> <a class="ccew_demo_buyk" href="https://cryptocurrencyplugins.com/wordpress-plugin/coins-marketcap/?utm_source=widget_settings&utm_medium=inside&utm_campaign=get-pro-cmc&utm_content=buy-now" target="_blank"><button class="ccew-custom-primry-btn">Buy Pro</button></a></div>
 							</div>
 							<hr>
 							<div class="ccew_cmc_demo">
-							<div class="ccew_logo_container"><a href="'.CCEW_DEMO_URL.'/demo/cryptocurrency-widgets-pro/'.CCEW_UTM.'" target="_blank"><img src="' . CCEW_URL . 'assets/images/crypto-widget-pro.png" alt="Cryptocurrency widget for elementor" style="max-width:80px;"></a></div>
+							<div class="ccew_logo_container"><a href="'.esc_url(CCEW_DEMO_URL.'/demo/cryptocurrency-widgets-pro/'.CCEW_UTM).'" target="_blank"><img src="' . esc_url(CCEW_URL) . 'assets/images/crypto-widget-pro.png" alt="Cryptocurrency widget for elementor" style="max-width:80px;"></a></div>
 							<div class="ccew_cmc_def"><strong>Cryptocurrency Widgets Pro</strong>
-							Show cryptocurrency price table, historical charts, tickers and other widgets inside any page or post.</div><div class="ccew_link_wrap"><a class="ccew_demo_link" href="'.CCEW_DEMO_URL.'/demo/cryptocurrency-widgets-pro/'.CCEW_UTM.'" target="_blank"><button class="ccew-custom-primry-btn">View Demos </button> </a><a class="ccew_demo_buyk"  href="https://cryptocurrencyplugins.com/wordpress-plugin/cryptocurrency-widgets-pro/?utm_source=widget_settings&utm_medium=inside&utm_campaign=get-pro-ccpw&utm_content=buy-now" target="_blank"><button class="ccew-custom-primry-btn">Buy Pro</button></a></div>
+							Show cryptocurrency price table, historical charts, tickers and other widgets inside any page or post.</div><div class="ccew_link_wrap"><a class="ccew_demo_link" href="'.esc_url(CCEW_DEMO_URL.'/demo/cryptocurrency-widgets-pro/'.CCEW_UTM).'" target="_blank"><button class="ccew-custom-primry-btn">View Demos </button> </a><a class="ccew_demo_buyk"  href="https://cryptocurrencyplugins.com/wordpress-plugin/cryptocurrency-widgets-pro/?utm_source=widget_settings&utm_medium=inside&utm_campaign=get-pro-ccpw&utm_content=buy-now" target="_blank"><button class="ccew-custom-primry-btn">Buy Pro</button></a></div>
 							</div>
 						  </ul>',
 

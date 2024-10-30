@@ -291,7 +291,7 @@ class ccew_database
         if (false === $results) {
             if (true === $count) {
                 // Retrieve the count of results from the database
-                $results = absint($wpdb->get_var($wpdb->prepare("SELECT COUNT(%s) FROM $table_name  {$where};", $this->primary_key)));
+                $results = absint($wpdb->get_var($wpdb->prepare("SELECT COUNT(%s) FROM $table_name  {$where};", esc_sql($this->primary_key))));
             } else {
                 // Retrieve the results from the database
                 $results = $wpdb->get_results(

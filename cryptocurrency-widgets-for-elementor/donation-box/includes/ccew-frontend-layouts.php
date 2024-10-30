@@ -38,7 +38,7 @@ if ( ! empty( $all_coin_wall_add ) && is_array( $all_coin_wall_add ) && array_fi
 
 			$title_content = str_replace( '[coin-name]', $coin_name, $title );
 			$desc_content  = str_replace( '[coin-name]', $coin_name, $description );
-			$coin_logo     = CCEW_URL . '/donation-box/assets/logos/' . $address['ccewd_coin_list'] . '.svg';
+			$coin_logo     = esc_url(CCEW_URL . '/donation-box/assets/logos/' . $address['ccewd_coin_list'] . '.svg');
 			$logo_html     = '<img src="' . esc_url( $coin_logo ) . '"> ';
 			$logo_html    .= $coin_name;
 			$coin_links   .= '<li class="ccewd-coins ' . esc_attr( $active_tab ) . '" id="' . esc_attr( $address['ccewd_coin_list'] ) . '" data-tab="' . esc_attr( $address['ccewd_coin_list'] ) . '-tab">' . $logo_html . '</li>';
