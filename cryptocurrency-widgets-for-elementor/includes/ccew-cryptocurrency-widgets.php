@@ -366,7 +366,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_1h_changes',
             array(
-                'label' => __('1H change', 'ccew'),
+                'label' => __('1H Change', 'ccew'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
                 'label_on' => __('Show', 'ccew'),
                 'label_off' => __('Hide', 'ccew'),
@@ -404,7 +404,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_7d_changes',
             array(
-                'label' => __('7 Days changes', 'ccew'),
+                'label' => __('7 Days Changes', 'ccew'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
                 'label_on' => __('Show', 'ccew'),
                 'label_off' => __('Hide', 'ccew'),
@@ -420,7 +420,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_30d_changes',
             array(
-                'label' => __('30 days changes', 'ccew'),
+                'label' => __('30 Days Changes', 'ccew'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
                 'label_on' => __('Show', 'ccew'),
                 'label_off' => __('Hide', 'ccew'),
@@ -730,6 +730,15 @@ class ccew__Widget extends \Elementor\Widget_Base
                 'condition' => array(
                     'ccew_widget_type' => array('list', 'advanced_table'),
                 ),
+                'fields_options' => [
+                    'font_size' => [
+                        'range' => [
+                            'px' => [
+                                'max' => 50,
+                            ],
+                        ],
+                    ],
+                ]
             ]
         );
 
@@ -743,6 +752,15 @@ class ccew__Widget extends \Elementor\Widget_Base
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-card-coin span,
                 {{WRAPPER}} div[id*=ccew-wrap] #ccew-coinslist_wrapper tbody .ccew_coin_name
                 ',
+                'fields_options' => [
+                    'font_size' => [
+                        'range' => [
+                            'px' => [
+                                'max' => 40,
+                            ],
+                        ],
+                    ],
+                ]
 
             ]
         );
@@ -755,6 +773,15 @@ class ccew__Widget extends \Elementor\Widget_Base
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-coin-symbol,
                 {{WRAPPER}} div[id*=ccew-wrap] #ccew-coinslist_wrapper tbody .ccew_coin_symbol
                 ',
+                'fields_options' => [
+                    'font_size' => [
+                        'range' => [
+                            'px' => [
+                                'max' => 50,
+                            ],
+                        ],
+                    ],
+                ]
 
             ]
         );
@@ -772,6 +799,15 @@ class ccew__Widget extends \Elementor\Widget_Base
                 'condition' => array(
                     'ccew_widget_type!' => array('advanced_table'),
                 ),
+                'fields_options' => [
+                    'font_size' => [
+                        'range' => [
+                            'px' => [
+                                'max' => 40,
+                            ],
+                        ],
+                    ],
+                ]
 
             ]
         );
@@ -794,6 +830,15 @@ class ccew__Widget extends \Elementor\Widget_Base
                 'condition' => array(
                     'ccew_widget_type!' => array('advanced_table'),
                 ),
+                'fields_options' => [
+                    'font_size' => [
+                        'range' => [
+                            'px' => [
+                                'max' => 30,
+                            ],
+                        ],
+                    ],
+                ]
 
             ]
         );

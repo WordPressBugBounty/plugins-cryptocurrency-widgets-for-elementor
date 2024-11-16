@@ -2,9 +2,9 @@
 Contributors: narinder-singh,satindersingh,coolplugins
 Tags: cryptocurrency,crypto price,bitcoin widget,elementor addon,crypto donations
 Requires at least:5.0
-Tested up to: 6.6
-Requires PHP:7.2
-Stable tag:1.6.5
+Tested up to: 6.7
+Requires PHP: 5.6
+Stable tag:1.6.7
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -166,60 +166,71 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 8. Cryptocurrency Donation Widget 
 
 == Changelog ==
-<strong>Version 1.6.5| 30/10/2024<strong>
+<strong>Version 1.6.7| 16/11/2024</strong>
 <pre>
-Fixed: Major Security fixes.
+update: Minor textual changes
 </pre>
-<strong>Version 1.6.4| 07/10/2024<strong>
+<strong>Version 1.6.6| 16/11/2024</strong>
+<pre>
+Fixed: Custom Coin Settings.
+update: Minor textual changes
+Tested up to: WordPress Version 6.7
+Tested up to: Elementor Version 3.25.6
+</pre>
+<strong>Version 1.6.5| 29/10/2024</strong>
+<pre>
+Improved: Security improvements.
+</pre>
+<strong>Version 1.6.4| 04/10/2024</strong>
 <pre>
 Fixed: Top gainer loser widget issue.
 fixed: fixed the minor security issue.
 </pre>
-<strong>Version 1.6.3| 27/05/2024<strong>
+<strong>Version 1.6.3| 27/05/2024</strong>
 <pre>
 Improved: Code improvement.
 Fixed: Invalid coin data issue.
 </pre>
-<strong>Version 1.6.2| 19/04/2024<strong>
+<strong>Version 1.6.2| 19/04/2024</strong>
 <pre>
 Updated: Donation box QR code library.
 Fixed: Circulating supply warning issue.
 Fixed: Coinpaprika API issues.
 Fixed: Broken logo issues.
 </pre>
-<strong>Version 1.6.1| 20/01/2024<strong>
+<strong>Version 1.6.1| 20/01/2024</strong>
 <pre>
 Fixed:Compatibility issues.
 </pre>
-<strong>Version 1.6| 20/01/2024<strong>
+<strong>Version 1.6| 20/01/2024</strong>
 <pre>
 Fixed: Minor security vulnerabilities.
 Improved: Overall security measures.
 Tested upto: WordPress Version 6.4.2.
 Tested upto:Elementor Version 3.18.3
 </pre>
-<strong>Version 1.5.8| 04/12/2023<strong>
+<strong>Version 1.5.8| 04/12/2023</strong>
 <pre>
 Added: Coingecko free api key option.
 Updated: Option to set cache time.
 Updated: Coins logos.
 Tested upto: WordPress Version 6.4.1.
 </pre>
-<strong>Version 1.5.7| 16/11/2023<strong>
+<strong>Version 1.5.7| 16/11/2023</strong>
 <pre>
 Tested upto: WordPress Version 6.4.
 Tested upto:Elementor Version 3.17.3
 </pre>
-<strong>Version 1.5.6| 19/10/2023<strong>
+<strong>Version 1.5.6| 19/10/2023</strong>
 <pre>
 Fixed: Deprecated message issue.
 </pre>
-<strong>Version 1.5.5| 06/09/2023<strong>
+<strong>Version 1.5.5| 06/09/2023</strong>
 <pre>
 Fixed: Minor fixes.
 Tweaks: Minor textual changes
 </pre>
-<strong>Version 1.5.4| 21/08/2023<strong>
+<strong>Version 1.5.4| 21/08/2023</strong>
 <pre>
 Fixed: Deprecated message warning.
 Improved: MetaMask UI & Code.
@@ -227,7 +238,7 @@ Wordpress tested up to: Version 6.3.
 Elementor tested up to: Version 3.15.3
 </pre>
 
-<strong>Version 1.5.3| 28/06/2023<strong>
+<strong>Version 1.5.3| 28/06/2023</strong>
 <pre>
 Fixed: Minor Security fix.
 Improved: Review notice code improvement.

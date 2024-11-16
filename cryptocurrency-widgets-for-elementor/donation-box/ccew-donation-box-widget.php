@@ -198,7 +198,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $repeater->add_control(
             'ccewd_wallet_address',
             array(
-                'label' => __('Enter wallet Address', 'plugin-domain'),
+                'label' => __('Enter Wallet Address', 'plugin-domain'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'label_block' => true,
                 'placeholder' => __('Wallet address', 'plugin-domain'),
@@ -225,7 +225,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccewd_repeater_data',
             array(
-                'label' => __('Wallet address', 'plugin-domain'),
+                'label' => __('Wallet Address', 'plugin-domain'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => array(
@@ -261,11 +261,11 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccewd_metamask_price',
             array(
-                'label' => __('MetaMask default price', 'plugin-domain'),
+                'label' => __('MetaMask Default Price', 'plugin-domain'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'label_block' => true,
                 'default' => __('0.005', 'plugin-domain'),
-                'placeholder' => __('Enter Default amount in Ethereum', 'plugin-domain'),
+                'placeholder' => __('Enter default amount in Ethereum', 'plugin-domain'),
             )
         );
 
@@ -323,7 +323,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccewd_primery_color',
             array(
-                'label' => __('Primery Color', 'plugin-domain'),
+                'label' => __('Primary Color', 'plugin-domain'),
                 'type' => \Elementor\Controls_Manager::COLOR,
 
                 'selectors' => array(

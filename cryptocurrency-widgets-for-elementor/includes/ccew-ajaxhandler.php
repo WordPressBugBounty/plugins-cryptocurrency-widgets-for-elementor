@@ -23,7 +23,7 @@ function ccew_getData()
         if ($settings['widget_type'] == 'list') {
             $display_24h_changes = sanitize_text_field($settings['display_24h_changes']);
             $ccew_display_table_head = sanitize_text_field($settings['ccew_display_table_head']);
-            $numberof_coins = (!empty($settings['numberof_coins'])) ? sanitize_text_field($settings['numberof_coins']) : '';
+            $numberof_coins = (!empty($settings['numberof_coins'])) ? $settings['numberof_coins'] : '';
             $display_graph = sanitize_text_field($settings['display_graph']);
             $sortby = 'list';
         } elseif ($settings['widget_type'] == 'top_gainer_loser') {
@@ -51,7 +51,7 @@ function ccew_getData()
             $current_page = isset($_POST['draw']) && (int) $_POST['draw'] ? sanitize_text_field($_POST['draw']) : 1;
             $start_point = isset($_POST['start']) ? sanitize_text_field($_POST['start']) : 0;
             $coin_no = $start_point + 1;
-            $numberof_coins = (!empty($settings['numberof_coins'])) ? sanitize_text_field($settings['numberof_coins']) : '';
+            $numberof_coins = (!empty($settings['numberof_coins'])) ? $settings['numberof_coins'] : '';
             $data_length = isset($_POST['length']) ? sanitize_text_field($_POST['length']) : 10;
             $required_coins = sanitize_text_field($settings['required_coins']);
             $Total_DBRecords = '1000';

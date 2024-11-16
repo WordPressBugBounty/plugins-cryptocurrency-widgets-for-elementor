@@ -5,19 +5,19 @@
  * Author:Cool Plugins
  * Author URI:https://coolplugins.net/
  * Plugin URI:https://cryptocurrencyplugins.com/
- * Version: 1.6.5
+ * Version: 1.6.7
  * License: GPL2
  * Text Domain:ccew
  * Domain Path: languages
  *
- * Elementor tested up to: 3.24.4
+ * Elementor tested up to:3.25.6
  * */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-define('CCEW_VERSION', '1.6.5');
+define('CCEW_VERSION', '1.6.7');
 define('CCEW_FILE', __FILE__);
 define('CCEW_DIR', plugin_dir_path(CCEW_FILE));
 define('CCEW_URL', plugin_dir_url(CCEW_FILE));
