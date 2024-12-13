@@ -170,7 +170,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_coin_api',
             [
-                'label' => esc_html__('Select Api', 'plugin-name'),
+                'label' => esc_html__('Select Api', 'ccew'),
                 'type' => \Elementor\Controls_Manager::HIDDEN,
                 'default' => $api,
             ]
@@ -194,7 +194,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_gainer_description',
             array(
-                'label' => __('Top gainer loser from 200 coins', 'plugin-name'),
+                'label' => __('Top gainer loser from 200 coins', 'ccew'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'show_label' => true,
                 'condition' => array(
@@ -724,7 +724,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'table_list_typography',
-                'label' => esc_html__('Table/List Heading Typography', 'plugin-name'),
+                'label' => esc_html__('Table/List Heading Typography', 'ccew'),
                 'selector' => '{{WRAPPER}} div[id*=ccew-wrap] table thead tr th,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-list-head',
                 'condition' => array(
@@ -746,7 +746,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'coin_name_typography',
-                'label' => esc_html__('Coin Name Typography', 'plugin-name'),
+                'label' => esc_html__('Coin Name Typography', 'ccew'),
                 'selector' => '{{WRAPPER}} div[id*=ccew-wrap] .ccew-wrapper.ccew-price-list .ccew-coin-name,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-coin-name,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-card-coin span,
@@ -768,7 +768,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'coin_symbol_typography',
-                'label' => esc_html__('Coin Symbol Typography', 'plugin-name'),
+                'label' => esc_html__('Coin Symbol Typography', 'ccew'),
                 'selector' => '{{WRAPPER}} div[id*=ccew-wrap] .ccew-wrapper.ccew-price-list .ccew-coin-symbol,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-coin-symbol,
                 {{WRAPPER}} div[id*=ccew-wrap] #ccew-coinslist_wrapper tbody .ccew_coin_symbol
@@ -789,7 +789,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'coin_price_typography',
-                'label' => esc_html__('Coin Price Typography', 'plugin-name'),
+                'label' => esc_html__('Coin Price Typography', 'ccew'),
                 'selector' => '{{WRAPPER}} div[id*=ccew-wrap] .ccew-wrapper.ccew-price-list .ccew-coin-price,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-coin-price,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-coin-price span.ccew-price,
@@ -815,7 +815,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'coin_other_typography',
-                'label' => esc_html__('Other Content Typography', 'plugin-name'),
+                'label' => esc_html__('Other Content Typography', 'ccew'),
                 'selector' => '{{WRAPPER}} div[id*=ccew-wrap] .ccew-coin-info .ccew-info-item span,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-wrapper .ccew-change-percent span,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-wrapper .ccew-card-change span,
@@ -854,7 +854,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_review_note',
             array(
-                'label' => __('Review Notice', 'plugin-name'),
+                'label' => __('Review Notice', 'ccew'),
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
                 'show_label' => false,
                 'raw' => '<div class="ccew_cmc_demo">
@@ -878,7 +878,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_important_note',
             array(
-                'label' => __('Pro plugins', 'plugin-name'),
+                'label' => __('Pro plugins', 'ccew'),
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
                 'show_label' => false,
                 'raw' => '<ul class="ccew-promotion-plugins">
@@ -1000,13 +1000,17 @@ class ccew__Widget extends \Elementor\Widget_Base
 			style="border:none!important;">
 			<thead>
 			<th data-classes="desktop ccew_coin_rank" data-index="rank">' . esc_html__('#', 'ccew') . '</th>
-			<th data-classes="desktop ccew_name" data-index="name">' . esc_html__('Name', 'ccew') . '</th>
-			<th data-classes="desktop ccew_coin_price" data-index="price">' . esc_html__('Price', 'ccew') . '</th>
-			<th data-classes="desktop ccew_coin_change24h" data-index="change_percentage_24h">' . esc_html__('Changes 24h', 'ccew') . '</th>
-			<th data-classes="desktop ccew_coin_market_cap" data-index="market_cap">' . esc_html__('Market CAP', 'ccew') . '</th>';
-                if ($user_selected_api == "coin_gecko") {
-                    echo '<th data-classes="ccew_coin_total_volume" data-index="total_volume">' . esc_html__('Volume', 'ccew') . '</th>';
-                    echo '<th data-classes="ccew_coin_supply" data-index="supply">' . esc_html__('Supply', 'ccew') . '</th>';
+            <th data-classes="desktop ccew_name" data-index="name">' . esc_html__('Name', 'ccew') . '</th>
+            <th data-classes="desktop ccew_coin_price" data-index="price">' . esc_html__('Price', 'ccew') . '</th>
+              <th data-classes="desktop ccew_coin_change24h" data-index="change_percentage_24h">' . esc_html__('Changes 24h', 'ccew') . '</th>
+
+            <th data-classes="desktop ccew_coin_market_cap" data-index="market_cap">' . esc_html__('Market CAP', 'ccew') . '</th>';
+
+	                if ($user_selected_api == "coin_gecko") {
+
+		                    echo '<th data-classes="ccew_coin_total_volume" data-index="total_volume">' . esc_html__('Volume', 'ccew') . '</th>';
+
+                       echo '<th data-classes="ccew_coin_supply" data-index="supply">' . esc_html__('Supply', 'ccew') . '</th>';
                 }
                 echo '
 			</tr></thead><tbody>

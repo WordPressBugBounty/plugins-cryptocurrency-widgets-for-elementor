@@ -252,7 +252,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'ccewd_extra_settings',
             array(
-                'label' => __('Extra Settings', 'plugin-name'),
+                'label' => __('Extra Settings', 'ccew'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 
             )
@@ -316,7 +316,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'ccewd_style_section',
             array(
-                'label' => __('Style Section', 'plugin-name'),
+                'label' => __('Style Section', 'ccew'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             )
         );
@@ -408,7 +408,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_review_note',
             array(
-                'label' => __('Review Notice', 'plugin-name'),
+                'label' => __('Review Notice', 'ccew'),
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
                 'show_label' => false,
                 'raw' => '<div class="ccew_cmc_demo">
@@ -432,7 +432,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
       $this->add_control(
             'ccew_important_note',
             array(
-                'label' => __('Pro plugins', 'plugin-name'),
+                'label' => __('Pro plugins', 'ccew'),
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
                 'show_label' => false,
                 'raw' => '<ul class="ccew-promotion-plugins">

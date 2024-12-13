@@ -5,7 +5,7 @@
  * Author:Cool Plugins
  * Author URI:https://coolplugins.net/
  * Plugin URI:https://cryptocurrencyplugins.com/
- * Version: 1.6.7
+ * Version: 1.6.8
  * License: GPL2
  * Text Domain:ccew
  * Domain Path: languages
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('CCEW_VERSION', '1.6.7');
+define('CCEW_VERSION', '1.6.8');
 define('CCEW_FILE', __FILE__);
 define('CCEW_DIR', plugin_dir_path(CCEW_FILE));
 define('CCEW_URL', plugin_dir_url(CCEW_FILE));
@@ -80,6 +80,8 @@ final class Crypto_Currency_Elementor_Widget
         add_action('plugins_loaded', array($this, 'ccew_plugins_loaded'));
         add_action('init', array($this, 'ccew_verify_plugin_version'));
         add_action('init', array($this, 'reset_option_data_once_on_first_of_month'));
+        add_action('init', array($this, 'ccew_load_textdomain'));
+
 
     }
 
@@ -102,7 +104,10 @@ final class Crypto_Currency_Elementor_Widget
 endif;
 
     }
-
+    public function ccew_load_textdomain()
+    {
+        load_plugin_textdomain('ccew', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+    }
     public function ccew_file_include()
     {
         if (is_admin()) {

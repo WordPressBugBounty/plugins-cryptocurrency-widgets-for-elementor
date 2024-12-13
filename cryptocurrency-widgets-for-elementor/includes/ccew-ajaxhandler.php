@@ -97,10 +97,10 @@ function ccew_getData()
             }
             $content .= '<div class="ccew-list-head">';
             //$content .= '<div class="ccew-list-head-logo">Logo</div>';
-            $content .= '<div class="ccew-list-head-name">Name</div>';
-            $content .= '<div class="ccew-list-head-price ' . esc_attr($dynamic_class_head) . '">Price</div>';
+            $content .= '<div class="ccew-list-head-name">' . __('Name', 'ccew') . '</div>';
+            $content .= '<div class="ccew-list-head-price ' . esc_attr($dynamic_class_head) . '">' . __('Price', 'ccew') . '</div>';
             if ($display_graph == 'yes') {
-                $content .= '<div class="ccew-list-head-graph">Graph</div>';
+                $content .= '<div class="ccew-list-head-graph">' . __('Graph', 'ccew') . '</div>';
             }
             $content .= '</div>';
         }
