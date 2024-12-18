@@ -17,14 +17,13 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         add_action( 'elementor/frontend/after_enqueue_scripts', array( $this, 'ccew_enqueue_donation_scripts' ) );
     }
     public function ccew_enqueue_donation_scripts() {
-        wp_register_script('ccew-etherjs', esc_url(CCEW_URL . 'donation-box/assets/js/ethers-5.2.umd.min.js'), array('elementor-common','elementor-frontend'), esc_attr(CCEW_VERSION), true);
-
-        wp_register_script('ccew-custom', esc_url(CCEW_URL . 'donation-box/assets/js/ccewd-custom.js'), array('elementor-common','elementor-frontend'), esc_attr(CCEW_VERSION), true);
-        wp_register_script('ccew-sweetalert2', esc_url(CCEW_URL . 'donation-box/assets/js/sweetalert2.js'), array('elementor-common','elementor-frontend'), esc_attr(CCEW_VERSION), true);
-        wp_register_script('ccew-metamask', esc_url(CCEW_URL . 'donation-box/assets/js/ccew-metamask.js'), array('elementor-common','elementor-frontend'), esc_attr(CCEW_VERSION), true);
-        wp_register_script('ccew-clipboard', esc_url(CCEW_URL . 'donation-box/assets/js/clipboard.min.js'), array('elementor-common','elementor-frontend'), esc_attr(CCEW_VERSION), true);
-        wp_register_script('ccew-qr', esc_url(CCEW_URL . 'donation-box/assets/js/qrcode.js'), array('elementor-common','elementor-frontend'), esc_attr(CCEW_VERSION), true);
-        wp_register_script('ccew-custom-qr', esc_url(CCEW_URL . 'donation-box/assets/js/custom-qr.js'), array('elementor-common','elementor-frontend'), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-etherjs', esc_url(CCEW_URL . 'donation-box/assets/js/ethers-5.2.umd.min.js'), array(),  esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-custom', esc_url(CCEW_URL . 'donation-box/assets/js/ccewd-custom.js'), array(), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-sweetalert2', esc_url(CCEW_URL . 'donation-box/assets/js/sweetalert2.js'),  array(), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-metamask', esc_url(CCEW_URL . 'donation-box/assets/js/ccew-metamask.js'), array(), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-clipboard', esc_url(CCEW_URL . 'donation-box/assets/js/clipboard.min.js'), array(), esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-qr', esc_url(CCEW_URL . 'donation-box/assets/js/qrcode.js'),  esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-custom-qr', esc_url(CCEW_URL . 'donation-box/assets/js/custom-qr.js'), array(), esc_attr(CCEW_VERSION), true);
         
     }
     public function get_script_depends()
