@@ -243,6 +243,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             array(
                 'label' => __('Show Coins', 'ccew'),
                 'type' => \Elementor\Controls_Manager::SELECT,
+                'render_type'  => 'template',
                 'options' => array(
                     'custom_coin' => 'Custom Coin',
                     '5' => 'Top 5',
@@ -284,6 +285,7 @@ class ccew__Widget extends \Elementor\Widget_Base
                 'type' => \Elementor\Controls_Manager::SELECT2,
                 'multiple' => true,
                 'options' => ccew_get_all_coin_ids(),
+                'render_type'  => 'template',
                 'condition' => array(
                     'ccew_widget_type' => array('list', 'advanced_table'),
                     'ccew_all_coins' => 'custom_coin',
@@ -297,6 +299,7 @@ class ccew__Widget extends \Elementor\Widget_Base
                 'label' => __('Select Coins', 'ccew'),
                 'type' => \Elementor\Controls_Manager::SELECT2,
                 'multiple' => false,
+                'render_type'  => 'template',
                 'options' => ccew_get_all_coin_ids(),
                 'default' => (count(ccew_get_all_coin_ids()) > 0) ? 'bitcoin' : 'not',
                 'condition' => array(
@@ -994,6 +997,13 @@ class ccew__Widget extends \Elementor\Widget_Base
         } else {
 
             if ($settings['ccew_widget_type'] == 'advanced_table') {
+
+                $db = new ccew_database();
+                $coins = $db->ccew_verify_coins_data();
+            if ($coins === 0) {
+                    echo '<div id="ccew-error">' . __('No Coin Data Found.', 'ccew') . '</div>';
+                }else{                   
+
                 echo '<div id="' . esc_attr($id) . '" class="' . esc_attr($cls) . '">
 			<table id="ccew-datatable' . esc_attr($random_id) . '"
 			class="display  ccew_table_widget table-striped table-bordered no-footer"
@@ -1018,6 +1028,7 @@ class ccew__Widget extends \Elementor\Widget_Base
 			</tfoot></table>
 			</div>
 			</div>';
+            }
 
             } else {
                 echo '<div class="ph-item">

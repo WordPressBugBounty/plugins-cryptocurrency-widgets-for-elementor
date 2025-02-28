@@ -81,7 +81,7 @@ function ccew_getData()
                 )
             );
         } elseif ($coin_info == null || $coin_info[0] == false) {
-            $error = "<div id='ccew-error'>" . __('No Coin Data Found', 'ccew') . '</div>';
+            $error = "<div id='ccew-error'>" . __('No Coin Data Found.', 'ccew') . '</div>';
             wp_send_json(
                 array(
                     'status' => 'success',

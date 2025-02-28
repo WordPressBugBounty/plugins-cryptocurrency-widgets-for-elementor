@@ -4,7 +4,7 @@ Tags: cryptocurrency,crypto price,bitcoin widget,elementor addon,crypto donation
 Requires at least:5.0
 Tested up to: 6.7.1
 Requires PHP: 5.6
-Stable tag:1.6.9
+Stable tag:1.7.0
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -152,7 +152,7 @@ No, the plugin is optimized for performance and designed to work efficiently wit
 = Does this plugin work with caching plugins? =  
 Yes, the plugin is compatible with most caching plugins. However, to ensure real-time updates of cryptocurrency data, make sure dynamic content is excluded from caching.
 
-= How can I report security bugs?
+= How can I report security bugs? =
 You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/cryptocurrency-widgets-for-elementor)
 
 == Screenshots ==
@@ -166,6 +166,12 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 8. Cryptocurrency Donation Widget 
 
 == Changelog ==
+<strong>Version 1.7.0| 28/02/2025</strong>
+<pre>
+Fixed: Advanced table issue.
+Fixed: Minor bug fix.
+</pre>
+
 <strong>Version 1.6.9| 18/12/2024</strong>
 <pre>
 Fixed: Donation-box widget QR code not working.

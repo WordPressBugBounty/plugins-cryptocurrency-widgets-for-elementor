@@ -486,4 +486,11 @@ class ccew_database
         $wpdb->query('TRUNCATE TABLE ' . esc_sql($this->table_name));
 
     }
+
+    public function ccew_verify_coins_data() {
+
+        global $wpdb;
+        $count = (int) $wpdb->get_var("SELECT COUNT(*) FROM {$this->table_name}");
+        return $count;
+    }
 }
