@@ -5,20 +5,20 @@
  * Author:Cool Plugins
  * Author URI:https://coolplugins.net/
  * Plugin URI:https://cryptocurrencyplugins.com/
- * Version: 1.7.1
+ * Version: 1.7.2
  * License: GPL2
  * Text Domain:ccew
  * Domain Path: languages
  *
- * Elementor tested up to:3.28.0
- * Elementor Pro tested up to: 3.28.0
+ * Elementor tested up to:3.29.0
+ * Elementor Pro tested up to: 3.29.0
  * */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-define('CCEW_VERSION', '1.7.1');
+define('CCEW_VERSION', '1.7.2');
 define('CCEW_FILE', __FILE__);
 define('CCEW_DIR', plugin_dir_path(CCEW_FILE));
 define('CCEW_URL', plugin_dir_url(CCEW_FILE));
@@ -82,9 +82,14 @@ final class Crypto_Currency_Elementor_Widget
         add_action('init', array($this, 'ccew_verify_plugin_version'));
         add_action('init', array($this, 'reset_option_data_once_on_first_of_month'));
         add_action('init', array($this, 'ccew_load_textdomain'));
+        if (is_admin()) {
+
+            add_action('admin_enqueue_scripts', array($this, 'ccew_load_scripts'));
+        }
 
 
     }
+
 
     public function ccew_plugins_loaded()
     {
@@ -94,6 +99,20 @@ final class Crypto_Currency_Elementor_Widget
             return;
         }
 
+    }
+    function ccew_cron_job_init(){
+    
+      
+        $options        = get_option('openexchange-api-settings', []);
+ 
+        if ( isset( $options['ccew_extra_info'] ) && ( ! empty( $options['ccew_extra_info'] ) || $options['ccew_extra_info'] === 'on' ) ) {
+ 
+        if (!wp_next_scheduled('ccew_extra_data_update')) {
+
+           wp_schedule_event(time(), 'every_30_days', 'ccew_extra_data_update');
+
+       }
+      }
     }
     public function ccew_fail_to_load()
     {
@@ -118,8 +137,39 @@ endif;
             require_once CCEW_DIR . '/admin/openexchange-api-settings.php';
             require_once CCEW_DIR . '/admin/settings.php';
 
-        }
+            if(!class_exists('CPFM_Feedback_Notice')){
+               require_once CCEW_DIR . '/admin/feedback/cpfm-common-notice.php';
+            }
+            
+            add_action('cpfm_register_notice', function () {
 
+               if (!class_exists('CPFM_Feedback_Notice') || !current_user_can('manage_options')) {
+                    return;
+                }
+                
+                CPFM_Feedback_Notice::cpfm_register_notice('crypto', [
+                    'title' => __('Cryptocurrency Plugins by Cool Plugins', 'cool-plugins-feedback'),
+                    'message' => __('Help us make this plugin more compatible with your site by sharing non-sensitive site data', 'cool-plugins-feedback'),
+                    'pages' => ['cool-crypto-plugins','openexchange-api-settings','ccew-settings'],
+                    'always_show_on' => ['cool-crypto-plugins','openexchange-api-settings','ccew-settings'], 
+                    'plugin_name'=>'ccew'
+                ]);
+            });
+            
+            add_action('cpfm_after_opt_in_ccew', function($category) {
+
+                if ($category === 'crypto') {
+
+                    CCEW_cronjob::ccew_send_data();
+                    
+                    $options = get_option('openexchange-api-settings', []);
+                    $options['ccew_extra_info'] = true;
+                    update_option('openexchange-api-settings', $options);
+                }
+            });
+        }
+        
+        require CCEW_DIR . 'includes/cron/ccew-class-cron.php';
         require CCEW_DIR . 'includes/ccew-elementor-register.php';
         require CCEW_DIR . 'includes/ccew-widget-functions.php';
         require CCEW_DIR . 'includes/ccew-ajaxhandler.php';
@@ -132,6 +182,7 @@ endif;
         // if( is_admin() === true ){
         require_once CCEW_DIR . 'admin/feedback/admin-feedback-form.php';
         // }
+        
     }
 
     public function ccew_data_insert()
@@ -167,6 +218,7 @@ endif;
             if (!empty($conversions)) {
                 update_option('cmc_usd_conversions', $conversions);
             }
+
         }
 
         // Check if the transient exists and has expired
@@ -193,8 +245,18 @@ endif;
         update_option('ccew_data_save', 'false');
         update_option('ccew-alreadyRated', 'no');
         update_option('ccew-fresh-installation', 'new user');
+        
+        if (!get_option( 'ccew_initial_save_version' ) ) {
+            add_option( 'ccew_initial_save_version', CCEW_VERSION );
+        }
 
+
+        if(!get_option( 'ccew-install-date' ) ) {
+            add_option( 'ccew-install-date', gmdate('Y-m-d h:i:s') );
+        }
+        $this->ccew_cron_job_init();
     }
+
 
     public function ccew_deactivate()
     {
@@ -202,8 +264,12 @@ endif;
         $db->drop_table();
         delete_transient('ccew-saved-coindata');
         delete_option('ccew_data_save');
-    }
+        if (wp_next_scheduled('ccew_extra_data_update')) {
+            wp_clear_scheduled_hook('ccew_extra_data_update');
+        }
 
+    }
+    
     public function ccew_on_widgets_registered()
     {
         $this->ccew_widget_includes();
@@ -230,6 +296,19 @@ endif;
                 delete_option('ccpw_reset_flag');
             }
         }
+    }
+    
+
+
+    public function ccew_load_scripts($hook)
+    {
+        
+        $screen = get_current_screen();               
+        if (strpos($screen->id, 'openexchange-api-settings') !== false) {
+
+            wp_enqueue_script('ccew-settings-data-share', CCEW_URL . 'assets/js/admin-sharedata.js', array('jquery'), CCEW_VERSION, true);
+        }
+       
     }
 
 }

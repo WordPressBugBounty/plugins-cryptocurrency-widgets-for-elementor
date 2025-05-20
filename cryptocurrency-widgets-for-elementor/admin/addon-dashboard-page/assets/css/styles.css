@@ -60,6 +60,9 @@
     padding: 10px;
     border-right: 1px solid #ddd;
 }
+.cool-body-right img{
+    width: 200px;
+}
 
 .cool-body-right {
     display: inline-block;

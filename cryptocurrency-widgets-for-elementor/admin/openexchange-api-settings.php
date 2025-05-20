@@ -21,7 +21,7 @@ if (!class_exists('Openexchange_api_settings')) {
             add_action('admin_menu', array($this, 'openexchange_add_submenu'), 100);
             add_action('admin_init', array($this, 'openexchange_settings'));
             add_action('admin_head', array($this, 'openexchange_custom_js'));
-
+            add_action('ccew_get_extra_info', array($this, 'ccew_get_extra_info'));
         }
 
         public function openexchange_custom_js()
@@ -57,6 +57,8 @@ if (!class_exists('Openexchange_api_settings')) {
         {
             register_setting('Openexchange_option_group', 'openexchange-api-settings');
 
+
+            
             // Add a section for Open Exchange Rates API
             add_settings_section(
                 'openexchange_section_id',
@@ -87,6 +89,8 @@ if (!class_exists('Openexchange_api_settings')) {
                 'openexchange-api-settings',
                 'openexchange_section_id'
             );
+
+
             // Add a section for Coingecko API
             add_settings_section(
                 'coingecko_section_id',
@@ -179,8 +183,121 @@ if (!class_exists('Openexchange_api_settings')) {
                 'openexchange-api-settings',
                 'api_usage_section_id'
             );
+            
+            $cpfm_opt_in = get_option('cpfm_opt_in_choice_crypto','');
+
+            if ($cpfm_opt_in) {
+            
+                // Add section only once
+                add_settings_section(
+                    'ccew_extra_info_title',
+                    '',
+                    function () {
+                        echo '<div class="ccew_api_setting_section" style="
+                            padding: 1em;
+                            margin-top: 1px;
+                            margin-right: 350px;
+                            background: #fafafa;
+                            font-weight: bold;
+                            border: 1px solid #e9e9e9;
+                        ">Make Cryptocurrency Elementor Widgets Even Better</div>';
+                    },
+                    'openexchange-api-settings'
+                );
+                do_action('ccew_get_extra_info',$cpfm_opt_in);
+            }           
 
         } //end of openexchange_settings
+
+        function ccew_get_extra_info($cpfm_opt_in){
+
+            $api_option = get_option("openexchange-api-settings");
+
+            if (!empty($api_option) && isset($api_option['ccew_extra_info'])) {
+
+                $cpfm_opt_in = $api_option['ccew_extra_info'];
+
+            }
+
+            $checked = ($cpfm_opt_in === true) ? 'checked' : '';
+            $options = get_option('openexchange-api-settings', []);
+
+   
+            $setting_check = isset($options['ccew_extra_info']) ? 'checked' : "";
+
+            $check = isset($setting_check)  ? $setting_check : $checked;
+            add_settings_field(
+                'ccew_extra_info',
+                'Usage Data Sharing',
+                function () use ($check) {
+                $terms_html = '
+                    Help us make this plugin more compatible with your site by sharing non-sensitive site data. 
+                    <a href="#" class="ccew-see-terms">[See terms]</a>
+                       <div id="termsBox" style="display: none;padding-left: 20px; margin-top: 10px; font-size: 12px; color: #999;">
+                        <p>Opt in to receive email updates about security improvements, new features, helpful tutorials, and occasional special offers. We\'ll collect:</p>
+                          <ul style="list-style-type:auto;">
+                            <li>' . esc_html__('Your website home URL and WordPress admin email.', 'ccpw') . '</li>
+                            <li>' . esc_html__('To check plugin compatibility, we will collect the following: list of active plugins and themes, server type, MySQL version, WordPress version, memory limit, site language and database prefix.', 'ccpw') . '</li>
+                        </ul>
+                    </div>
+                ';
+                    echo '<input type="checkbox" name="openexchange-api-settings[ccew_extra_info]" value="on" ' . $check . '> ' . $terms_html . '<br><br>';
+                },
+                'openexchange-api-settings',
+                'ccew_extra_info_title'
+            );
+
+        }
+        
+        function ccew_handle_unchecked_checkbox() {
+            
+            $object_id=  get_option('openexchange-api-settings');
+            
+            if ($object_id) {
+                
+                $is_checked = !empty($object_id['ccew_extra_info']) && $object_id['ccew_extra_info'] === 'on';
+                
+                if ($is_checked) {
+
+                    if (!wp_next_scheduled('ccew_extra_data_update')) {
+                        CCEW_cronjob::ccew_send_data(); // Run immediately
+                        wp_schedule_event(time(), 'every_30_days', 'ccew_extra_data_update');
+                    }
+
+                    if ( method_exists('CMC_cronjob', 'cmc_send_data') && !isset($_POST['cmc_extra_info'])) {
+
+                            CMC_cronjob::cmc_send_data(); // Trigger immediate data send
+                            wp_schedule_event(time(), 'every_30_days', 'cmc_extra_data_update');
+                            $options['cmc_extra_info'] = true;
+                            
+                    }
+                    if (method_exists('CCPW_cronjob', 'ccpw_send_data') && !isset($_POST['ccpw_extra_info'])) {
+
+                            $options['ccpw_extra_info'] = true;
+                            CCPW_cronjob::ccpw_send_data(); // Trigger immediate data send
+                            wp_schedule_event(time(), 'every_30_days', 'ccpw_extra_data_update');
+                    }
+                    
+                } else {
+                                            // Only check for CCPW if the class exists
+                        if (method_exists('CCPW_cronjob', 'ccpw_send_data') && !isset($_POST['ccpw_extra_info'])) {
+
+                            $options['ccpw_extra_info'] = false;
+                            wp_clear_scheduled_hook('ccpw_extra_data_update');
+                        }
+
+                        if ( method_exists('CMC_cronjob', 'cmc_send_data') && !isset($_POST['cmc_extra_info'])) {
+
+                            $options['cmc_extra_info'] = false;
+                            wp_clear_scheduled_hook('cmc_extra_data_update');
+                        }
+
+                         wp_clear_scheduled_hook('ccew_extra_data_update');
+                }
+
+          }
+        }
+        
 
         public function openexchange_settings_callback()
         {?>
@@ -188,10 +305,12 @@ if (!class_exists('Openexchange_api_settings')) {
 			<form method="post" action="options.php">
 				<?php settings_fields('Openexchange_option_group');?>
 				<?php do_settings_sections('openexchange-api-settings');?>
+				<?php $this->ccew_handle_unchecked_checkbox();                 ?>
 				<?php submit_button();?>
 			</form>
 			<?php
-}
+        }
+
 
         public function openexchange_api_key_notice()
         {

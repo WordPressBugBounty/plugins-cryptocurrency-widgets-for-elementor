@@ -7,7 +7,7 @@ class cp_feedback {
 	private $plugin_version = CCEW_VERSION;
 	private $plugin_name    = 'Cryptocurrency Widgets For Elementor';
 	private $plugin_slug    = 'ccew';
-	private $feedback_url   = 'http://feedback.coolplugins.net/wp-json/coolplugins-feedback/v1/feedback';
+	private $feedback_url   = 'https://feedback.coolplugins.net/wp-json/coolplugins-feedback/v1/feedback';
 
 	/*
 	|-----------------------------------------------------------------|
@@ -113,6 +113,61 @@ class cp_feedback {
 		<?php
 	}
 
+	function cpfm_get_user_info() {
+		global $wpdb;
+
+		$server_info = [
+		'server_software'        => sanitize_text_field($_SERVER['SERVER_SOFTWARE'] ?? 'N/A'),
+		'mysql_version'          => sanitize_text_field($wpdb->get_var("SELECT VERSION()")),
+		'php_version'            => sanitize_text_field(phpversion()),
+		'wp_version'             => sanitize_text_field(get_bloginfo('version')),
+		'wp_debug'               => sanitize_text_field(defined('WP_DEBUG') && WP_DEBUG ? 'Enabled' : 'Disabled'),
+		'wp_memory_limit'        => sanitize_text_field(ini_get('memory_limit')),
+		'wp_max_upload_size'     => sanitize_text_field(ini_get('upload_max_filesize')),
+		'wp_permalink_structure' => sanitize_text_field(get_option('permalink_structure', 'Default')),
+		'wp_multisite'           => sanitize_text_field(is_multisite() ? 'Enabled' : 'Disabled'),
+		'wp_language'            => sanitize_text_field(get_option('WPLANG', get_locale()) ?: get_locale()),
+		'wp_prefix'              => sanitize_key($wpdb->prefix), // Sanitizing database prefix
+		];
+
+		$theme_data = [
+		'name'      => sanitize_text_field(wp_get_theme()->get('Name')),
+		'version'   => sanitize_text_field(wp_get_theme()->get('Version')),
+		'theme_uri' => esc_url(wp_get_theme()->get('ThemeURI')),
+		];
+
+		if (!function_exists('get_plugins')) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+		if (!function_exists('get_plugin_data')) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
+	
+
+		$plugin_data = [];
+		$active_plugins = get_option('active_plugins', []);
+	
+		foreach ($active_plugins as $plugin_path) {
+			$plugin_file = WP_PLUGIN_DIR . '/' . ltrim($plugin_path, '/');
+	
+			if (file_exists($plugin_file)) {
+				$plugin_info = get_plugin_data($plugin_file, false, false);
+				$plugin_data[] = [
+					'name'       => sanitize_text_field($plugin_info['Name']),
+					'version'    => sanitize_text_field($plugin_info['Version']),
+					'plugin_uri' => esc_url($plugin_info['PluginURI']),
+				];
+			}
+		}
+
+		return [
+			'server_info' => $server_info,
+			'extra_details' => [
+				'wp_theme' => $theme_data,
+				'active_plugins' => $plugin_data,
+			]
+		];
+	}
 
 	function submit_deactivation_response() {
 		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field($_POST['_wpnonce']), '_cool-plugins_deactivate_feedback_nonce' ) ) {
@@ -143,21 +198,30 @@ class cp_feedback {
 			);
 
 			$deativation_reason = array_key_exists( $reason, $deactivate_reasons ) ? $reason : 'other';
+			$plugin_initial 	=  get_option( 'ccew_initial_save_version' );
 
-			$sanitized_message = empty($_POST['message']) || sanitize_text_field( $_POST['message'] ) == '' ? 'N/A' : sanitize_text_field( $_POST['message'] );
-			$admin_email       = sanitize_email( get_option( 'admin_email' ) );
-			$site_url          = esc_url( site_url() );
+			$sanitized_message 	= empty($_POST['message']) || sanitize_text_field( $_POST['message'] ) == '' ? 'N/A' : sanitize_text_field( $_POST['message'] );
+			$admin_email       	= sanitize_email( get_option( 'admin_email' ) );
+			$site_url          	= esc_url( site_url() );
+         	$install_date 		= get_option('ccew-install-date');
+			$uni_id      		= '3';
+			$site_id = $site_url . '-' . $install_date . '-' .$uni_id;
 			$response          = wp_remote_post(
 				$this->feedback_url,
 				array(
 					'timeout' => 30,
-					'body'    => array(
+					    'body'    => array(
+						'server_info' => serialize($this->cpfm_get_user_info()['server_info']), 
+						'extra_details' => serialize($this->cpfm_get_user_info()['extra_details']),
 						'plugin_version' => $this->plugin_version,
+						'plugin_initial'  => isset($plugin_initial) ? sanitize_text_field($plugin_initial) : 'N/A',
 						'plugin_name'    => $this->plugin_name,
 						'reason'         => $deativation_reason,
 						'review'         => $sanitized_message,
 						'email'          => $admin_email,
 						'domain'         => $site_url,
+						'site_id'    	 => md5($site_id),
+
 					),
 				)
 			);

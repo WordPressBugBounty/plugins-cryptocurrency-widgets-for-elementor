@@ -15,6 +15,7 @@
 
  <div class="cool-body-right">
     <a href="https://coolplugins.net" target="_blank"><img src="<?php echo esc_url(plugin_dir_url( $this->addon_file ) .'/assets/coolplugins-logo.png'); ?>"></a>
+
     <ul>
       <li>Cool Plugins develops best crypto plugins for WordPress.</li>
       <li>Our crypto plugins have <b>10000+</b> active installs.</li>
