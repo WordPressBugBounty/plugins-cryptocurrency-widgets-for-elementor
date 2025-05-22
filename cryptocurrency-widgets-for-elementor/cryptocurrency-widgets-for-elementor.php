@@ -5,7 +5,7 @@
  * Author:Cool Plugins
  * Author URI:https://coolplugins.net/
  * Plugin URI:https://cryptocurrencyplugins.com/
- * Version: 1.7.2
+ * Version: 1.7.3
  * License: GPL2
  * Text Domain:ccew
  * Domain Path: languages
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('CCEW_VERSION', '1.7.2');
+define('CCEW_VERSION', '1.7.3');
 define('CCEW_FILE', __FILE__);
 define('CCEW_DIR', plugin_dir_path(CCEW_FILE));
 define('CCEW_URL', plugin_dir_url(CCEW_FILE));
@@ -140,22 +140,32 @@ endif;
             if(!class_exists('CPFM_Feedback_Notice')){
                require_once CCEW_DIR . '/admin/feedback/cpfm-common-notice.php';
             }
-            
-            add_action('cpfm_register_notice', function () {
 
-               if (!class_exists('CPFM_Feedback_Notice') || !current_user_can('manage_options')) {
+            add_action('cpfm_register_notice', function () {
+            
+                if (!class_exists('CPFM_Feedback_Notice') || !current_user_can('manage_options')) {
                     return;
                 }
-                
-                CPFM_Feedback_Notice::cpfm_register_notice('crypto', [
-                    'title' => __('Cryptocurrency Plugins by Cool Plugins', 'cool-plugins-feedback'),
-                    'message' => __('Help us make this plugin more compatible with your site by sharing non-sensitive site data', 'cool-plugins-feedback'),
-                    'pages' => ['cool-crypto-plugins','openexchange-api-settings','ccew-settings'],
-                    'always_show_on' => ['cool-crypto-plugins','openexchange-api-settings','ccew-settings'], 
+
+                $notice = [
+
+                    'title' => __('Cryptocurrency Plugins by Cool Plugins', 'ccpw'),
+                    'message' => __('Help us make this plugin more compatible with your site by sharing non-sensitive site data.', 'cool-plugins-feedback'),
+                    'pages' => ['cool-crypto-plugins', 'ccpw_get_started','openexchange-api-settings'],
+                    'always_show_on' => ['cool-crypto-plugins','ccpw_get_started','openexchange-api-settings'], // This enables auto-show
                     'plugin_name'=>'ccew'
-                ]);
+                ];
+
+                CPFM_Feedback_Notice::cpfm_register_notice('crypto', $notice);
+
+                    if (!isset($GLOBALS['cool_plugins_feedback'])) {
+                        $GLOBALS['cool_plugins_feedback'] = [];
+                    }
+                
+                    $GLOBALS['cool_plugins_feedback']['crypto'][] = $notice;
+           
             });
-            
+         
             add_action('cpfm_after_opt_in_ccew', function($category) {
 
                 if ($category === 'crypto') {

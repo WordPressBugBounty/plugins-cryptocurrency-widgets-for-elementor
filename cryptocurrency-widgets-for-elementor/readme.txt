@@ -2,9 +2,9 @@
 Contributors: narinder-singh,satindersingh,coolplugins
 Tags: cryptocurrency,crypto price,bitcoin widget,elementor addon,crypto donations
 Requires at least:5.0
-Tested up to: 6.7.2
+Tested up to: 6.8.1
 Requires PHP: 5.6
-Stable tag:1.7.2
+Stable tag:1.7.3
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -166,6 +166,11 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 8. Cryptocurrency Donation Widget 
 
 == Changelog ==
+<strong>Version 1.7.3| 22/05/2025</strong>
+<pre>
+Improvements: Enhanced user opt-in options for better customization.
+</pre>
+
 <strong>Version 1.7.2| 20/05/2025</strong>
 <pre>
 Improvements: Minor code improvements.
