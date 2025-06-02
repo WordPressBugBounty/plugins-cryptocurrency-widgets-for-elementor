@@ -4,7 +4,7 @@ Tags: cryptocurrency,crypto price,bitcoin widget,elementor addon,crypto donation
 Requires at least:5.0
 Tested up to: 6.8.1
 Requires PHP: 5.6
-Stable tag:1.7.3
+Stable tag:1.7.4
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,11 +15,11 @@ Easily display cryptocurrency prices and accept crypto donations on your Element
 **Cryptocurrency Widgets For Elementor** lets you easily create cryptocurrency price widgets and coin list shortcodes for over 250 coins, including Bitcoin, Ethereum, Binance Coin, and Cardano. Display real-time market data in elegant, customizable layouts directly on your Elementor-powered website.
 
 
-<a href="https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-for-elementor/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=free-price-widget-demo">View Price Widgets Demo</a>
+<a href="https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-for-elementor/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=price_widget_demo">View Price Widgets Demo</a>
 
-<a href="https://cryptocurrencyplugins.com/demo/cryptocurrency-donation-widgets-for-elementor/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ree-donation-widget-demo">View Donation Widgets Demo</a>
+<a href="https://cryptocurrencyplugins.com/demo/cryptocurrency-donation-widgets-for-elementor/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=donation_widget_demo">View Donation Widgets Demo</a>
 
-<a href="https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=elementor-widget-free">Check other Advance Widgets Demo</a>
+<a href="https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ccw_advance_widget">Check other Advance Widgets Demo</a>
 
 https://www.youtube.com/watch?v=E8EU9CyvmDk
 
@@ -65,12 +65,11 @@ Now accept the top 50+ major cryptocurrency donations inside your Elementor Page
 
 
 ### Check Our Other Crypto Widgets Plugins Demos:-
-1. **Cryptocurrency Widgets [FREE]** – [Cryptocurrency Widgets Free Demo](https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=elementor_widget_free/#cryptocurrency-widgets-pro "Cryptocurrency Widgets")
-2. **Cryptocurrency Widgets Pro [PAID]** – [Cryptocurrency Widgets Pro Demo](https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=widget_pro/#cryptocurrency-widgets-pro "Cryptocurrency Widgets PRO") (It extends the free version of **Cryptocurrency Widgets** plugin.)
-3. **Coin Market Cap & Prices Plugin [PAID]** – [Coin Market Cap Plugin Demo](https://cryptocurrencyplugins.com/demo/coins-marketcap/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=cmc/#coins-marketcap "Coin Market Cap Plugin") (Our **premium crypto plugin** instantly creates a website similar to coinmarketcap.com)
-4. **Cryptocurrency Exchanges List Pro Plugin [PAID]** – [Crypto Exchanges List Plugin Demo](https://cryptocurrencyplugins.com/demo/cryptocurrency-exchanges-list-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=exchange/#cryptocurrency-exchanges-list-pro "Cryptocurrency Exchanges") (It is our other **premium crypto plugin** that auto-generates 200+ SEO-friendly pages for crypto exchanges with a lot of information.)
-5. **Crypto ICO List Widgets Pro [PAID]** – [Crypto ICO List Widgets Pro Plugin Demo](https://cryptocurrencyplugins.com/demo/crypto-ico-list-widgets-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ico/#crypto-ico-list-widgets-pro "Crypto ICO List") (It is our other **premium crypto plugin** - 3500+ ICO database & SEO pages.)
-6. **Pay With MetaMask For WooCommerce – Cryptocurrency Payment Gateway [Free]**    – [Pay With MetaMask For WooCommerce – Cryptocurrency Payment Gateway ](https://wordpress.org/plugins/cryptocurrency-payments-using-metamask-for-woocommerce/
+1. **Cryptocurrency Widgets [FREE]** – [Cryptocurrency Widgets Free Demo](https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ccw_free_demo "Cryptocurrency Widgets")
+2. **Cryptocurrency Widgets Pro [PAID]** – [Cryptocurrency Widgets Pro Demo](https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ccw_pro_demo "Cryptocurrency Widgets PRO") (It extends the free version of **Cryptocurrency Widgets** plugin.)
+3. **Coin Market Cap & Prices Plugin [PAID]** – [Coin Market Cap Plugin Demo](https://cryptocurrencyplugins.com/demo/coins-marketcap/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=cmc_view_demo "Coin Market Cap Plugin") (Our **premium crypto plugin** instantly creates a website similar to coinmarketcap.com)
+4. **Cryptocurrency Exchanges List Pro Plugin [PAID]** – [Crypto Exchanges List Plugin Demo](https://cryptocurrencyplugins.com/demo/cryptocurrency-exchanges-list-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=celp_view_demo "Cryptocurrency Exchanges") (It is our other **premium crypto plugin** that auto-generates 200+ SEO-friendly pages for crypto exchanges with a lot of information.)
+5. **Pay With MetaMask For WooCommerce – Cryptocurrency Payment Gateway [Free]**    – [Pay With MetaMask For WooCommerce – Cryptocurrency Payment Gateway ](https://wordpress.org/plugins/cryptocurrency-payments-using-metamask-for-woocommerce/
 ) 
 Let your customers pay with cryptocurrency – USDT, ETH, BNB, or BUSD inside your WooCommerce store via the MataMask extension for the WooCommerce store. You will receive crypto payments easily inside your store, cryptocurrency will be transferred immediately to your personal crypto wallet address.
 
@@ -166,6 +165,12 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 8. Cryptocurrency Donation Widget 
 
 == Changelog ==
+<strong>Version 1.7.4| 02/06/2025</strong>
+<pre>
+Updated:UTM source links.
+Improvements: Code Improved.
+</pre>
+
 <strong>Version 1.7.3| 22/05/2025</strong>
 <pre>
 Improvements: Enhanced user opt-in options for better customization.

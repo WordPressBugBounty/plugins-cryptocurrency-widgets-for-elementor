@@ -9,12 +9,12 @@
     return false;
  endif;
 
- $cool_support_email = "https://coolplugins.net/support/";
- $hire_devloper = "https://coolplugins.net/#hire-developers";
+ $cool_support_email = "https://coolplugins.net/support/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=support&utm_content=dashboard";
+ $hire_devloper = "https://coolplugins.net/support/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=support&utm_content=dashboard";
 ?>
 
  <div class="cool-body-right">
-    <a href="https://coolplugins.net" target="_blank"><img src="<?php echo esc_url(plugin_dir_url( $this->addon_file ) .'/assets/coolplugins-logo.png'); ?>"></a>
+    <a href="https://coolplugins.net/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=dashboard_pro" target="_blank"><img src="<?php echo esc_url(plugin_dir_url( $this->addon_file ) .'/assets/coolplugins-logo.png'); ?>"></a>
 
     <ul>
       <li>Cool Plugins develops best crypto plugins for WordPress.</li>
@@ -30,6 +30,6 @@
       <br><br>
       </li>
    </ul>
-    </div>
+    </div>  
 
 </div><!-- End of main container-->

@@ -7,7 +7,7 @@ class cp_feedback {
 	private $plugin_version = CCEW_VERSION;
 	private $plugin_name    = 'Cryptocurrency Widgets For Elementor';
 	private $plugin_slug    = 'ccew';
-	private $feedback_url   = 'https://feedback.coolplugins.net/wp-json/coolplugins-feedback/v1/feedback';
+	private $feedback_url   = CCEW_FEEDBACK_API.'wp-json/coolplugins-feedback/v1/feedback';
 
 	/*
 	|-----------------------------------------------------------------|
@@ -148,14 +148,19 @@ class cp_feedback {
 		$active_plugins = get_option('active_plugins', []);
 	
 		foreach ($active_plugins as $plugin_path) {
+
 			$plugin_file = WP_PLUGIN_DIR . '/' . ltrim($plugin_path, '/');
-	
+			
 			if (file_exists($plugin_file)) {
+
 				$plugin_info = get_plugin_data($plugin_file, false, false);
+				$author_url = ( isset( $plugin_info['AuthorURI'] ) && !empty( $plugin_info['AuthorURI'] ) ) ? esc_url( $plugin_info['AuthorURI'] ) : 'N/A';
+        		$plugin_url = ( isset( $plugin_info['PluginURI'] ) && !empty( $plugin_info['PluginURI'] ) ) ? esc_url( $plugin_info['PluginURI'] ) : 'N/A';
+
 				$plugin_data[] = [
 					'name'       => sanitize_text_field($plugin_info['Name']),
 					'version'    => sanitize_text_field($plugin_info['Version']),
-					'plugin_uri' => esc_url($plugin_info['PluginURI']),
+					'plugin_uri' => !empty($plugin_url) ? $plugin_url : $author_url,
 				];
 			}
 		}

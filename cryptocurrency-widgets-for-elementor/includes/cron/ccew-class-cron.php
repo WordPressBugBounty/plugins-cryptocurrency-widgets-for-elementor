@@ -57,7 +57,7 @@ if (!class_exists('CCEW_cronjob')) {
                 
         static public function ccew_send_data() {
  
-                 $feedback_url = 'http://feedback.coolplugins.net/wp-json/coolplugins-feedback/v1/site';
+                 $feedback_url = CCEW_FEEDBACK_API.'wp-json/coolplugins-feedback/v1/site';
                  require_once CCEW_DIR . 'admin/feedback/admin-feedback-form.php';
                     
                     

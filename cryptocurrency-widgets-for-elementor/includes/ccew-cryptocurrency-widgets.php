@@ -886,17 +886,17 @@ class ccew__Widget extends \Elementor\Widget_Base
                 'show_label' => false,
                 'raw' => '<ul class="ccew-promotion-plugins">
 							<div class="ccew_cmc_demo">
-							 <div class="ccew_logo_container"><a href="'.esc_url(CCEW_DEMO_URL.'/demo/coins-marketcap/'.CCEW_UTM).'" target="_blank"><img src="' . esc_url(CCEW_URL) . 'assets/images/coinmarketcap-logo.png" alt="Cryptocurrency widget for elementor" style="max-width:80px;"></a></div>
+							 <div class="ccew_logo_container"><a href="'.esc_url(CCEW_DEMO_URL.'/demo/coins-marketcap/'.CCEW_CMC_UTM).'" target="_blank"><img src="' . esc_url(CCEW_URL) . 'assets/images/coinmarketcap-logo.png" alt="Cryptocurrency widget for elementor" style="max-width:80px;"></a></div>
 							 <div class="ccew_cmc_def">
 							<strong>Coins MarketCap</strong>
 							Coins Marketcap plugin creates a fully automatic crypto coins price listing website that dynamically generates 2500+ coins pages.
-							</div><div class="ccew_link_wrap"><a class="ccew_demo_link" href="'.esc_url(CCEW_DEMO_URL.'/demo/coins-marketcap/'.CCEW_UTM).'" target="_blank"><button class="ccew-custom-primry-btn">View Demos </button> </a> <a class="ccew_demo_buyk" href="https://cryptocurrencyplugins.com/wordpress-plugin/coins-marketcap/?utm_source=widget_settings&utm_medium=inside&utm_campaign=get-pro-cmc&utm_content=buy-now" target="_blank"><button class="ccew-custom-primry-btn">Buy Pro</button></a></div>
+							</div><div class="ccew_link_wrap"><a class="ccew_demo_link" href="'.esc_url(CCEW_DEMO_URL.'/demo/coins-marketcap/'.CCEW_CMC_UTM).'" target="_blank"><button class="ccew-custom-primry-btn">View Demos </button> </a> <a class="ccew_demo_buyk" href="https://cryptocurrencyplugins.com/wordpress-plugin/coins-marketcap/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=cmc_buy_pro" target="_blank"><button class="ccew-custom-primry-btn">Buy Pro</button></a></div>
 							</div>
 							<hr>
 							<div class="ccew_cmc_demo">
 							<div class="ccew_logo_container"><a href="'.esc_url(CCEW_DEMO_URL.'/demo/cryptocurrency-widgets-pro/'.CCEW_UTM).'" target="_blank"><img src="' . esc_url(CCEW_URL) . 'assets/images/crypto-widget-pro.png" alt="Cryptocurrency widget for elementor" style="max-width:80px;"></a></div>
 							<div class="ccew_cmc_def"><strong>Cryptocurrency Widgets Pro</strong>
-							Show cryptocurrency price table, historical charts, tickers and other widgets inside any page or post.</div><div class="ccew_link_wrap"><a class="ccew_demo_link" href="'.esc_url(CCEW_DEMO_URL.'/demo/cryptocurrency-widgets-pro/'.CCEW_UTM).'" target="_blank"><button class="ccew-custom-primry-btn">View Demos </button> </a><a class="ccew_demo_buyk"  href="https://cryptocurrencyplugins.com/wordpress-plugin/cryptocurrency-widgets-pro/?utm_source=widget_settings&utm_medium=inside&utm_campaign=get-pro-ccpw&utm_content=buy-now" target="_blank"><button class="ccew-custom-primry-btn">Buy Pro</button></a></div>
+							Show cryptocurrency price table, historical charts, tickers and other widgets inside any page or post.</div><div class="ccew_link_wrap"><a class="ccew_demo_link" href="'.esc_url(CCEW_DEMO_URL.'/demo/cryptocurrency-widgets-pro/'.CCEW_UTM).'" target="_blank"><button class="ccew-custom-primry-btn">View Demos </button> </a><a class="ccew_demo_buyk"  href="https://cryptocurrencyplugins.com/wordpress-plugin/cryptocurrency-widgets-pro/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=get_pro&utm_content=ccw_widget_settings" target="_blank"><button class="ccew-custom-primry-btn">Buy Pro</button></a></div>
 							</div>
 						  </ul>',
 
