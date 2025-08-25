@@ -7,8 +7,8 @@
         return;
     endif;
 
-    $cool_plugins_docs = "https://docs.coolplugins.net/docs/cryptocurrency-widgets/";
-    $cool_plugins_more_info ='https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-for-elementor/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=demo&utm_content=dashboard';
+    $cool_plugins_docs = "https://cryptocurrencyplugins.com/docs/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=docs&utm_content=dashboard";
+    $cool_plugins_more_info ='https://cryptocurrencyplugins.com/demo/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=demo&utm_content=dashboard';
 ?>
 
 <div id="cool-plugins-container" class="<?php echo esc_attr($this->main_menu_slug) ; ?>">

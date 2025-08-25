@@ -4,77 +4,57 @@ Tags: cryptocurrency,crypto price,bitcoin widget,elementor addon,crypto donation
 Requires at least:5.0
 Tested up to: 6.8.2
 Requires PHP: 5.6
-Stable tag:1.7.5
+Stable tag:1.7.6
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Easily display cryptocurrency prices and accept crypto donations on your Elementor site. Generate customizable widgets for 250+ coins, including Bitcoin, Ethereum, and more, with real-time data and stylish layouts.
+Easily display cryptocurrency prices and generate customizable widgets for 250+ coins, including Bitcoin, Ethereum, and more in Elementor.
 
 == Description ==
-
-**Cryptocurrency Widgets For Elementor** lets you easily create cryptocurrency price widgets and coin list shortcodes for over 250 coins, including Bitcoin, Ethereum, Binance Coin, and Cardano. Display real-time market data in elegant, customizable layouts directly on your Elementor-powered website.
-
-
-<a href="https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-for-elementor/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=price_widget_demo">View Price Widgets Demo</a>
-
-<a href="https://cryptocurrencyplugins.com/demo/cryptocurrency-donation-widgets-for-elementor/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=donation_widget_demo">View Donation Widgets Demo</a>
-
-<a href="https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ccw_advance_widget">Check other Advance Widgets Demo</a>
+**Cryptocurrency Widgets For Elementor** is a powerful addon for Elementor that lets you easily create cryptocurrency coin list shortcodes, [price widgets](https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-for-elementor/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=price_widget_demo), and [more](https://cryptocurrencyplugins.com/demo/cryptocurrency-donation-widgets-for-elementor/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=donation_widget_demo) for over 250 coins, including **Bitcoin, Ethereum, Binance Coin, and Cardano**. 
 
 https://www.youtube.com/watch?v=E8EU9CyvmDk
 
+Display real-time market data using customizable layouts directly on your **Elementor** website.
+
 https://www.youtube.com/watch?v=gFzCEBERiwc
 
+### Key Features
+* **Real-time Crypto Data:**  Fetch live data for over 200 cryptocurrencies, including **Bitcoin, Ethereum, Ripple, and many more**.
 
-Create crypto widgets for 250+ coins that come with this Elementor addon and Use this advanced plugin in simple steps on Elementor.
+* **API Source:** Data is sourced securely from trusted APIs; **CoinGecko**, and **CoinPaprika** to ensure accuracy.
 
-There are four layouts in this widget, where you can show your coins in different styles.
+* **Customizable Widgets:** You can use different widgets to display crypto data on your website.
+ * **Coins Price Card:** Add real-time cryptocurrency price cards to your Elementor website, allowing your readers to stay updated with live data.
+ * **Coins Price Label:** Display coin price labels inside your page content.
+ * **Coins List:** Display a detailed list of cryptocurrencies showing live data such as **coin prices, market cap, and percentage changes**.
+ * **Coins Table Widget:** Create an organized table that lists multiple cryptocurrencies with their key details.
 
-<ol>
-<li><strong>Coins Price Card</strong>
-Show coins in a beautiful card layout with multiple dynamic attribute feature, where you can easily customize the layout of your card.
-You can hide show coin symbol, high/low,1h changes, 24h changes,7d changes, 30d changes, rank, and market cap from these settings,
- you can also enable disable number formatting from these settings.
-</li>
-<li><strong>Coins Price Label</strong>
-Display coin price labels inside your page content using this style. You can hide show coin 24h changes from these settings.
-</li>
-<li><strong>Coins List</strong>
-In this layout, you can show the Top coins from the given list or you can add your favorite custom coins by selecting the custom option from the coin list.
- In this layout, there's an option to show 7-day data in chart format, by default it's enabled in this layout but you can enable or disable this chart from the show hide graph option. You can hide/show coin 24h changes and graphs from these settings.
-</li>
-<li><strong>Top gainer/loser</strong>
-In the top gainer loser list you can display 24-hour changes of coins from the 250 coins list, in gainer you will see the top most increased coin value from the last 24 hours.
+ * **Donation Box Widget:** Easily add a crypto donation widget to your site. You can also add various wallet options, such as **Bitcoin** and **Metamask**, providing flexibility for donations.
 
-In the loser list, it will display the top most decreased coins value from the last 24 hours. You can hide/show coin 24h changes from these settings.
+* **24-Hour Percentage Changes:** Show cryptocurrency price changes over the last 24 hours, allowing users to see quick market trends.
 
-</li>
+* **Top Losers and Gainers:** Highlight the biggest price drops (losers) and largest increases (gainers) over a selected time period.
 
-</ol>
-<h4>Integrated Cryptocurrency Donations Widget</h4>
-Now accept the top 50+ major cryptocurrency donations inside your Elementor Pages using these free cryptocurrency donation Widgets.
- <ol>
- <li>Integrates Hassle free Tip with <strong><a href="https://cryptocurrencyplugins.com/demo/cryptocurrency-donation-widgets-for-elementor/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ree-donation-widget-demo">MetaMask button</a></strong>.</li>
- <li>Convert your coin payment address into a QR code.</li>
- <li>Supports top 50+ crypto coins – Bitcoin, Ethereum, Bitcoin Cash, Litecoin, Cardano & much more…</li>
- <li>Elegant design for the cryptocurrency donation box.</li>
- <li>Accept more donations with the help of trusted source MetaMask</li>
- <li>Responsive / Mobile friendly cryptocurrency donation plugin.</li>
+* **Currency Conversion:** Allows users to convert between cryptocurrencies and fiat currencies directly on your site.
 
- </ol>
+* **Compatibility with WordPress Themes:** This plugin is compatible with all WordPress themes.
 
+* **Fully Responsive:** Ensures your site looks visually appealing across all devices.
 
-### Check Our Other Crypto Widgets Plugins Demos:-
-1. **Cryptocurrency Widgets [FREE]** – [Cryptocurrency Widgets Free Demo](https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ccw_free_demo "Cryptocurrency Widgets")
-2. **Cryptocurrency Widgets Pro [PAID]** – [Cryptocurrency Widgets Pro Demo](https://cryptocurrencyplugins.com/demo/cryptocurrency-widgets-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=ccw_pro_demo "Cryptocurrency Widgets PRO") (It extends the free version of **Cryptocurrency Widgets** plugin.)
-3. **Coin Market Cap & Prices Plugin [PAID]** – [Coin Market Cap Plugin Demo](https://cryptocurrencyplugins.com/demo/coins-marketcap/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=cmc_view_demo "Coin Market Cap Plugin") (Our **premium crypto plugin** instantly creates a website similar to coinmarketcap.com)
-4. **Cryptocurrency Exchanges List Pro Plugin [PAID]** – [Crypto Exchanges List Plugin Demo](https://cryptocurrencyplugins.com/demo/cryptocurrency-exchanges-list-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=celp_view_demo "Cryptocurrency Exchanges") (It is our other **premium crypto plugin** that auto-generates 200+ SEO-friendly pages for crypto exchanges with a lot of information.)
-5. **Pay With MetaMask For WooCommerce – Cryptocurrency Payment Gateway [Free]**    – [Pay With MetaMask For WooCommerce – Cryptocurrency Payment Gateway ](https://wordpress.org/plugins/cryptocurrency-payments-using-metamask-for-woocommerce/
-) 
-Let your customers pay with cryptocurrency – USDT, ETH, BNB, or BUSD inside your WooCommerce store via the MataMask extension for the WooCommerce store. You will receive crypto payments easily inside your store, cryptocurrency will be transferred immediately to your personal crypto wallet address.
+### Check Our Other Cryptocurrency Plugins
 
-    
-<h3>Third Party API & License Information</h3>  
+* **[Cryptocurrency Price Ticker Widget](https://cryptocurrencyplugins.com/wordpress-plugin/cryptocurrency-widgets-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=ccw_view_plugin):** Display **Crypto Ticker Widgets, Coin Price Lists, Tables, Multi-Currency Tabs, and Price Labels** anywhere on Your Website with Cryptocurrency Widgets Pro Shortcodes.
+
+* **[Coins MarketCap Plugin](https://cryptocurrencyplugins.com/wordpress-plugin/coins-marketcap/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=cmc_view_plugin):** Effortlessly integrate real-time market data for **over 2,500 coins, including prices, market caps, and trading volumes**. The plugin supports multiple fiat currencies and is Yoast SEO friendly, ensuring each coin has unique meta tags for better search engine visibility.
+
+> *Get a complete [website like coinmarketcap.com](https://cryptocurrencyplugins.com/coinmarketcap-clone-website/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=cmc_clone_site) that includes our all crypto plugins. Our developer will set it up for you.*
+
+* **[Cryptocurrency Exchanges List Pro](https://cryptocurrencyplugins.com/wordpress-plugin/cryptocurrency-exchanges-list-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=celp_view_plugin):** Display real-time data from over 250 cryptocurrency exchanges on your website. Create automatic exchange pages showing trading pairs and volumes. Easily enable or disable exchanges as needed.
+
+* **[Pay With MetaMask](https://cryptocurrencyplugins.com/wordpress-plugin/pay-with-metamask-for-woocommerce-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=cpmw_view_plugin):** If you run a WooCommerce store and want to accept cryptocurrency payments at checkout, our WooCommerce Crypto Payments plugin makes it simple. Customers can pay directly with crypto using Web3 wallets such as **MetaMask, WalletConnect, and more**. You can [test crypto payment integration in WooCommerce](https://paywithcryptocurrency.net/wordpress-plugin/test-cryptocurrency-payment/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=cpmw_view_demo) by purchasing a dummy product on our demo site using [faucet tokens](https://paywithcryptocurrency.net/plugin-features/test-networks-and-tokens/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=cpmw_faucet).
+
+### Third Party API & License Information
 
 * **CoinGecko API:-** [https://www.coingecko.com](https://www.coingecko.com)    
 * **CoinGecko API docs:-** [https://www.coingecko.com/en/api](https://www.coingecko.com/en/api) 
@@ -88,276 +68,238 @@ Let your customers pay with cryptocurrency – USDT, ETH, BNB, or BUSD inside yo
 * **Coinpaprika API privacy policy:-** [https://coinpaprika.com/privacy-policy/](https://coinpaprika.com/privacy-policy/)   
 * **Coinpaprika API terms:-** [https://coinpaprika.com/terms-of-use/](https://coinpaprika.com/terms-of-use/)
 
-
 == Installation ==
-#### Install From WordPress Admin Panel
 
-Open the WordPress admin panel and go to Plugins >> Add New and Search **“Cryptocurrency Widgets For Elementor”** at here, You will find our plugin **“by Cool Plugins”**. Click on the Install button in front of this and then activate the plugin.
+### Install From WordPress Admin Panel
+* Open the WordPress admin panel and go to Plugins >> Add New.
+* Search **“Cryptocurrency Widgets For Elementor”**. 
+* Click install & activate the plugin.
 
-#### How To Create Crypto Top gainer/losers list Widget?
-
-After installation & plugin activation, create a page and edit the page with elementor, in the elementor search bar type Cryptocurrency Widget. From the search result drag Cryptocurrency Widget to your desired location on the page. By default it will add a Card layout, you change the layout from the widget settings panel. Also can style the individual widget from the style tab colors options according to your requirement.
+### How To Create a Crypto Top gainer/losers list Widget?
+ * Create a page and edit the page with elementor.
+ * From the widget section search **Cryptocurrency Widget**. 
+ * From the results, drag the Cryptocurrency Widget onto your page where you’d like it to appear.
+ * By default, the widget will display in the **Card layout**.
+ * From widget settings panel under the Layout dropdown, select the style you prefer **(Card, List, Label, etc.)**.
+ * From the Style tab adjust colors, typography, spacing, and other design options according to your website.
 
 == Frequently Asked Questions ==
-= Can I display real-time live price changes? =
 
-We are using CoinGecko, CoinMarketCap and Coinpaprika API in our free version of the crypto price widget, it can show only the current price but doesn’t support real-time price updates.
+= Can I display real-time live price changes? =
+We are using CoinGecko, and Coinpaprika API in our free version of the crypto price widget, it can show only the current price but doesn’t support real-time price updates.
 
 = Can I choose my local currency other than USD($)? =
-
-Yes, you can display crypto coins' prices in your local currency. we have integrated 32 fiat currencies:- **USD, GBP, EUR, INR, JPY, CNY, ILS, KRW, RUB, DKK, PLN, AUD, BRL, MXN, SEK, CAD, HKD, MYR, SGD, CHF, HUF, NOK, THB, CLP, IDR, NZD, TRY, PHP, TWD, CZK, PKR, ZAR**.
+Yes, you can display crypto coins' prices in your local currency. We have integrated 32 fiat currencies:- **USD, GBP, EUR, INR, JPY, CNY, ILS, KRW, RUB, DKK, PLN, AUD, BRL, MXN, SEK, CAD, HKD, MYR, SGD, CHF, HUF, NOK, THB, CLP, IDR, NZD, TRY, PHP, TWD, CZK, PKR, ZAR**.
 
 = Are you using any third-party APIs? =
-
-YES, we are using coingecko.com APIs in our free version. So plugin functionality totally depends on third-party APIs. (We can’t provide any support if there is any downtime in third-party APIs)
+Yes, we are using coingecko.com APIs in our free version. So, plugin functionality totally depends on third-party APIs. 
+(We can’t provide any support if there is any downtime in third-party APIs)
 
 = Do you have any support email for extra questions? =
+Yes, you can contact us anytime at contact@coolplugins.net. We strive to respond to all inquiries within 24 hours.
 
-Yes, you can contact us anytime at **contact@coolplugins.net**. We strive to respond to all inquiries within 24 hours.
+= Can I customize the widget layout? =
+Yes, the plugin offers different layouts: Coins Price Card, Coins Price Label, Coins List, and Donation box widget. You can also customize elements like symbol display, market cap, price changes, and more in each layout.
 
-= Can I customize the widget layout? =  
-Yes, the plugin offers four different layouts: Coins Price Card, Coins Price Label, Coins List, and Top Gainers/Losers. You can also customize elements like symbol display, market cap, price changes, and more in each layout.
-
-= Does the plugin support custom styling? =  
+= Does the plugin support custom styling? =
 Yes, you can further customize the appearance of the widgets through Elementor's styling options. This allows you to adjust the colors, fonts, and layout to match your website design.
 
-= Can I select a specific time range for price changes? =  
+= Can I select a specific time range for price changes? =
 Yes, depending on the layout, you can display price changes over different time ranges, such as 1 hour, 24 hours, 7 days, or 30 days.
 
-= Is the plugin compatible with all Elementor themes? =  
-Yes, the plugin is fully compatible with any theme that supports Elementor. It seamlessly integrates with your existing theme design and functionality.
+= Is the plugin compatible with all Elementor themes? =
+Yes, the plugin is fully compatible with any theme that supports Elementor. 
 
-= Does this plugin support multi-currency or fiat conversion? =  
+= Does this plugin support multi-currency or fiat conversion? =
 Currently, the plugin focuses on cryptocurrency prices and does not include fiat currency conversion. However, it pulls real-time market data for accurate cryptocurrency pricing.
 
-= Is there an option to add more than 250 coins? =  
-By default, the plugin supports the top 250 cryptocurrencies by market cap. However, you can customize the coin list to display your preferred coins within this range.
+= Is there an option to add more than 250 coins? =
+By default, the plugin supports the top 200 cryptocurrencies by market cap. However, you can customize the coin list to display your preferred coins within this range.
 
-= How often is the market data updated? =  
-The plugin fetches real-time data, ensuring your coin price widgets and lists are always up to date with the latest market changes.
-
-= Can I accept donations in multiple cryptocurrencies at once? =  
+= Can I accept donations in multiple cryptocurrencies at once? =
 Yes, the donation widget supports over 50 cryptocurrencies, allowing you to accept multiple types of crypto donations on your Elementor pages.
 
-= Is MetaMask the only payment option for donations? =  
+= Is MetaMask the only payment option for donations? =
 The plugin integrates seamlessly with MetaMask, but you can also display your cryptocurrency wallet address and QR code for manual donations.
 
-= Is the donation feature secure? =  
+= Is the donation feature secure? =
 Yes, the donation feature is secure, especially with MetaMask integration, which uses a trusted and widely adopted crypto wallet solution. Transactions are handled directly between users and their wallets.
 
-= Will the plugin slow down my website? =  
+= Will the plugin slow down my website? =
 No, the plugin is optimized for performance and designed to work efficiently with Elementor. It fetches only necessary data, minimizing the impact on your website's speed.
 
-= Does this plugin work with caching plugins? =  
-Yes, the plugin is compatible with most caching plugins. However, to ensure real-time updates of cryptocurrency data, make sure dynamic content is excluded from caching.
-
 = How can I report security bugs? =
-You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/cryptocurrency-widgets-for-elementor)
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. Report a [security vulnerability](https://patchstack.com/database/vdp/cryptocurrency-widgets-for-elementor).
 
 == Screenshots ==
-1.  Add coins Widgets  Demo. 
+
+1. Add coins Widgets Demo.
 2. Cryptocurrency Price List Widget Demo.
 3. Cryptocurrency Price Card Widget Demo.
 4. Cryptocurrency Price Label Widget Demo.
 5. Top Gainer/Top Losers Demo
 6. Cryptocurrency Widget Settings Panel
 7. Cryptocurrency Widget Style Settings Panel
-8. Cryptocurrency Donation Widget 
+8. Cryptocurrency Donation Widget
 
 == Changelog ==
 
-<strong>Version 1.7.5| 25/08/2025</strong>
-<pre>
-Fixed: Security issues.
-Improvements: Code Improved.
-</pre>
+= Version 1.7.6| 25/08/2025 = 
+* Updated: UTM Links.
 
-<strong>Version 1.7.4| 02/06/2025</strong>
-<pre>
-Updated:UTM source links.
-Improvements: Code Improved.
-</pre>
+= Version 1.7.5| 25/08/2025 = 
+* Fixed: Security issues.
+* Improvements: Code Improved.
 
-<strong>Version 1.7.3| 22/05/2025</strong>
-<pre>
-Improvements: Enhanced user opt-in options for better customization.
-</pre>
+= Version 1.7.4 | 02/06/2025 =
+* Updated: UTM source links.
+* Improvements: Code improved.
 
-<strong>Version 1.7.2| 20/05/2025</strong>
-<pre>
-Improvements: Minor code improvements.
-Added: User opt-in option in plugin.
-</pre>
+= Version 1.7.3 | 22/05/2025 =
+* Improvements: Enhanced user opt-in options for better customization.
 
-<strong>Version 1.7.1| 18/03/2025</strong>
-<pre>
-Tested up to: Elementor Version 3.28.0 and Elementor Pro Version 3.28.0.
-</pre>
+= Version 1.7.2 | 20/05/2025 =
+* Improvements: Minor code improvements.
+* Added: User opt-in option in plugin.
 
-<strong>Version 1.7.0| 28/02/2025</strong>
-<pre>
-Fixed: Advanced table issue.
-Fixed: Minor bug fix.
-</pre>
+= Version 1.7.1 | 18/03/2025 =
+* Tested up to: Elementor Version 3.28.0 and Elementor Pro Version 3.28.0.
 
-<strong>Version 1.6.9| 18/12/2024</strong>
-<pre>
-Fixed: Donation-box widget QR code not working.
-Tested up to: Elementor Version 3.26.0.
-</pre>
-<strong>Version 1.6.8| 13/12/2024</strong>
-<pre>
-Fixed: Text Domain issue.
-</pre>
-<strong>Version 1.6.7| 16/11/2024</strong>
-<pre>
-update: Minor textual changes
-</pre>
-<strong>Version 1.6.6| 16/11/2024</strong>
-<pre>
-Fixed: Custom Coin Settings.
-update: Minor textual changes
-Tested up to: WordPress Version 6.7
-Tested up to: Elementor Version 3.25.6
-</pre>
-<strong>Version 1.6.5| 29/10/2024</strong>
-<pre>
-Improved: Security improvements.
-</pre>
-<strong>Version 1.6.4| 04/10/2024</strong>
-<pre>
-Fixed: Top gainer loser widget issue.
-fixed: fixed the minor security issue.
-</pre>
-<strong>Version 1.6.3| 27/05/2024</strong>
-<pre>
-Improved: Code improvement.
-Fixed: Invalid coin data issue.
-</pre>
-<strong>Version 1.6.2| 19/04/2024</strong>
-<pre>
-Updated: Donation box QR code library.
-Fixed: Circulating supply warning issue.
-Fixed: Coinpaprika API issues.
-Fixed: Broken logo issues.
-</pre>
-<strong>Version 1.6.1| 20/01/2024</strong>
-<pre>
-Fixed:Compatibility issues.
-</pre>
-<strong>Version 1.6| 20/01/2024</strong>
-<pre>
-Fixed: Minor security vulnerabilities.
-Improved: Overall security measures.
-Tested upto: WordPress Version 6.4.2.
-Tested upto:Elementor Version 3.18.3
-</pre>
-<strong>Version 1.5.8| 04/12/2023</strong>
-<pre>
-Added: Coingecko free api key option.
-Updated: Option to set cache time.
-Updated: Coins logos.
-Tested upto: WordPress Version 6.4.1.
-</pre>
-<strong>Version 1.5.7| 16/11/2023</strong>
-<pre>
-Tested upto: WordPress Version 6.4.
-Tested upto:Elementor Version 3.17.3
-</pre>
-<strong>Version 1.5.6| 19/10/2023</strong>
-<pre>
-Fixed: Deprecated message issue.
-</pre>
-<strong>Version 1.5.5| 06/09/2023</strong>
-<pre>
-Fixed: Minor fixes.
-Tweaks: Minor textual changes
-</pre>
-<strong>Version 1.5.4| 21/08/2023</strong>
-<pre>
-Fixed: Deprecated message warning.
-Improved: MetaMask UI & Code.
-Wordpress tested up to: Version 6.3.
-Elementor tested up to: Version 3.15.3
-</pre>
+= Version 1.7.0 | 28/02/2025 =
+* Fixed: Advanced table issue.
+* Fixed: Minor bug fix.
 
-<strong>Version 1.5.3| 28/06/2023</strong>
-<pre>
-Fixed: Minor Security fix.
-Improved: Review notice code improvement.
-Improved: Minor code tweaks.
-</pre>
+= Version 1.6.9 | 18/12/2024 =
+* Fixed: Donation-box widget QR code not working.
+* Tested up to: Elementor Version 3.26.0.
 
-<strong>Version 1.5.2 | 31/11/2023 </strong>
-<pre>
-Updated:Dashboard API.
-Minor Changes: Textual changes.
-Wordpress tested up to: Version 6.2.
-Elementor tested up to: Version 3.12.0
-</pre>
-<strong>Version 1.5.1 | 09/11/2022 </strong>
-<pre>
-Improved: Textual changes.
-</pre>
-<strong>Version 1.5 | 1/09/2022 </strong>
-<pre>
-Added: Coin Paprika API
-Added: Setting Menu In Dashboard.
-Added: Cache Delete Button
-Added: Set Cache Time Option
-Added: Typography settings
-Added: Coin Logos
-</pre>
-<strong>Version 1.4.1 | 25/08/2022 </strong>
-<pre>
-Improved:Tested with Elementor 3.7.2
-</pre>
+= Version 1.6.8 | 13/12/2024 =
+* Fixed: Text Domain issue.
 
-<strong>Version 1.4 | 28/05/2022 </strong>
-<pre>
-Added:New card style
-Added:MataMask default price option
-Fixed:Dashboard pro plugin missing data issue
-Fixed:Table price update issue
-Fixed:Donation box MetaMask issue
-Improved:MetaMask UI & code
-Improved:list style
-</pre>
-<strong>Version 1.3.2 | 14/04/2022 </strong>
-<pre>
-Fixed: QR code not working issue inside Donation widget
-</pre>
-<strong>Version 1.3 | 07/04/2022 </strong>
-<pre>
-Fixed: Major Security updates
-Improved: overall code improvements
-</pre>
-<strong>Version 1.2.1 | 02/03/2022 </strong>
-<pre>
-Fixed: Minor compatibility issue with Old PHP versions.
-</pre>
+= Version 1.6.7 | 16/11/2024 =
+* Updated: Minor textual changes.
 
-<strong>Version 1.2 | 03/02/2022 </strong>
-<pre>
-Added:Dashboard Page
-Added:Openexchangerate API rating
-Added:Review Notice in widget
-Added:Pro plugin demo link in widget
-Fix:No Coin Data Found issue
-</pre>
-<strong>Version 1.1 | 24/08/2021 </strong>
-<pre>
-Added:Crypto Donation widget with two layouts tabs&list
-Added:feedback form
-Added:feedback notice
-</pre>
-<strong>Version 1.0.1 | 20/07/2021 </strong>
-<pre>
-Tweaks:Escaped all attributes  and HTML
-Improved:Improved overall code
-</pre>
+= Version 1.6.6 | 16/11/2024 =
+* Fixed: Custom Coin Settings.
+* Updated: Minor textual changes.
+* Tested up to: WordPress Version 6.7.
+* Tested up to: Elementor Version 3.25.6.
 
+= Version 1.6.5 | 29/10/2024 =
+* Improved: Security improvements.
 
-**Version 1.0**
---Initial Release---
+= Version 1.6.4 | 04/10/2024 =
+* Fixed: Top gainer/loser widget issue.
+* Fixed: Minor security issue.
 
+= Version 1.6.3 | 27/05/2024 =
+* Improved: Code improvement.
+* Fixed: Invalid coin data issue.
+
+= Version 1.6.2 | 19/04/2024 =
+* Updated: Donation box QR code library.
+* Fixed: Circulating supply warning issue.
+* Fixed: Coinpaprika API issues.
+* Fixed: Broken logo issues.
+
+= Version 1.6.1 | 20/01/2024 =
+* Fixed: Compatibility issues.
+
+= Version 1.6.0 | 20/01/2024 =
+* Fixed: Minor security vulnerabilities.
+* Improved: Overall security measures.
+* Tested up to: WordPress Version 6.4.2.
+* Tested up to: Elementor Version 3.18.3.
+
+= Version 1.5.8 | 04/12/2023 =
+* Added: Coingecko free API key option.
+* Updated: Option to set cache time.
+* Updated: Coin logos.
+* Tested up to: WordPress Version 6.4.1.
+
+= Version 1.5.7 | 16/11/2023 =
+* Tested up to: WordPress Version 6.4.
+* Tested up to: Elementor Version 3.17.3.
+
+= Version 1.5.6 | 19/10/2023 =
+* Fixed: Deprecated message issue.
+
+= Version 1.5.5 | 06/09/2023 =
+* Fixed: Minor fixes.
+* Tweaks: Minor textual changes.
+
+= Version 1.5.4 | 21/08/2023 =
+* Fixed: Deprecated message warning.
+* Improved: MetaMask UI & code.
+* WordPress tested up to: Version 6.3.
+* Elementor tested up to: Version 3.15.3.
+
+= Version 1.5.3 | 28/06/2023 =
+* Fixed: Minor security fix.
+* Improved: Review notice code improvement.
+* Improved: Minor code tweaks.
+
+= Version 1.5.2 | 31/11/2022 =
+* Updated: Dashboard API.
+* Minor Changes: Textual changes.
+* WordPress tested up to: Version 6.2.
+* Elementor tested up to: Version 3.12.0.
+
+= Version 1.5.1 | 09/11/2022 =
+* Improved: Textual changes.
+
+= Version 1.5.0 | 01/09/2022 =
+* Added: Coin Paprika API.
+* Added: Setting menu in dashboard.
+* Added: Cache delete button.
+* Added: Set cache time option.
+* Added: Typography settings.
+* Added: Coin logos.
+
+= Version 1.4.1 | 25/08/2022 =
+* Improved: Tested with Elementor 3.7.2.
+
+= Version 1.4.0 | 28/05/2022 =
+* Added: New card style.
+* Added: MetaMask default price option.
+* Fixed: Dashboard pro plugin missing data issue.
+* Fixed: Table price update issue.
+* Fixed: Donation box MetaMask issue.
+* Improved: MetaMask UI & code.
+* Improved: List style.
+
+= Version 1.3.2 | 14/04/2022 =
+* Fixed: QR code not working issue inside Donation widget.
+
+= Version 1.3.0 | 07/04/2022 =
+* Fixed: Major security updates.
+* Improved: Overall code improvements.
+
+= Version 1.2.1 | 02/03/2022 =
+* Fixed: Minor compatibility issue with old PHP versions.
+
+= Version 1.2.0 | 03/02/2022 =
+* Added: Dashboard page.
+* Added: Openexchangerate API rating.
+* Added: Review notice in widget.
+* Added: Pro plugin demo link in widget.
+* Fixed: "No Coin Data Found" issue.
+
+= Version 1.1.0 | 24/08/2021 =
+* Added: Crypto Donation widget with two layouts (tabs & list).
+* Added: Feedback form.
+* Added: Feedback notice.
+
+= Version 1.0.1 | 20/07/2021 =
+* Tweaks: Escaped all attributes and HTML.
+* Improved: Overall code.
+
+= Version 1.0.0 =
+* Initial release.
+
+== Upgrade Notice ==
+= version 1.6.6 | 16/11/2024 =
+* Fixed: Custom Coin settings.
+* Updated: Minor textual changes.
+* Tested up to: WordPress Version 6.7.
+* Tested up to: Elementor Version 3.25.6.

@@ -3,9 +3,9 @@
  * Plugin Name:Cryptocurrency Widgets For Elementor
  * Description:Cryptocurrency Widgets For Elementor WordPress plugin displays current prices of crypto coins - bitcoin, ethereum, ripple etc.
  * Author:Cool Plugins
- * Author URI:https://coolplugins.net/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=dashboard_pro
+ * Author URI:https://coolplugins.net/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=plugins_list
  * Plugin URI:https://cryptocurrencyplugins.com/
- * Version: 1.7.5
+ * Version: 1.7.6
  * License: GPL2
  * Text Domain:ccew
  * Domain Path: languages
@@ -18,15 +18,15 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('CCEW_VERSION', '1.7.5');
+define('CCEW_VERSION', '1.7.6');
 define('CCEW_FILE', __FILE__);
 define('CCEW_DIR', plugin_dir_path(CCEW_FILE));
 define('CCEW_URL', plugin_dir_url(CCEW_FILE));
 
 if (!defined('CCEW_DEMO_URL')) {
     define('CCEW_DEMO_URL', 'https://cryptocurrencyplugins.com');
-    define('CCEW_UTM', '?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=demo&utm_content=ccw_widget_settings');
-    define('CCEW_CMC_UTM', '?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=demo&utm_content=cmc_widget_settings');
+    define('CCEW_UTM', '?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=demo&utm_content=ccw_widget_panel');
+    define('CCEW_CMC_UTM', '?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=demo&utm_content=cmc__widget_panel');
 
 }
 define('CCEW_FEEDBACK_API',"https://feedback.coolplugins.net/");
