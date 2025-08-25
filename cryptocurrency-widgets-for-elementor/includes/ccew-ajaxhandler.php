@@ -4,7 +4,12 @@ function ccew_getData()
     if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field($_POST['nonce']), 'ccew-create-widget')) {
         die('Please refresh window and check it again');
     }
-    $settings = isset($_POST['settings']) ? $_POST['settings'] : null;
+    
+    if (is_user_logged_in() && !current_user_can('read')) {
+        wp_die('You do not have permission to access this resource.', 'Unauthorized', array('response' => 403));
+    }
+    
+    $settings = isset($_POST['settings']) ? ccew_sanitize_array($_POST['settings']) : null;
     if ($settings !== null) {
         // Layout Settings
         // $settings = filter_var_array($_POST['settings'],FILTER_SANITIZE_STRING);
@@ -51,7 +56,7 @@ function ccew_getData()
             $current_page = isset($_POST['draw']) && (int) $_POST['draw'] ? sanitize_text_field($_POST['draw']) : 1;
             $start_point = isset($_POST['start']) ? sanitize_text_field($_POST['start']) : 0;
             $coin_no = $start_point + 1;
-            $numberof_coins = (!empty($settings['numberof_coins'])) ? $settings['numberof_coins'] : '';
+             $numberof_coins = (!empty($settings['numberof_coins'])) ? ccew_sanitize_array($settings['numberof_coins']) : '';
             $data_length = isset($_POST['length']) ? sanitize_text_field($_POST['length']) : 10;
             $required_coins = sanitize_text_field($settings['required_coins']);
             $Total_DBRecords = '1000';
@@ -245,5 +250,12 @@ function ccew_getData()
             'data' => $content,
         );
         wp_send_json($response);
+    }
+}
+function ccew_sanitize_array($data) {
+    if (is_array($data)) {
+        return array_map('ccew_sanitize_array', $data);
+    } else {
+        return sanitize_text_field($data);
     }
 }

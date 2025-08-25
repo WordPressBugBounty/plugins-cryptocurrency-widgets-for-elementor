@@ -527,6 +527,21 @@ class ccew__Widget extends \Elementor\Widget_Base
             )
         );
 
+          $this->add_control(
+            'ccew_review_note',
+            array(
+                'label' => __('Review Notice', 'ccew'),
+                'type' => \Elementor\Controls_Manager::RAW_HTML,
+                'show_label' => false,
+                'raw' => '<div class="ccew_cmc_demo">
+        <div class="ccew_cmc_def">
+       You\'ve used our widget for a while. We hope you liked it! </br> Please give us a quick rating to help us keep improving the plugin!!</div>
+		<div class="ccew_link_wrap"><a class="ccew_demo_link" href="https://wordpress.org/support/plugin/cryptocurrency-widgets-for-elementor/reviews/#new-post" target="_blank"><button class="ccew-custom-primry-btn">Submit Review ★★★★★</button></a></div>
+    </div>',
+
+            )
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -848,30 +863,6 @@ class ccew__Widget extends \Elementor\Widget_Base
 
         $this->end_controls_section();
         $this->start_controls_section(
-            'ccewd_review_section',
-            array(
-                'label' => __('We Would Appreciate Your Feedback', 'ccew'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-            )
-        );
-        $this->add_control(
-            'ccew_review_note',
-            array(
-                'label' => __('Review Notice', 'ccew'),
-                'type' => \Elementor\Controls_Manager::RAW_HTML,
-                'show_label' => false,
-                'raw' => '<div class="ccew_cmc_demo">
-        <div class="ccew_cmc_def">
-       You\'ve used our widget for a while. We hope you liked it! </br> Please give us a quick rating to help us keep improving the plugin!!</div>
-		<div class="ccew_link_wrap"><a class="ccew_demo_link" href="https://wordpress.org/support/plugin/cryptocurrency-widgets-for-elementor/reviews/#new-post" target="_blank"><button class="ccew-custom-primry-btn">Submit Review ★★★★★</button></a></div>
-    </div>',
-
-            )
-        );
-
-        $this->end_controls_section();
-
-        $this->start_controls_section(
             'ccewd_permotion_section',
             array(
                 'label' => __('Crypto Pro Plugins Demos', 'ccew'),
@@ -933,7 +924,8 @@ class ccew__Widget extends \Elementor\Widget_Base
         $settings = $this->get_settings_for_display();
         $random_id = rand();
         $html_setting['widget_type'] = $settings['ccew_widget_type'];
-        $html_setting['fiat_currency'] = $settings['ccew_fiat_currency'];
+        $html_setting['fiat_currency'] = !empty($settings['ccew_fiat_currency']) ? $settings['ccew_fiat_currency'] : 'USD';
+
         $html_setting['fiat_c_rate'] = ccew_usd_conversions($settings['ccew_fiat_currency']);
         $html_setting['number_formating'] = $settings['ccew_number_formating'];
 

@@ -43,8 +43,8 @@ class ccew_elementor_register {
 	 * @access private
 	 */
 	private function ccew_widget_includes() {
-		require_once esc_html(CCEW_DIR) . 'includes/ccew-cryptocurrency-widgets.php';
-		require_once esc_html(CCEW_DIR) . 'donation-box/ccew-donation-box-widget.php';
+		require_once CCEW_DIR . 'includes/ccew-cryptocurrency-widgets.php';
+		require_once CCEW_DIR . 'donation-box/ccew-donation-box-widget.php';
 
 	}
 

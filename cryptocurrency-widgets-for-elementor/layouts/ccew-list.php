@@ -48,7 +48,7 @@ if ($display_graph == 'yes') {
     } else {
         $content .= '
     <div class="ccew_coin_paprika_graph">
-    <img src="https://graphs.coinpaprika.com/currency/chart/' . ccew_coin_array($coin_id, true) . '/7d/chart.svg">
+    <img src="' . esc_url('https://graphs.coinpaprika.com/currency/chart/' . ccew_coin_array($coin_id, true) . '/7d/chart.svg') . '">
     </div>';
     }
 

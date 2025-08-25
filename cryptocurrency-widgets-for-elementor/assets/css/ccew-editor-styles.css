@@ -23,6 +23,7 @@ ul.ccew-permotion-plugins strong{
     font-size: 15px;
 }
 .ccew-custom-primry-btn{
+    margin-top: 2px !important;
      display: inline-block;
          background: #2271b1;
     border-color: #2271b1;
@@ -30,9 +31,9 @@ ul.ccew-permotion-plugins strong{
     text-decoration: none;
     font-size: 13px;
     line-height: 26px;
-    height: 25px;
+    height: 33px;
     margin: 0;
-    padding: 0 10px 1px;
+    padding: 3px 11px;
     cursor: pointer;
     border-width: 1px;
     border-style: solid;
@@ -53,9 +54,11 @@ button.ccew_rate_btn{
     cursor: pointer;
 }
 .ccew_cmc_demo {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
+    line-height: 1.5em;
+    background: #FFD5E6;
+    color: #151213;
+    padding: 15px;
+
 }
 .ccew_logo_container {
     display: inline-flex;
@@ -63,7 +66,7 @@ button.ccew_rate_btn{
     flex: 0 0 35%;
 }
 .ccew_cmc_def {
-    width: 60%;
+    width: 100%;
     flex: 1 0 60%;
     padding-bottom: 5px;
 
@@ -71,5 +74,5 @@ button.ccew_rate_btn{
 
 
 ul.ccew-permotion-plugins .ccew_link_wrap {
-    margin-left: 35%;
+      margin-left: 35%;
 }

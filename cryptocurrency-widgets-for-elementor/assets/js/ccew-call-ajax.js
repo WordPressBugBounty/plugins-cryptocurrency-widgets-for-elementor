@@ -372,6 +372,16 @@ class ccew_call_ajax extends elementorModules.frontend.handlers.Base {
 
 
 
+// Safe image fallback handler for coin logos - works globally
+jQuery(document).ready(function() {
+    jQuery(document).on('error', '.ccew-coin-logo', function() {
+        const fallbackSrc = jQuery(this).data('fallback-src');
+        if (fallbackSrc && this.src !== fallbackSrc) {
+            this.src = fallbackSrc;
+        }
+    });
+});
+
 jQuery(window).on('elementor/frontend/init', () => {
 
     const addHandler = ($element) => {

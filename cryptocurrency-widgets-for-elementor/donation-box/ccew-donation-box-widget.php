@@ -246,6 +246,21 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
             )
         );
 
+         $this->add_control(
+            'ccew_review_note',
+            array(
+                'label' => __('Review Notice', 'ccew'),
+                'type' => \Elementor\Controls_Manager::RAW_HTML,
+                'show_label' => false,
+                'raw' => '<div class="ccew_cmc_demo">
+        <div class="ccew_cmc_def">
+       You\'ve used our widget for a while. We hope you liked it! </br> Please give us a quick rating to help us keep improving the plugin!</div>
+        <div class="ccew_link_wrap"><a class="ccew_demo_link" href="https://wordpress.org/support/plugin/cryptocurrency-widgets-for-elementor/reviews/#new-post" target="_blank"><button class="ccew-custom-primry-btn">Submit Review ★★★★★</button></a></div>
+    </div>',
+
+            )
+        );
+
         $this->end_controls_section();
 
         $this->start_controls_section(
@@ -396,29 +411,6 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
 								{{WRAPPER}} .ccewd-container',
             )
         );
-        $this->end_controls_section();
-        $this->start_controls_section(
-            'ccewd_review_section',
-            array(
-                'label' => __('We Would Appreciate Your Feedback', 'ccew'),
-                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-            )
-        );
-        $this->add_control(
-            'ccew_review_note',
-            array(
-                'label' => __('Review Notice', 'ccew'),
-                'type' => \Elementor\Controls_Manager::RAW_HTML,
-                'show_label' => false,
-                'raw' => '<div class="ccew_cmc_demo">
-        <div class="ccew_cmc_def">
-       You\'ve used our widget for a while. We hope you liked it! </br> Please give us a quick rating to help us keep improving the plugin!</div>
-        <div class="ccew_link_wrap"><a class="ccew_demo_link" href="https://wordpress.org/support/plugin/cryptocurrency-widgets-for-elementor/reviews/#new-post" target="_blank"><button class="ccew-custom-primry-btn">Submit Review ★★★★★</button></a></div>
-    </div>',
-
-            )
-        );
-
         $this->end_controls_section();
 
         $this->start_controls_section(

@@ -5,7 +5,7 @@
  * Author:Cool Plugins
  * Author URI:https://coolplugins.net/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=dashboard_pro
  * Plugin URI:https://cryptocurrencyplugins.com/
- * Version: 1.7.4
+ * Version: 1.7.5
  * License: GPL2
  * Text Domain:ccew
  * Domain Path: languages
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('CCEW_VERSION', '1.7.4');
+define('CCEW_VERSION', '1.7.5');
 define('CCEW_FILE', __FILE__);
 define('CCEW_DIR', plugin_dir_path(CCEW_FILE));
 define('CCEW_URL', plugin_dir_url(CCEW_FILE));

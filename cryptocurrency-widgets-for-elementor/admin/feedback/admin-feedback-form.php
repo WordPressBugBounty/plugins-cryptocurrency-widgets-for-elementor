@@ -47,24 +47,24 @@ class cp_feedback {
 		}
 		$deactivate_reasons = array(
 			'didnt_work_as_expected'         => array(
-				'title'             => __( 'The plugin didn\'t work as expected', 'cool-plugins' ),
+				'title'             => __( 'The plugin didn\'t work as expected', 'ccew' ),
 				'input_placeholder' => 'What did you expect?',
 			),
 			'found_a_better_plugin'          => array(
-				'title'             => __( 'I found a better plugin', 'cool-plugins' ),
-				'input_placeholder' => __( 'Please share which plugin', 'cool-plugins' ),
+				'title'             => __( 'I found a better plugin', 'ccew' ),
+				'input_placeholder' => __( 'Please share which plugin', 'ccew' ),
 			),
 			'couldnt_get_the_plugin_to_work' => array(
-				'title'             => __( 'The plugin is not working', 'cool-plugins' ),
+				'title'             => __( 'The plugin is not working', 'ccew' ),
 				'input_placeholder' => 'Please share your issue. So we can fix that for other users.',
 			),
 			'temporary_deactivation'         => array(
-				'title'             => __( 'It\'s a temporary deactivation', 'cool-plugins' ),
+				'title'             => __( 'It\'s a temporary deactivation', 'ccew' ),
 				'input_placeholder' => '',
 			),
 			'other'                          => array(
-				'title'             => __( 'Other', 'cool-plugins' ),
-				'input_placeholder' => __( 'Please share the reason', 'cool-plugins' ),
+				'title'             => __( 'Other', 'ccew' ),
+				'input_placeholder' => __( 'Please share the reason', 'ccew' ),
 			),
 		);
 
@@ -73,7 +73,7 @@ class cp_feedback {
 						
 			<div class="cool-plugins-deactivation-response">
 			<div id="cool-plugins-deactivate-feedback-dialog-header">
-				<span id="cool-plugins-feedback-form-title"><?php echo esc_html__( 'Quick Feedback', 'cool-plugins' ); ?></span>
+				<span id="cool-plugins-feedback-form-title"><?php echo esc_html__( 'Quick Feedback', 'ccew' ); ?></span>
 			</div>
 			<div id="cool-plugins-loader-wrapper">
 				<div class="cool-plugins-loader-container">
@@ -100,7 +100,7 @@ class cp_feedback {
 							<?php endif; ?>
 						</div>
 					<?php endforeach; ?>
-					<input class="cool-plugins-GDPR-data-notice" id="cool-plugins-GDPR-data-notice" type="checkbox"><label for="cool-plugins-GDPR-data-notice"><?php echo esc_html__( 'I consent to having Cool Plugins store my all submitted information via this form, they can also respond to my inquiry.', 'cool-plugins' ); ?></label>
+					<input class="cool-plugins-GDPR-data-notice" id="cool-plugins-GDPR-data-notice" type="checkbox"><label for="cool-plugins-GDPR-data-notice"><?php echo esc_html__( 'I agree to share anonymous usage data and basic site details (such as server, PHP, and WordPress versions) to support Cryptocurrency Widgets improvement efforts. Additionally, I allow Cool Plugins to store all information provided through this form and to respond to my inquiry.', 'cool-plugins' ); ?></label>
 				</div>
 				<div class="cool-plugin-popup-button-wrapper">
 					<a class="cool-plugins-button button-deactivate" id="cool-plugin-submitNdeactivate">Submit and Deactivate</a>
@@ -181,24 +181,24 @@ class cp_feedback {
 			$reason             = isset($_POST['reason']) ? sanitize_text_field( $_POST['reason'] ) : "";
 			$deactivate_reasons = array(
 				'didnt_work_as_expected'         => array(
-					'title'             => __( 'The plugin didn\'t work as expected', 'cool-plugins' ),
+					'title'             => __( 'The plugin didn\'t work as expected', 'ccew' ),
 					'input_placeholder' => 'What did you expect?',
 				),
 				'found_a_better_plugin'          => array(
-					'title'             => __( 'I found a better plugin', 'cool-plugins' ),
-					'input_placeholder' => __( 'Please share which plugin', 'cool-plugins' ),
+					'title'             => __( 'I found a better plugin', 'ccew' ),
+					'input_placeholder' => __( 'Please share which plugin', 'ccew' ),
 				),
 				'couldnt_get_the_plugin_to_work' => array(
-					'title'             => __( 'The plugin is not working', 'cool-plugins' ),
+					'title'             => __( 'The plugin is not working', 'ccew' ),
 					'input_placeholder' => 'Please share your issue. So we can fix that for other users.',
 				),
 				'temporary_deactivation'         => array(
-					'title'             => __( 'It\'s a temporary deactivation', 'cool-plugins' ),
+					'title'             => __( 'It\'s a temporary deactivation', 'ccew' ),
 					'input_placeholder' => '',
 				),
 				'other'                          => array(
-					'title'             => __( 'Other', 'cool-plugins' ),
-					'input_placeholder' => __( 'Please share the reason', 'cool-plugins' ),
+					'title'             => __( 'Other', 'ccew' ),
+					'input_placeholder' => __( 'Please share the reason', 'ccew' ),
 				),
 			);
 

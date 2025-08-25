@@ -29,7 +29,6 @@ if (!class_exists('Openexchange_api_settings')) {
             wp_enqueue_script('jquery');
 
             $script = "
-            <script>
                 jQuery(document).ready(function($){
                     var url = window.location.href;
                     if (url.indexOf('?page=openexchange-api-settings') > 0) {
@@ -42,10 +41,9 @@ if (!class_exists('Openexchange_api_settings')) {
                         }
                     });
                 });
-            </script>
             ";
 
-            echo $script;
+            wp_add_inline_script('jquery', $script);
         }
 
         public function openexchange_add_submenu()
@@ -175,8 +173,8 @@ if (!class_exists('Openexchange_api_settings')) {
 
                     echo '<div class="cmb-th"></div><div class="cmb-td"><table>
 							<tr><td>Total Monthly API Calls:-</td><td> <b>10000</b></td></tr>
-							<tr><td>Used API Calls:- </td><td><b>' . ($total_hits ? $total_hits : '') . '</b></td><tr>
-							<tr><td>Remaining monthly API Calls:- </td><td><b>' . ($total_hits <= 10000 ? (10000 - $total_hits) : 0) . '</b></td><tr>
+							<tr><td>Used API Calls:- </td><td><b>' . esc_html($total_hits ? $total_hits : '') . '</b></td><tr>
+							<tr><td>Remaining monthly API Calls:- </td><td><b>' . esc_html($total_hits <= 10000 ? (10000 - $total_hits) : 0) . '</b></td><tr>
 							<td>Click here to <a href="https://www.coingecko.com/en/developers/dashboard" target="_blank">view API usage details</a></td>
 						</table></div>';
                 },
@@ -234,14 +232,16 @@ if (!class_exists('Openexchange_api_settings')) {
                     Help us make this plugin more compatible with your site by sharing non-sensitive site data. 
                     <a href="#" class="cpfm-see-terms">[See terms]</a>
                        <div id="termsBox" style="display: none;padding-left: 20px; margin-top: 10px; font-size: 12px; color: #999;">
-                        <p>Opt in to receive email updates about security improvements, new features, helpful tutorials, and occasional special offers. We\'ll collect:</p>
+                        <p>Opt in to receive email updates about security improvements, new features, helpful tutorials, and occasional special offers. We\'ll collect: <a href="https://my.coolplugins.net/terms/usage-tracking/" target="_blank" rel="noopener noreferrer">
+                          Click here
+                          </a></p>
                           <ul style="list-style-type:auto;">
                             <li>' . esc_html__('Your website home URL and WordPress admin email.', 'ccpw') . '</li>
                             <li>' . esc_html__('To check plugin compatibility, we will collect the following: list of active plugins and themes, server type, MySQL version, WordPress version, memory limit, site language and database prefix.', 'ccpw') . '</li>
                         </ul>
                     </div>
                 ';
-                    echo '<input type="checkbox" name="openexchange-api-settings[ccew_extra_info]" value="on" ' . $check . '> ' . $terms_html . '<br><br>';
+                    echo '<input type="checkbox" name="openexchange-api-settings[ccew_extra_info]" value="on" ' . esc_attr($check) . '> ' . $terms_html . '<br><br>';
                 },
                 'openexchange-api-settings',
                 'ccew_extra_info_title'
@@ -250,6 +250,13 @@ if (!class_exists('Openexchange_api_settings')) {
         }
         
         function ccew_handle_unchecked_checkbox() {
+            
+            // Verify nonce for CSRF protection
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                if (!isset($_POST['_wpnonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'Openexchange_option_group-options')) {
+                    return; // Exit if nonce verification fails
+                }
+            }
             
             $object_id=  get_option('openexchange-api-settings');
             
@@ -342,7 +349,7 @@ if (!class_exists('Openexchange_api_settings')) {
             $coin_gecko_api = (!empty($api_option['coingecko_api'])) ? $api_option['coingecko_api'] : "";
             $selected_api = get_option("ccew-api-settings");
 
-            if (!current_user_can('delete_posts') || !empty($api)) {
+            if (!current_user_can('manage_options')) {
                 return;
             }
 
@@ -353,7 +360,7 @@ if (!class_exists('Openexchange_api_settings')) {
             if (empty($openexchange_api)) {
                 ?>
 				<div  class="license-warning notice notice-error is-dismissible">
-					<p>Hi, <strong><?php echo ucwords($user_name); ?></strong>! Please <strong><a href="<?php echo esc_url(get_admin_url(null, 'admin.php?page=openexchange-api-settings')); ?>">enter</a></strong> Openexchangerates.org free API key for crypto to fiat price conversions.</p>
+					<p>Hi, <strong><?php echo esc_html(ucwords($user_name)); ?></strong>! Please <strong><a href="<?php echo esc_url(get_admin_url(null, 'admin.php?page=openexchange-api-settings')); ?>">enter</a></strong> Openexchangerates.org free API key for crypto to fiat price conversions.</p>
 
 				</div>
 				<?php
@@ -366,7 +373,7 @@ if (!class_exists('Openexchange_api_settings')) {
                     if (empty($coin_gecko_api)) {
                         ?>
 							<div  class="license-warning notice notice-error is-dismissible">
-								<p>Hi, <strong><?php echo ucwords($user_name); ?></strong>! Please <strong><a href="<?php echo esc_url(get_admin_url(null, 'admin.php?page=openexchange-api-settings')); ?>">enter</a></strong> Coingecko free API key to work this plugin.</p>
+								<p>Hi, <strong><?php echo esc_html(ucwords($user_name)); ?></strong>! Please <strong><a href="<?php echo esc_url(get_admin_url(null, 'admin.php?page=openexchange-api-settings')); ?>">enter</a></strong> Coingecko free API key to work this plugin.</p>
 
 							</div>
 							<?php
@@ -378,7 +385,7 @@ if (!class_exists('Openexchange_api_settings')) {
                 if (empty($coin_gecko_api)) {
                     ?>
 						<div  class="license-warning notice notice-error is-dismissible">
-							<p>Hi, <strong><?php echo ucwords($user_name); ?></strong>! Please <strong><a href="<?php echo esc_url(get_admin_url(null, 'admin.php?page=openexchange-api-settings')); ?>">enter</a></strong> Coingecko free API key to work this plugin.</p>
+							<p>Hi, <strong><?php echo esc_html(ucwords($user_name)); ?></strong>! Please <strong><a href="<?php echo esc_url(get_admin_url(null, 'admin.php?page=openexchange-api-settings')); ?>">enter</a></strong> Coingecko free API key to work this plugin.</p>
 
 						</div>
 						<?php

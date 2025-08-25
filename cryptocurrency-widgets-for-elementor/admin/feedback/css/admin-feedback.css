@@ -7,11 +7,19 @@
     opacity: 0;
 }
 .cool-plugins-deactivation-response{
+    font-family: Roboto, Arial, Helvetica, Verdana, sans-serif;
+    width: 50%;
+    min-width: 300px;
+    left: 25%;
     position: fixed;
-    left: 35%;
-    top: 22%;
+    top: 15%;
+    max-height: 80vh;
     z-index: 9999;
-    color:white;
+    box-shadow: 0px 0px 10px -5px #000;
+    background: #fff;
+    color: #fff;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 .cool-plugins-button{
     border: none;

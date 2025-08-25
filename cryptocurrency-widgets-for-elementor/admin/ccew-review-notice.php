@@ -31,6 +31,12 @@ if ( ! class_exists( 'ccew_review_notice' ) ) {
 				wp_send_json_error( 'You don\'t have permission to hide notice.' );
 				return;
 			}
+			
+			// Verify user capability to dismiss admin notices
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( 'You don\'t have permission to dismiss admin notices.' );
+				return;
+			}
 			update_option( 'ccew-alreadyRated', 'yes' );
 			wp_send_json_success();
 		}

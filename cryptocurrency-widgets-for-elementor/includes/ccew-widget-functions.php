@@ -550,7 +550,8 @@ function ccew_get_coin_logo($coin_id, $size = 32, $HTML = true)
     $logo_html = '';
     //$DB = new ccew_database(); 
     $coin_icon = ccew_coin_list_logos_default($coin_id);
-    $logo_html = '<img id="' . esc_attr($coin_id) . '" alt="' . esc_attr($coin_id) . '" src="' . esc_url($coin_icon) . '" onerror="this.src = \'https://res.cloudinary.com/pinkborder/image/upload/coinmarketcap-coolplugins/128x128/default-logo.png\';">';
+    $fallback_url = 'https://res.cloudinary.com/pinkborder/image/upload/coinmarketcap-coolplugins/128x128/default-logo.png';
+    $logo_html = '<img id="' . esc_attr($coin_id) . '" class="ccew-coin-logo" alt="' . esc_attr($coin_id) . '" src="' . esc_url($coin_icon) . '" data-fallback-src="' . esc_url($fallback_url) . '">';
 
     return $logo_html;
 }

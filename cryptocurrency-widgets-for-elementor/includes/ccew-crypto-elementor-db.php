@@ -51,7 +51,7 @@ class ccew_database
             'circulating_supply' => '%d',
             'logo' => '%s',
             '7d_chart' => '%s',
-            'coin_last_updated' => '%s',
+            'coin_last_update' => '%s',
             'extra_data' => '%s',
 
         );
@@ -109,11 +109,8 @@ class ccew_database
     {
         global $wpdb;
 
-        // Sanitize the coin ID to prevent SQL injection
-        $sanitized_coin_id = esc_sql($coin_id);
-        $table_name = esc_sql($this->table_name);
-        // Prepare the SQL query with sanitized input
-        $query = $wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE coin_id = %s", $sanitized_coin_id);
+        // Prepare the SQL query with sanitized table name and parameterized values
+        $query = $wpdb->prepare("SELECT COUNT(*) FROM " . esc_sql($this->table_name) . " WHERE coin_id = %s", $coin_id);
 
         // Retrieve the count of matching records
         $count = $wpdb->get_var($query);
@@ -141,10 +138,9 @@ class ccew_database
     public function check_coin_latest_update($coin_id)
     {
         global $wpdb;
-        $table_name = esc_sql($this->table_name);
 
         // Retrieve the last update time of the coin from the database with proper escaping
-        $coin_update_value = $wpdb->get_var($wpdb->prepare("SELECT coin_last_update FROM $table_name  WHERE coin_id = %s", esc_sql($coin_id)));
+        $coin_update_value = $wpdb->get_var($wpdb->prepare("SELECT coin_last_update FROM " . esc_sql($this->table_name) . " WHERE coin_id = %s", $coin_id));
 
         // Trim the time zone information from the retrieved value
         $coin_latest_update = trim($coin_update_value, 'TZ');
@@ -180,16 +176,15 @@ class ccew_database
     public function ccew_check_coin_list()
     {
         global $wpdb;
-        $table_name = esc_sql($this->table_name);
         // Get the table name with proper escaping
-        $table = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $table_name));
+        $table = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", esc_sql($this->table_name)));
 
         // Calculate the date 2 days ago with proper escaping
         $date = date('Y-m-d h:m:s', strtotime("-2 days"));
 
-        if ($table === $table_name) {
+        if ($table === esc_sql($this->table_name)) {
             // Delete records older than 24 hours with proper escaping
-            $wpdb->query($wpdb->prepare("DELETE FROM $table_name WHERE last_updated <= %s ", $date));
+            $wpdb->query($wpdb->prepare("DELETE FROM " . esc_sql($this->table_name) . " WHERE last_updated <= %s ", $date));
         }
     } //end ccew_check_coin_list
 
@@ -230,7 +225,6 @@ class ccew_database
     public function get_coins($args = array(), $count = false)
     {
         global $wpdb;
-        $table_name = esc_sql($this->table_name);
         // Set default arguments
         $defaults = array(
             'number' => 20,
@@ -291,12 +285,12 @@ class ccew_database
         if (false === $results) {
             if (true === $count) {
                 // Retrieve the count of results from the database
-                $results = absint($wpdb->get_var($wpdb->prepare("SELECT COUNT(%s) FROM $table_name  {$where};", esc_sql($this->primary_key))));
+                $results = absint($wpdb->get_var($wpdb->prepare("SELECT COUNT(%s) FROM " . esc_sql($this->table_name) . "  {$where};", esc_sql($this->primary_key))));
             } else {
                 // Retrieve the results from the database
                 $results = $wpdb->get_results(
                     $wpdb->prepare(
-                        "SELECT * FROM $table_name  {$where} ORDER BY {$args['orderby']} {$args['order']} LIMIT %d, %d;",
+                        "SELECT * FROM " . esc_sql($this->table_name) . "  {$where} ORDER BY {$args['orderby']} {$args['order']} LIMIT %d, %d;",
                         absint($args['offset']),
                         absint($args['number'])
                     )
@@ -325,6 +319,23 @@ class ccew_database
 
         // Sanitize the table name to prevent SQL injection
         $wp_table_name = esc_sql($wp_table_name);
+        
+        // Get allowed columns to validate against SQL injection
+        $allowed_columns = array_keys($this->get_columns());
+        
+        // Validate primary key if provided
+        if ($primary_key !== null && !in_array($primary_key, $allowed_columns, true)) {
+            return false; // Invalid primary key
+        }
+        
+        // Validate all column names in the row arrays
+        foreach ($row_arrays as $row_array) {
+            foreach (array_keys($row_array) as $column_name) {
+                if (!in_array($column_name, $allowed_columns, true)) {
+                    return false; // Invalid column name - prevent SQL injection
+                }
+            }
+        }
 
         // Initialize arrays for values and placeholders
         $values = array();
@@ -341,9 +352,9 @@ class ccew_database
             foreach ($row_array as $key => $value) {
                 if ($count == 0) {
                     if ($query_columns) {
-                        $query_columns .= ', `' . $key . '`';
+                        $query_columns .= ', `' . esc_sql($key) . '`';
                     } else {
-                        $query_columns .= '`' . $key . '`';
+                        $query_columns .= '`' . esc_sql($key) . '`';
                     }
                 }
 
@@ -376,14 +387,14 @@ class ccew_database
 
         // Add ON DUPLICATE KEY UPDATE clause if update is true
         if ($update) {
-            $update = " ON DUPLICATE KEY UPDATE `$primary_key`=VALUES( `$primary_key` ),";
+            $update = " ON DUPLICATE KEY UPDATE `" . esc_sql($primary_key) . "`=VALUES( `" . esc_sql($primary_key) . "` ),";
             $cnt = 0;
             foreach ($row_arrays[0] as $key => $value) {
                 if ($cnt == 0) {
-                    $update .= "`$key`=VALUES(`$key`)";
+                    $update .= "`" . esc_sql($key) . "`=VALUES(`" . esc_sql($key) . "`)";
                     $cnt = 1;
                 } else {
-                    $update .= ", `$key`=VALUES(`$key`)";
+                    $update .= ", `" . esc_sql($key) . "`=VALUES(`" . esc_sql($key) . "`)";
                 }
             }
             $query .= $update;
