@@ -5,20 +5,20 @@
  * Author:Cool Plugins
  * Author URI:https://coolplugins.net/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=plugins_list
  * Plugin URI:https://cryptocurrencyplugins.com/
- * Version: 1.7.6
+ * Version: 1.7.7
  * License: GPL2
  * Text Domain:ccew
  * Domain Path: languages
  *
- * Elementor tested up to:3.29.0
- * Elementor Pro tested up to: 3.29.0
+ * Elementor tested up to:3.32.2
+ * Elementor Pro tested up to: 3.32.1
  * */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-define('CCEW_VERSION', '1.7.6');
+define('CCEW_VERSION', '1.7.7');
 define('CCEW_FILE', __FILE__);
 define('CCEW_DIR', plugin_dir_path(CCEW_FILE));
 define('CCEW_URL', plugin_dir_url(CCEW_FILE));
@@ -191,7 +191,7 @@ endif;
         require CCEW_DIR . 'includes/ccew-crypto-elementor-db.php';
 
         // Review File
-        require_once CCEW_DIR . '/admin/ccew-review-notice.php';
+        require_once CCEW_DIR . '/admin/feedback-notice/ccew-review-notice.php';
         new ccew_review_notice();
 
         // if( is_admin() === true ){
