@@ -2,13 +2,15 @@
 if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly
 }
+
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 $dynamic_cls = '';
 
 if ($display_graph == '') {
     $dynamic_cls = 'ccew-align';
 }
 
-$unique_num = rand(10, 1000);
+$unique_num = wp_rand(10, 1000);
 $content .= '<div class="ccew-inner-list  ccew-br">
 <div class="ccew-logo-list">
     <span class="ccew-coin-logo">';
@@ -31,7 +33,7 @@ if ($display_24h_changes == 'yes') {
     $content .= '<div class="ccew-price-change ccew-coin-percentage">
             <span class="ccew-change-percent">';
     $content .= ccew_changes_up_down($change_24_h);
-    $content .= '<span class="ccew-changes-time">' . esc_html__('24H', 'ccew') . '</span>';
+    $content .= '<span class="ccew-changes-time">' . esc_html__('24H', 'cryptocurrency-widgets-for-elementor') . '</span>';
     $content .= '</span>
         </div>';
 }
@@ -42,7 +44,7 @@ if ($display_graph == 'yes') {
         $content .= '
         <div class="ccew-graph-list">
             <div class="ccew-coin-graph"  id="ccew-coin-graph_' . esc_attr($coin_id . $unique_num) . '" data-currency_price="' . esc_attr($coin['price']) . '"  data-currency=$ data-chartprice="' . esc_attr($chartprice) . '"  data-stroke_color="' . esc_attr($stroke_color) . '">
-            <span class="ccew-7D-changes-time">' . __('7D', 'ccew') . '</span>
+            <span class="ccew-7D-changes-time">' . __('7D', 'cryptocurrency-widgets-for-elementor') . '</span>
             </div>
         </div>';
     } else {

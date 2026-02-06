@@ -4,6 +4,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 // Exit if accessed directly
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
 $design_type = $settings['ccewd_widget_type'];
 
 $all_coin_wall_add    = $settings['ccewd_repeater_data'];
@@ -18,7 +20,7 @@ $coin_links           = '';
 $coin_tabs            = '';
 $classic_list         = '';
 $output               = '';
-$random               = rand();
+$random               = wp_rand();
 if ( ! empty( $all_coin_wall_add ) && is_array( $all_coin_wall_add ) && array_filter( $all_coin_wall_add ) ) {
 	foreach ( $all_coin_wall_add as $id => $address ) {
 
@@ -51,11 +53,11 @@ if ( ! empty( $all_coin_wall_add ) && is_array( $all_coin_wall_add ) && array_fi
 				$classic_list             .= '</div><div class="ccewd_classic_input_add">
 							<input type="text" class="wallet-address-input"  id="' . esc_attr( $address['ccewd_coin_list'] ) . '-classic-wallet-address-' . esc_attr( $random ) . '" name="' . esc_attr( $address['ccewd_coin_list'] ) . '-classic-wallet-address" value="' . esc_attr( $address['ccewd_wallet_address'] ) . '" data-input-id-js="' . esc_attr( $address['ccewd_coin_list'] ) . '-classic-wallet-address-' . esc_attr( $random ) .'" readonly >';
 							$classic_list .= '<button class="ccewd_btn" data-clipboard-target="#' . esc_attr( $address['ccewd_coin_list'] ) . '-classic-wallet-address-' . esc_attr( $random ) . '">
-                            ' . __( 'COPY', 'ccewd' ) . '</button>
+                            ' . __( 'COPY', 'cryptocurrency-widgets-for-elementor' ) . '</button>
                                 </div>';
 
 				if ( isset( $address['ccewd_wallet_address_meta'] ) && ! empty( $address['ccewd_wallet_address_meta'] ) ) {
-					$classic_list .= '<div class="ccewd_tag"><span class="ccewd_tag_heading">' . __( 'Tag/Note:-', 'ccewd' ) . ' </span>' . esc_html( $address['ccewd_wallet_address_meta'] ) . '</div>';
+					$classic_list .= '<div class="ccewd_tag"><span class="ccewd_tag_heading">' . __( 'Tag/Note:-', 'cryptocurrency-widgets-for-elementor' ) . ' </span>' . esc_html( $address['ccewd_wallet_address_meta'] ) . '</div>';
 				}
 				$classic_list .= '</li>';
 			} elseif ( $address['ccewd_coin_list'] == 'metamask' && ! empty( $address['ccewd_wallet_address'] ) ) {
@@ -63,7 +65,7 @@ if ( ! empty( $all_coin_wall_add ) && is_array( $all_coin_wall_add ) && array_fi
                             <h2 class="ccewd-title">' . esc_html( $cdb_metamask_title ) . '</h2>';
 				$classic_list .= '<div class="tip-button" data-metamask-address="' . esc_attr( $metamask_wall_add ) . '" data-metamask-amount="' . esc_attr( $metamask_price ) . '"></div>';
 				if ( isset( $address['ccewd_wallet_address_meta'] ) && ! empty( $address['ccewd_wallet_address_meta'] ) ) {
-					$classic_list .= '<div class="ccewd_tag"><span class="ccewd_tag_heading">' . __( 'Tag/Note:-', 'ccewd' ) . ' </span>' . esc_html( $address['ccewd_wallet_address_meta'] ) . '</div>';
+					$classic_list .= '<div class="ccewd_tag"><span class="ccewd_tag_heading">' . __( 'Tag/Note:-', 'cryptocurrency-widgets-for-elementor' ) . ' </span>' . esc_html( $address['ccewd_wallet_address_meta'] ) . '</div>';
 				}
 				$classic_list .= '<div class="message"></div></li>';
 			} else {
@@ -83,14 +85,14 @@ if ( ! empty( $all_coin_wall_add ) && is_array( $all_coin_wall_add ) && array_fi
                             <h2 class="ccewd-title">' . esc_html( $title_content ) . '</h2>
                             <p class="ccewd-desc">' . esc_html( $desc_content ) . '</p>';
 				if ( isset( $address['ccewd_wallet_address_meta'] ) && ! empty( $address['ccewd_wallet_address_meta'] ) ) {
-					$coin_tabs .= '<div class="ccewd_tag"><span class="ccewd_tag_heading">' . __( 'Tag/Note:-', 'ccewd' ) . ' </span>' . esc_html( $address['ccewd_wallet_address_meta'] ) . '</div>';
+					$coin_tabs .= '<div class="ccewd_tag"><span class="ccewd_tag_heading">' . __( 'Tag/Note:-', 'cryptocurrency-widgets-for-elementor' ) . ' </span>' . esc_html( $address['ccewd_wallet_address_meta'] ) . '</div>';
 				}
 				$coin_tabs .= '<input type="text" class="wallet-address-input"  id="' . esc_attr( $address['ccewd_coin_list'] ) . '-wallet-address-' . esc_attr( $random ) . '" name="' . esc_attr( $address['ccewd_coin_list'] ) . '-wallet-address" value="' . esc_attr( $address['ccewd_wallet_address'] ) . '" data-input-id-js="' . esc_attr( $address['ccewd_coin_list'] ) . '-wallet-address-' . esc_attr( $random ) .'" 
 				readonly>';
 
 				$coin_tabs .= '
                             <button class="ccewd_btn" data-clipboard-target="#' . esc_attr( $address['ccewd_coin_list'] ) . '-wallet-address-' . esc_attr( $random ) . '">
-                            ' . __( 'COPY', 'ccewd' ) . '</button></div>';
+                            ' . __( 'COPY', 'cryptocurrency-widgets-for-elementor' ) . '</button></div>';
 			} elseif ( $address['ccewd_coin_list'] == 'metamask' && ! empty( $address['ccewd_wallet_address'] ) ) {
 
 				$coin_tabs .= '<div class="cdb-metamask-wrapper" >
@@ -98,7 +100,7 @@ if ( ! empty( $all_coin_wall_add ) && is_array( $all_coin_wall_add ) && array_fi
                             <p class="ccewd-desc">' . esc_html( $metamask_description ) . '</p>';
 				$coin_tabs .= '<div class="tip-button" data-metamask-address="' . esc_attr( $metamask_wall_add ) . '" data-metamask-amount="' . esc_attr( $metamask_price ) . '"></div>';
 				if ( isset( $address['ccewd_wallet_address_meta'] ) && ! empty( $address['ccewd_wallet_address_meta'] ) ) {
-					$coin_tabs .= '<div class="ccewd_tag"><span class="ccewd_tag_heading">' . __( 'Tag/Note:-', 'ccewd' ) . ' </span>' . esc_html( $address['ccewd_wallet_address_meta'] ) . '</div>';
+					$coin_tabs .= '<div class="ccewd_tag"><span class="ccewd_tag_heading">' . __( 'Tag/Note:-', 'cryptocurrency-widgets-for-elementor' ) . ' </span>' . esc_html( $address['ccewd_wallet_address_meta'] ) . '</div>';
 				}
 				$coin_tabs .= '<div class="message"></div></div>';
 			} else {
@@ -132,7 +134,7 @@ if ( ! empty( $all_coin_wall_add ) && is_array( $all_coin_wall_add ) && array_fi
 
 	}
 } else {
-	$output .= '<h6>' . esc_html__( 'Please Add coin wallet address in plugin settings panel', 'ccewd' ) . '</h6>';
+	$output .= '<h6>' . esc_html__( 'Please Add coin wallet address in plugin settings panel', 'cryptocurrency-widgets-for-elementor' ) . '</h6>';
 }
 
-echo  $output;
+esc_html( $output );

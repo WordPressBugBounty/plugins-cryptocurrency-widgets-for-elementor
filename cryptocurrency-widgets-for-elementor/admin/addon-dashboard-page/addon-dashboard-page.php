@@ -1,5 +1,12 @@
 <?php
     // Do not use namespace to keep this on global space to keep the singleton initialization working
+
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+
 if (! class_exists('cool_plugins_crypto_addons')) {
 
     /**
@@ -71,13 +78,13 @@ if (! class_exists('cool_plugins_crypto_addons')) {
         function cool_plugins_activate()
         {
             if (current_user_can('upload_plugins')) {
-                    $plugin_slug = isset($_POST['cp_slug']) ? sanitize_text_field($_POST['cp_slug']) : '';
+                    $plugin_slug = isset($_POST['cp_slug']) ? sanitize_text_field(wp_unslash($_POST['cp_slug'])) : '';
                 if (! empty($plugin_slug)) {
                     if (! check_ajax_referer('cp-nonce-activate-' . $plugin_slug, 'wp_nonce', false)) {
                         wp_send_json_error('Invalid security token sent.');
                         wp_die();
                     }
-                    $pluginBase      = ( isset($_POST['pluginbase']) && ! empty($_POST['pluginbase']) ) ? sanitize_text_field($_POST['pluginbase']) : null;
+                    $pluginBase      = ( isset($_POST['pluginbase']) && ! empty($_POST['pluginbase']) ) ? sanitize_text_field(wp_unslash($_POST['pluginbase'])) : null;
                     $plugin_base_arr = explode('/', $pluginBase);
                     if (isset($plugin_base_arr[0]) && $plugin_base_arr[0] == $plugin_slug) {
                         activate_plugin($pluginBase);
@@ -102,7 +109,7 @@ if (! class_exists('cool_plugins_crypto_addons')) {
         {
 
             if (current_user_can('upload_plugins')) {
-                $plugin_slug = isset($_POST['cp_slug']) ? sanitize_text_field($_POST['cp_slug']) : '';
+                $plugin_slug = isset($_POST['cp_slug']) ? sanitize_text_field(wp_unslash($_POST['cp_slug'])) : '';
                 if (! empty($plugin_slug)) {
                     if (! check_ajax_referer('cp-nonce-download-' . $plugin_slug, 'wp_nonce', false)) {
                         wp_send_json_error('Invalid security token sent.');
@@ -226,9 +233,10 @@ if (! class_exists('cool_plugins_crypto_addons')) {
         function enqueue_required_scripts()
         {
             // A common CSS file will be enqueued for admin panel
-            wp_enqueue_style($this->main_menu_slug, plugin_dir_url(__FILE__) . 'assets/css/styles.css', null, null, 'all');
+            wp_enqueue_style($this->main_menu_slug, plugin_dir_url(__FILE__) . 'assets/css/styles.css', null, CCEW_VERSION, 'all');
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             if (isset($_GET['page']) && $_GET['page'] == $this->main_menu_slug) {
-                wp_enqueue_script($this->main_menu_slug, plugin_dir_url(__FILE__) . 'assets/js/script.js', array( 'jquery' ), null, true);
+                wp_enqueue_script($this->main_menu_slug, plugin_dir_url(__FILE__) . 'assets/js/script.js', array( 'jquery' ), CCEW_VERSION, true);
                 wp_localize_script($this->main_menu_slug, 'cp_events', array( 'ajax_url' => admin_url('admin-ajax.php') ));
             }
         }
@@ -375,6 +383,9 @@ if (! class_exists('cool_plugins_crypto_addons')) {
      *
      * initialize the main dashboard class with all required parameters
      */
+
+
+ // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
     function cool_plugins_crypto_addon_settings_page($tag, $settings_page_slug, $dashboard_heading, $main_menu_title, $icon)
     {
         $event_page = cool_plugins_crypto_addons::init();

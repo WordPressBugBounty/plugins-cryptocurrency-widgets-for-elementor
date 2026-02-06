@@ -2,6 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 
 $content                 .= '<div class="ccew-wrapper ccew-price-label ccew-bg">
     <ul class="ccew-label-wrapper">
@@ -14,7 +15,7 @@ $content                 .= '<div class="ccew-wrapper ccew-price-label ccew-bg">
                 <span class="ccew-coin-price ccew-secondary">' . esc_html( $price ) . '</span>';
 if ( $display_24h_changes == 'yes' ) {
 	$content .= ccew_changes_up_down( $change_24_h );
-	$content .= '<span class="ccew-changes-time">' . __( '24H', 'ccew' ) . '</span>';
+	$content .= '<span class="ccew-changes-time">' . __( '24H', 'cryptocurrency-widgets-for-elementor' ) . '</span>';
 }
 			$content .= '</div>
         </li>

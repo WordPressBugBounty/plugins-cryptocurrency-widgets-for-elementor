@@ -1,6 +1,10 @@
 <?php
 namespace ccew\feedback;
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class cp_feedback {
 
 	private $plugin_url     = CCEW_URL;
@@ -29,7 +33,7 @@ class cp_feedback {
 	function enqueue_feedback_scripts() {
 		$screen = get_current_screen();
 		if ( isset( $screen ) && $screen->id == 'plugins' ) {
-			wp_enqueue_script( __NAMESPACE__ . 'feedback-script', $this->plugin_url . 'admin/feedback/js/admin-feedback.js', array( 'jquery' ), $this->plugin_version );
+			wp_enqueue_script( __NAMESPACE__ . 'feedback-script', $this->plugin_url . 'admin/feedback/js/admin-feedback.js', array( 'jquery' ), $this->plugin_version, true );
 			wp_enqueue_style( 'cool-plugins-feedback-style', $this->plugin_url . 'admin/feedback/css/admin-feedback.css', null, $this->plugin_version );
 		}
 	}
@@ -47,24 +51,24 @@ class cp_feedback {
 		}
 		$deactivate_reasons = array(
 			'didnt_work_as_expected'         => array(
-				'title'             => __( 'The plugin didn\'t work as expected', 'ccew' ),
+				'title'             => __( 'The plugin didn\'t work as expected', 'cryptocurrency-widgets-for-elementor' ),
 				'input_placeholder' => 'What did you expect?',
 			),
 			'found_a_better_plugin'          => array(
-				'title'             => __( 'I found a better plugin', 'ccew' ),
-				'input_placeholder' => __( 'Please share which plugin', 'ccew' ),
+				'title'             => __( 'I found a better plugin', 'cryptocurrency-widgets-for-elementor' ),
+				'input_placeholder' => __( 'Please share which plugin', 'cryptocurrency-widgets-for-elementor' ),
 			),
 			'couldnt_get_the_plugin_to_work' => array(
-				'title'             => __( 'The plugin is not working', 'ccew' ),
+				'title'             => __( 'The plugin is not working', 'cryptocurrency-widgets-for-elementor' ),
 				'input_placeholder' => 'Please share your issue. So we can fix that for other users.',
 			),
 			'temporary_deactivation'         => array(
-				'title'             => __( 'It\'s a temporary deactivation', 'ccew' ),
+				'title'             => __( 'It\'s a temporary deactivation', 'cryptocurrency-widgets-for-elementor' ),
 				'input_placeholder' => '',
 			),
 			'other'                          => array(
-				'title'             => __( 'Other', 'ccew' ),
-				'input_placeholder' => __( 'Please share the reason', 'ccew' ),
+				'title'             => __( 'Other', 'cryptocurrency-widgets-for-elementor' ),
+				'input_placeholder' => __( 'Please share the reason', 'cryptocurrency-widgets-for-elementor' ),
 			),
 		);
 
@@ -73,7 +77,7 @@ class cp_feedback {
 						
 			<div class="cool-plugins-deactivation-response">
 			<div id="cool-plugins-deactivate-feedback-dialog-header">
-				<span id="cool-plugins-feedback-form-title"><?php echo esc_html__( 'Quick Feedback', 'ccew' ); ?></span>
+				<span id="cool-plugins-feedback-form-title"><?php echo esc_html__( 'Quick Feedback', 'cryptocurrency-widgets-for-elementor' ); ?></span>
 			</div>
 			<div id="cool-plugins-loader-wrapper">
 				<div class="cool-plugins-loader-container">
@@ -86,7 +90,7 @@ class cp_feedback {
 				wp_nonce_field( '_cool-plugins_deactivate_feedback_nonce' );
 				?>
 				<input type="hidden" name="action" value="cool-plugins_deactivate_feedback" />
-				<div id="cool-plugins-deactivate-feedback-dialog-form-caption"><?php echo esc_html__( 'If you have a moment, please share why you are deactivating this plugin.', 'cool-plugins' ); ?></div>
+				<div id="cool-plugins-deactivate-feedback-dialog-form-caption"><?php echo esc_html__( 'If you have a moment, please share why you are deactivating this plugin.', 'cryptocurrency-widgets-for-elementor' ); ?></div>
 				<div id="cool-plugins-deactivate-feedback-dialog-form-body">
 					<?php foreach ( $deactivate_reasons as $reason_key => $reason ) : ?>
 						<div class="cool-plugins-deactivate-feedback-dialog-input-wrapper">
@@ -100,7 +104,7 @@ class cp_feedback {
 							<?php endif; ?>
 						</div>
 					<?php endforeach; ?>
-					<input class="cool-plugins-GDPR-data-notice" id="cool-plugins-GDPR-data-notice" type="checkbox"><label for="cool-plugins-GDPR-data-notice"><?php echo esc_html__( 'I agree to share anonymous usage data and basic site details (such as server, PHP, and WordPress versions) to support Cryptocurrency Widgets improvement efforts. Additionally, I allow Cool Plugins to store all information provided through this form and to respond to my inquiry.', 'cool-plugins' ); ?></label>
+					<input class="cool-plugins-GDPR-data-notice" id="cool-plugins-GDPR-data-notice" type="checkbox"><label for="cool-plugins-GDPR-data-notice"><?php echo esc_html__( 'I agree to share anonymous usage data and basic site details (such as server, PHP, and WordPress versions) to support Cryptocurrency Widgets improvement efforts. Additionally, I allow Cool Plugins to store all information provided through this form and to respond to my inquiry.', 'cryptocurrency-widgets-for-elementor' ); ?></label>
 				</div>
 				<div class="cool-plugin-popup-button-wrapper">
 					<a class="cool-plugins-button button-deactivate" id="cool-plugin-submitNdeactivate">Submit and Deactivate</a>
@@ -117,7 +121,8 @@ class cp_feedback {
 		global $wpdb;
 
 		$server_info = [
-		'server_software'        => sanitize_text_field($_SERVER['SERVER_SOFTWARE'] ?? 'N/A'),
+		'server_software'        => sanitize_text_field(wp_unslash($_SERVER['SERVER_SOFTWARE'] ?? 'N/A')),
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		'mysql_version'          => sanitize_text_field($wpdb->get_var("SELECT VERSION()")),
 		'php_version'            => sanitize_text_field(phpversion()),
 		'wp_version'             => sanitize_text_field(get_bloginfo('version')),
@@ -175,37 +180,37 @@ class cp_feedback {
 	}
 
 	function submit_deactivation_response() {
-		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field($_POST['_wpnonce']), '_cool-plugins_deactivate_feedback_nonce' ) ) {
+		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field(wp_unslash($_POST['_wpnonce'])), '_cool-plugins_deactivate_feedback_nonce' ) ) {
 			wp_send_json_error();
 		} else {
-			$reason             = isset($_POST['reason']) ? sanitize_text_field( $_POST['reason'] ) : "";
+			$reason             = isset($_POST['reason']) ? sanitize_text_field(wp_unslash( $_POST['reason'] )) : "";
 			$deactivate_reasons = array(
 				'didnt_work_as_expected'         => array(
-					'title'             => __( 'The plugin didn\'t work as expected', 'ccew' ),
+					'title'             => __( 'The plugin didn\'t work as expected', 'cryptocurrency-widgets-for-elementor' ),
 					'input_placeholder' => 'What did you expect?',
 				),
 				'found_a_better_plugin'          => array(
-					'title'             => __( 'I found a better plugin', 'ccew' ),
-					'input_placeholder' => __( 'Please share which plugin', 'ccew' ),
+					'title'             => __( 'I found a better plugin', 'cryptocurrency-widgets-for-elementor' ),
+					'input_placeholder' => __( 'Please share which plugin', 'cryptocurrency-widgets-for-elementor' ),
 				),
 				'couldnt_get_the_plugin_to_work' => array(
-					'title'             => __( 'The plugin is not working', 'ccew' ),
+					'title'             => __( 'The plugin is not working', 'cryptocurrency-widgets-for-elementor' ),
 					'input_placeholder' => 'Please share your issue. So we can fix that for other users.',
 				),
 				'temporary_deactivation'         => array(
-					'title'             => __( 'It\'s a temporary deactivation', 'ccew' ),
+					'title'             => __( 'It\'s a temporary deactivation', 'cryptocurrency-widgets-for-elementor' ),
 					'input_placeholder' => '',
 				),
 				'other'                          => array(
-					'title'             => __( 'Other', 'ccew' ),
-					'input_placeholder' => __( 'Please share the reason', 'ccew' ),
+					'title'             => __( 'Other', 'cryptocurrency-widgets-for-elementor' ),
+					'input_placeholder' => __( 'Please share the reason', 'cryptocurrency-widgets-for-elementor' ),
 				),
 			);
 
 			$deativation_reason = array_key_exists( $reason, $deactivate_reasons ) ? $reason : 'other';
 			$plugin_initial 	=  get_option( 'ccew_initial_save_version' );
 
-			$sanitized_message 	= empty($_POST['message']) || sanitize_text_field( $_POST['message'] ) == '' ? 'N/A' : sanitize_text_field( $_POST['message'] );
+			$sanitized_message 	= empty($_POST['message']) || sanitize_text_field(wp_unslash( $_POST['message'] )) == '' ? 'N/A' : sanitize_text_field(wp_unslash( $_POST['message'] ));
 			$admin_email       	= sanitize_email( get_option( 'admin_email' ) );
 			$site_url          	= esc_url( site_url() );
          	$install_date 		= get_option('ccew-install-date');

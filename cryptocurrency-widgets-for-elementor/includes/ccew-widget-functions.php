@@ -1,8 +1,11 @@
 <?php
 
+if ( ! defined( 'ABSPATH' )) exit;
+
 /**
  * Inset data in Database
  */
+
 function ccew_widget_coin_peprika_insert_data()
 {
     $update_api_name = 'ccew-active-api';
@@ -75,7 +78,7 @@ function ccew_widget_coin_peprika_insert_data()
 
         // $DB = new ccew_database();
         // $DB->ccew_insert($coin_data);
-        set_transient($data_cache_name, date('H:s:i'), $cache_time * MINUTE_IN_SECONDS);
+        set_transient($data_cache_name, gmdate('H:s:i'), $cache_time * MINUTE_IN_SECONDS);
         set_transient($update_api_name, 'CoinPaprika', 0);
         return true;
     }
@@ -113,7 +116,12 @@ function ccew_widget_insert_data()
             'sslverify' => false,
         )
     );
+    if($request['response']['code'] == 401) {
+        update_option('ccew_api_key_expired', true);
+        return false;
+    }
     if (is_wp_error($request)) {
+        update_option('ccew_api_key_expired', true);
         return false; // Bail early
     }
     $body = wp_remote_retrieve_body($request);
@@ -121,6 +129,7 @@ function ccew_widget_insert_data()
     $response = array();
     $coin_data = array();
     if (is_array($coin_info) && !empty($coin_info)) {
+        delete_option('ccew_api_key_expired');
         ccew_track_coingecko_api_hit();
         foreach ($coin_info as $coin) {
             if (contains_emoji($coin->name) || contains_emoji($coin->symbol) ||  contains_emoji($coin->id)) {
@@ -156,7 +165,7 @@ function ccew_widget_insert_data()
         if (!empty($coin_data)) {
             save_coin_data($coin_data);
         }
-        set_transient($data_cache_name, date('H:s:i'), $coingecko_api_cache_time * MINUTE_IN_SECONDS);
+        set_transient($data_cache_name, gmdate('H:s:i'), $coingecko_api_cache_time * MINUTE_IN_SECONDS);
         set_transient($update_api_name, 'CoinGecko', 0);
         return true;
     }
@@ -316,7 +325,12 @@ function ccew_single_coin_update($coin_id)
             'sslverify' => false,
         )
     );
+    if($request['response']['code'] == 401) {
+        update_option('ccew_api_key_expired', true);
+        return false;
+    }
     if (is_wp_error($request)) {
+        update_option('ccew_api_key_expired', true);
         return false; // Bail early
     }
     $body = wp_remote_retrieve_body($request);
@@ -324,6 +338,7 @@ function ccew_single_coin_update($coin_id)
     $response = array();
     $coin_data = array();
     if (is_array($coin_info) && !empty($coin_info)) {
+        delete_option('ccew_api_key_expired');
         ccew_track_coingecko_api_hit();
         $coin = $coin_info[0];
         $response['coin_id'] = sanitize_text_field($coin->id);
@@ -361,6 +376,7 @@ function ccew_coin_data_return($coin_id)
     return $coin_info[0];
 }
 
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function convert_24points($points)
 {
     $charts = array();
@@ -760,7 +776,7 @@ function ccew_get_all_coin_ids()
         }
         return $coins;
     } else {
-        $not['not'] = __('Coin Not Available', 'ccew');
+        $not['not'] = __('Coin Not Available', 'cryptocurrency-widgets-for-elementor');
         return $not;
     }
 }
@@ -841,6 +857,8 @@ function ccew_coin_array($coin_id, $flip = false)
 * @param string $string The string to check.
 * @return bool True if the string contains emoji, false otherwise.
 */
+
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function contains_emoji($string)
 {
     return preg_match('/[\x{1F600}-\x{1F64F}\x{1F300}-\x{1F5FF}\x{1F680}-\x{1F6FF}\x{2600}-\x{26FF}\x{2700}-\x{27BF}]/u', $string) > 0;
@@ -851,6 +869,8 @@ function contains_emoji($string)
 *
 * @param array $coin_data The coin data to save.
 */
+
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function save_coin_data($coin_data)
 {
     $DB = new ccew_database();

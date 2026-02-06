@@ -22,7 +22,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         wp_register_script('ccew-sweetalert2', esc_url(CCEW_URL . 'donation-box/assets/js/sweetalert2.js'),  array(), esc_attr(CCEW_VERSION), true);
         wp_register_script('ccew-metamask', esc_url(CCEW_URL . 'donation-box/assets/js/ccew-metamask.js'), array(), esc_attr(CCEW_VERSION), true);
         wp_register_script('ccew-clipboard', esc_url(CCEW_URL . 'donation-box/assets/js/clipboard.min.js'), array(), esc_attr(CCEW_VERSION), true);
-        wp_register_script('ccew-qr', esc_url(CCEW_URL . 'donation-box/assets/js/qrcode.js'),  esc_attr(CCEW_VERSION), true);
+        wp_register_script('ccew-qr', esc_url(CCEW_URL . 'donation-box/assets/js/qrcode.js'), array(), esc_attr(CCEW_VERSION), true);
         wp_register_script('ccew-custom-qr', esc_url(CCEW_URL . 'donation-box/assets/js/custom-qr.js'), array(), esc_attr(CCEW_VERSION), true);
         
     }
@@ -49,7 +49,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return __('Cryptocurrency Donation Widget', 'ccew');
+        return __('Cryptocurrency Donation Widget', 'cryptocurrency-widgets-for-elementor');
     }
 
     public function get_icon()
@@ -160,7 +160,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'ccewd_general_section',
             array(
-                'label' => __('General Settings', 'ccew'),
+                'label' => __('General Settings', 'cryptocurrency-widgets-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             )
         );
@@ -168,7 +168,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccewd_widget_type',
             array(
-                'label' => __('Widget Type', 'ccew'),
+                'label' => __('Widget Type', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => array(
 
@@ -185,7 +185,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $repeater->add_control(
             'ccewd_coin_list',
             array(
-                'label' => __('Select Coin', 'plugin-domain'),
+                'label' => __('Select Coin', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT2,
                 'label_block' => true,
                 'multiple' => false,
@@ -197,10 +197,10 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $repeater->add_control(
             'ccewd_wallet_address',
             array(
-                'label' => __('Enter Wallet Address', 'plugin-domain'),
+                'label' => __('Enter Wallet Address', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'label_block' => true,
-                'placeholder' => __('Wallet address', 'plugin-domain'),
+                'placeholder' => __('Wallet address', 'cryptocurrency-widgets-for-elementor'),
                 'show_label' => true,
                 'condition' => array(
                     'ccewd_coin_list!' => 'select',
@@ -211,10 +211,10 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $repeater->add_control(
             'ccewd_wallet_address_meta',
             array(
-                'label' => __('Wallet Address Meta', 'plugin-domain'),
+                'label' => __('Wallet Address Meta', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'label_block' => true,
-                'placeholder' => __('Tag/Note/memo', 'plugin-domain'),
+                'placeholder' => __('Tag/Note/memo', 'cryptocurrency-widgets-for-elementor'),
                 'condition' => array(
                     'ccewd_coin_list!' => 'select',
                 ),
@@ -224,12 +224,12 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccewd_repeater_data',
             array(
-                'label' => __('Wallet Address', 'plugin-domain'),
+                'label' => __('Wallet Address', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::REPEATER,
                 'fields' => $repeater->get_controls(),
                 'default' => array(
                     array(
-                        'ccewd_coin_list' => __('bitcoin', 'plugin-domain'),
+                        'ccewd_coin_list' => __('bitcoin', 'cryptocurrency-widgets-for-elementor'),
 
                     ),
 
@@ -240,7 +240,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccewd_url',
             array(
-                'label' => __('post', 'sfafe-plugin'),
+                'label' => __('post', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HIDDEN,
                 'default' => CCEW_URL,
             )
@@ -249,7 +249,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
          $this->add_control(
             'ccew_review_note',
             array(
-                'label' => __('Review Notice', 'ccew'),
+                'label' => __('Review Notice', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
                 'show_label' => false,
                 'raw' => '<div class="ccew_cmc_demo">
@@ -266,7 +266,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'ccewd_extra_settings',
             array(
-                'label' => __('Extra Settings', 'ccew'),
+                'label' => __('Extra Settings', 'cryptocurrency-widgets-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 
             )
@@ -275,53 +275,53 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccewd_metamask_price',
             array(
-                'label' => __('MetaMask Default Price', 'plugin-domain'),
+                'label' => __('MetaMask Default Price', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'label_block' => true,
-                'default' => __('0.005', 'plugin-domain'),
-                'placeholder' => __('Enter default amount in Ethereum', 'plugin-domain'),
+                'default' => __('0.005', 'cryptocurrency-widgets-for-elementor'),
+                'placeholder' => __('Enter default amount in Ethereum', 'cryptocurrency-widgets-for-elementor'),
             )
         );
 
         $this->add_control(
             'ccewd_metamask_title',
             array(
-                'label' => __('MetaMask Title', 'plugin-domain'),
+                'label' => __('MetaMask Title', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'label_block' => true,
-                'default' => __('Donate With MetaMask', 'plugin-domain'),
-                'placeholder' => __('Type your title here', 'plugin-domain'),
+                'default' => __('Donate With MetaMask', 'cryptocurrency-widgets-for-elementor'),
+                'placeholder' => __('Type your title here', 'cryptocurrency-widgets-for-elementor'),
             )
         );
         $this->add_control(
             'ccewd_metamask_description',
             array(
-                'label' => __('Description', 'plugin-domain'),
+                'label' => __('Description', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
                 'rows' => 5,
-                'default' => __('Donate ETH Via PAY With Meta Mask', 'plugin-domain'),
-                'placeholder' => __('Type your description here', 'plugin-domain'),
+                'default' => __('Donate ETH Via PAY With Meta Mask', 'cryptocurrency-widgets-for-elementor'),
+                'placeholder' => __('Type your description here', 'cryptocurrency-widgets-for-elementor'),
             )
         );
 
         $this->add_control(
             'ccewd_coins_title',
             array(
-                'label' => __('Main Title', 'plugin-domain'),
+                'label' => __('Main Title', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXT,
                 'label_block' => true,
-                'default' => __('Donate [coin-name] to this address', 'plugin-domain'),
-                'placeholder' => __('Type your title here', 'plugin-domain'),
+                'default' => __('Donate [coin-name] to this address', 'cryptocurrency-widgets-for-elementor'),
+                'placeholder' => __('Type your title here', 'cryptocurrency-widgets-for-elementor'),
             )
         );
         $this->add_control(
             'ccewd_coins_description',
             array(
-                'label' => __('Description', 'plugin-domain'),
+                'label' => __('Description', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::TEXTAREA,
                 'rows' => 5,
-                'default' => __('Scan the QR code or copy the address below into your wallet to send some [coin-name]', 'plugin-domain'),
-                'placeholder' => __('Type your description here', 'plugin-domain'),
+                'default' => __('Scan the QR code or copy the address below into your wallet to send some [coin-name]', 'cryptocurrency-widgets-for-elementor'),
+                'placeholder' => __('Type your description here', 'cryptocurrency-widgets-for-elementor'),
             )
         );
 
@@ -330,14 +330,14 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'ccewd_style_section',
             array(
-                'label' => __('Style Section', 'ccew'),
+                'label' => __('Style Section', 'cryptocurrency-widgets-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             )
         );
         $this->add_control(
             'ccewd_primery_color',
             array(
-                'label' => __('Primary Color', 'plugin-domain'),
+                'label' => __('Primary Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
 
                 'selectors' => array(
@@ -352,7 +352,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccewd_secondary_color',
             array(
-                'label' => __('Secondary Color', 'plugin-domain'),
+                'label' => __('Secondary Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
 
                 'selectors' => array(
@@ -369,7 +369,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccewd_bg_color',
             array(
-                'label' => __('Background Color', 'plugin-domain'),
+                'label' => __('Background Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::COLOR,
 
                 'selectors' => array(
@@ -384,7 +384,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Border::get_type(),
             array(
                 'name' => 'ccewd_border',
-                'label' => __('Border', 'plugin-domain'),
+                'label' => __('Border', 'cryptocurrency-widgets-for-elementor'),
                 'selector' => '{{WRAPPER}} li.ccewd-classic-list,
 								{{WRAPPER}} .ccewd-container',
             )
@@ -392,7 +392,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccewd_border_radius',
             array(
-                'label' => __('Border Radius', 'plugin-domain'),
+                'label' => __('Border Radius', 'cryptocurrency-widgets-for-elementor'),
                 'type' => Controls_Manager::DIMENSIONS,
                 'size_units' => array('px', '%', 'em'),
                 'selectors' => array(
@@ -406,7 +406,7 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             array(
                 'name' => 'ccewd_box_shadow',
-                'label' => __('Box Shadow', 'plugin-domain'),
+                'label' => __('Box Shadow', 'cryptocurrency-widgets-for-elementor'),
                 'selector' => '{{WRAPPER}} li.ccewd-classic-list,
 								{{WRAPPER}} .ccewd-container',
             )
@@ -416,14 +416,14 @@ class ccew_donation_Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'ccewd_permotion_section',
             array(
-                'label' => __('Crypto Pro Plugins Demos', 'ccew'),
+                'label' => __('Crypto Pro Plugins Demos', 'cryptocurrency-widgets-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             )
         );
       $this->add_control(
             'ccew_important_note',
             array(
-                'label' => __('Pro plugins', 'ccew'),
+                'label' => __('Pro plugins', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
                 'show_label' => false,
                 'raw' => '<ul class="ccew-promotion-plugins">

@@ -1,7 +1,13 @@
 <?php
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+
 function ccew_getData()
 {
-    if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field($_POST['nonce']), 'ccew-create-widget')) {
+    if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'ccew-create-widget')) {
         die('Please refresh window and check it again');
     }
     
@@ -9,7 +15,8 @@ function ccew_getData()
         wp_die('You do not have permission to access this resource.', 'Unauthorized', array('response' => 403));
     }
     
-    $settings = isset($_POST['settings']) ? ccew_sanitize_array($_POST['settings']) : null;
+    // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+    $settings = isset($_POST['settings']) ? ccew_sanitize_array(wp_unslash($_POST['settings'])) : null;
     if ($settings !== null) {
         // Layout Settings
         // $settings = filter_var_array($_POST['settings'],FILTER_SANITIZE_STRING);
@@ -53,11 +60,11 @@ function ccew_getData()
             $coin_symbol_visibility = sanitize_text_field($settings['coin_symbol_visibility']);
             // Layout Settings
         } elseif ($settings['widget_type'] == 'advanced_table') {
-            $current_page = isset($_POST['draw']) && (int) $_POST['draw'] ? sanitize_text_field($_POST['draw']) : 1;
-            $start_point = isset($_POST['start']) ? sanitize_text_field($_POST['start']) : 0;
+            $current_page = isset($_POST['draw']) && (int) $_POST['draw'] ? sanitize_text_field(wp_unslash($_POST['draw'])) : 1;
+            $start_point = isset($_POST['start']) ? sanitize_text_field(wp_unslash($_POST['start'])) : 0;
             $coin_no = $start_point + 1;
              $numberof_coins = (!empty($settings['numberof_coins'])) ? ccew_sanitize_array($settings['numberof_coins']) : '';
-            $data_length = isset($_POST['length']) ? sanitize_text_field($_POST['length']) : 10;
+            $data_length = isset($_POST['length']) ? sanitize_text_field(wp_unslash($_POST['length'])) : 10;
             $required_coins = sanitize_text_field($settings['required_coins']);
             $Total_DBRecords = '1000';
             $order_col_name = 'market_cap';
@@ -78,7 +85,7 @@ function ccew_getData()
         }
         // if coin data is empty
         if (isset($coin_info['empty'])) {
-            $error = "<div id='ccew-error'>" . __('Please Select Coin', 'ccew') . '</div>';
+            $error = "<div id='ccew-error'>" . __('Please Select Coin', 'cryptocurrency-widgets-for-elementor') . '</div>';
             wp_send_json(
                 array(
                     'status' => 'success',
@@ -86,7 +93,7 @@ function ccew_getData()
                 )
             );
         } elseif ($coin_info == null || $coin_info[0] == false) {
-            $error = "<div id='ccew-error'>" . __('No Coin Data Found.', 'ccew') . '</div>';
+            $error = "<div id='ccew-error'>" . __('No Coin Data Found.', 'cryptocurrency-widgets-for-elementor') . '</div>';
             wp_send_json(
                 array(
                     'status' => 'success',
@@ -102,10 +109,10 @@ function ccew_getData()
             }
             $content .= '<div class="ccew-list-head">';
             //$content .= '<div class="ccew-list-head-logo">Logo</div>';
-            $content .= '<div class="ccew-list-head-name">' . __('Name', 'ccew') . '</div>';
-            $content .= '<div class="ccew-list-head-price ' . esc_attr($dynamic_class_head) . '">' . __('Price', 'ccew') . '</div>';
+            $content .= '<div class="ccew-list-head-name">' . __('Name', 'cryptocurrency-widgets-for-elementor') . '</div>';
+            $content .= '<div class="ccew-list-head-price ' . esc_attr($dynamic_class_head) . '">' . __('Price', 'cryptocurrency-widgets-for-elementor') . '</div>';
             if ($display_graph == 'yes') {
-                $content .= '<div class="ccew-list-head-graph">' . __('Graph', 'ccew') . '</div>';
+                $content .= '<div class="ccew-list-head-graph">' . __('Graph', 'cryptocurrency-widgets-for-elementor') . '</div>';
             }
             $content .= '</div>';
         }

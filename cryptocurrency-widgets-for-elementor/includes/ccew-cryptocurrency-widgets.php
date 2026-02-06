@@ -86,7 +86,7 @@ class ccew__Widget extends \Elementor\Widget_Base
 
     public function get_title()
     {
-        return __('Cryptocurrency Widget', 'ccew');
+        return __('Cryptocurrency Widget', 'cryptocurrency-widgets-for-elementor');
     }
 
     public function get_icon()
@@ -147,7 +147,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'ccew_general_section',
             array(
-                'label' => __('General Settings', 'ccew'),
+                'label' => __('General Settings', 'cryptocurrency-widgets-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             )
         );
@@ -155,7 +155,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_widget_type',
             array(
-                'label' => __('Widget Type', 'ccew'),
+                'label' => __('Widget Type', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => array(
                     'card' => 'Card',
@@ -170,7 +170,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_coin_api',
             [
-                'label' => esc_html__('Select Api', 'ccew'),
+                'label' => esc_html__('Select Api', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HIDDEN,
                 'default' => $api,
             ]
@@ -179,7 +179,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_widget_style',
             array(
-                'label' => __('Style', 'ccew'),
+                'label' => __('Style', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => array(
                     'style-1' => 'Style 1',
@@ -194,7 +194,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_gainer_description',
             array(
-                'label' => __('Top gainer loser from 200 coins', 'ccew'),
+                'label' => __('Top gainer loser from 200 coins', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::HEADING,
                 'show_label' => true,
                 'condition' => array(
@@ -206,7 +206,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_gainer_loser_sortby',
             array(
-                'label' => __('List Sort By', 'ccew'),
+                'label' => __('List Sort By', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => array(
                     'gainer' => 'Gainer',
@@ -223,7 +223,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_numberof_coins',
             array(
-                'label' => __('Show Coins', 'ccew'),
+                'label' => __('Show Coins', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => array(
                     '5' => 'Top 5',
@@ -241,7 +241,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_all_coins',
             array(
-                'label' => __('Show Coins', 'ccew'),
+                'label' => __('Show Coins', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'render_type'  => 'template',
                 'options' => array(
@@ -263,7 +263,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_pagination',
             array(
-                'label' => __('Records Per Page', 'ccew'),
+                'label' => __('Records Per Page', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT,
                 'options' => array(
                     '10' => '10',
@@ -281,7 +281,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_custom_coin',
             array(
-                'label' => __('Select Coin ', 'ccew'),
+                'label' => __('Select Coin ', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT2,
                 'multiple' => true,
                 'options' => ccew_get_all_coin_ids(),
@@ -296,7 +296,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_select_coins',
             array(
-                'label' => __('Select Coins', 'ccew'),
+                'label' => __('Select Coins', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SELECT2,
                 'multiple' => false,
                 'render_type'  => 'template',
@@ -311,7 +311,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_fiat_currency',
             array(
-                'label' => __('Select Fiat Currency', 'ccew'),
+                'label' => __('Select Fiat Currency', 'cryptocurrency-widgets-for-elementor'),
                 'description' => $remember_message,
                 'type' => \Elementor\Controls_Manager::SELECT2,
                 'multiple' => false,
@@ -323,10 +323,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_number_formating',
             array(
-                'label' => __('Number Formatting', 'ccew'),
+                'label' => __('Number Formatting', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('On', 'ccew'),
-                'label_off' => __('Off', 'ccew'),
+                'label_on' => __('On', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Off', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'on',
                 'default' => 'on',
             )
@@ -335,10 +335,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_coin_symbol',
             array(
-                'label' => __('Coin Symbol', 'ccew'),
+                'label' => __('Coin Symbol', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => array(
@@ -351,10 +351,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_high_low',
             array(
-                'label' => __('High/Low', 'ccew'),
+                'label' => __('High/Low', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => array(
@@ -369,10 +369,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_1h_changes',
             array(
-                'label' => __('1H Change', 'ccew'),
+                'label' => __('1H Change', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => array(
@@ -385,10 +385,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_24h_changes',
             array(
-                'label' => __('24 Hours changes', 'ccew'),
+                'label' => __('24 Hours changes', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'conditions' => array(
@@ -407,10 +407,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_7d_changes',
             array(
-                'label' => __('7 Days Changes', 'ccew'),
+                'label' => __('7 Days Changes', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => array(
@@ -423,10 +423,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_30d_changes',
             array(
-                'label' => __('30 Days Changes', 'ccew'),
+                'label' => __('30 Days Changes', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => array(
@@ -438,10 +438,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_card2_changes',
             array(
-                'label' => __('Display Value Changes 24H', 'ccew'),
+                'label' => __('Display Value Changes 24H', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => array(
@@ -453,10 +453,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_chart_offset',
             array(
-                'label' => __('Chart offset', 'ccew'),
+                'label' => __('Chart offset', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => array(
@@ -469,10 +469,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_rank',
             array(
-                'label' => __('Rank', 'ccew'),
+                'label' => __('Rank', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => array(
@@ -485,10 +485,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_marketcap',
             array(
-                'label' => __('Market Cap', 'ccew'),
+                'label' => __('Market Cap', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => array(
@@ -501,10 +501,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_table_head',
             array(
-                'label' => __('Display Table Head', 'ccew'),
+                'label' => __('Display Table Head', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => array(
@@ -515,10 +515,10 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_display_graph',
             array(
-                'label' => __('Display Graph', 'ccew'),
+                'label' => __('Display Graph', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::SWITCHER,
-                'label_on' => __('Show', 'ccew'),
-                'label_off' => __('Hide', 'ccew'),
+                'label_on' => __('Show', 'cryptocurrency-widgets-for-elementor'),
+                'label_off' => __('Hide', 'cryptocurrency-widgets-for-elementor'),
                 'return_value' => 'yes',
                 'default' => 'yes',
                 'condition' => array(
@@ -530,7 +530,7 @@ class ccew__Widget extends \Elementor\Widget_Base
           $this->add_control(
             'ccew_review_note',
             array(
-                'label' => __('Review Notice', 'ccew'),
+                'label' => __('Review Notice', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
                 'show_label' => false,
                 'raw' => '<div class="ccew_cmc_demo">
@@ -547,7 +547,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'ccew_Basic_styles_section',
             array(
-                'label' => __('Color Settings', 'ccew'),
+                'label' => __('Color Settings', 'cryptocurrency-widgets-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_STYLE,
             )
         );
@@ -555,7 +555,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_bg_color',
             array(
-                'label' => __('Background Color', 'ccew'),
+                'label' => __('Background Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} .ccew-bg ,
@@ -570,7 +570,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_chart_color',
             array(
-                'label' => __('Chart Color', 'ccew'),
+                'label' => __('Chart Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'condition' => array(
                     'ccew_widget_type' => array('card'),
@@ -582,7 +582,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_chart_border_color',
             array(
-                'label' => __('Chart Border Color', 'ccew'),
+                'label' => __('Chart Border Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'condition' => array(
                     'ccew_widget_type' => array('card'),
@@ -594,7 +594,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_card_coin_color',
             array(
-                'label' => __('Coin Name Color', 'ccew'),
+                'label' => __('Coin Name Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} .ccew-wrapper.style-2 .ccew-card-content .ccew-card-coin' => 'color: {{VALUE}} !important ',
@@ -609,7 +609,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_card_price_color',
             array(
-                'label' => __('Coin Price Color', 'ccew'),
+                'label' => __('Coin Price Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} .ccew-wrapper.style-2 .ccew-card-content .ccew-card-price' => 'color: {{VALUE}} !important ',
@@ -624,7 +624,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_card_changes_color',
             array(
-                'label' => __('Changes 24H Color', 'ccew'),
+                'label' => __('Changes 24H Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} .ccew-wrapper.style-2 .ccew-card-content .ccew-card-volume' => 'color: {{VALUE}} !important ',
@@ -639,7 +639,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_card_low24_color',
             array(
-                'label' => __('Low 24H Color', 'ccew'),
+                'label' => __('Low 24H Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} .ccew-wrapper.style-2 .ccew-chart-card-offset .ccew-low-24 ' => 'color: {{VALUE}} !important ',
@@ -655,7 +655,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_card_high24_color',
             array(
-                'label' => __('High 24H Color', 'ccew'),
+                'label' => __('High 24H Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} .ccew-wrapper.style-2 .ccew-chart-card-offset .ccew-high-24 ' => 'color: {{VALUE}} !important ',
@@ -672,7 +672,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_primary_color',
             array(
-                'label' => __('Primary Color', 'ccew'),
+                'label' => __('Primary Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} .ccew-wrapper .ccew-primary ,
@@ -701,7 +701,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->add_control(
             'ccew_secondary_color',
             array(
-                'label' => __('Secondary Color', 'ccew'),
+                'label' => __('Secondary Color', 'cryptocurrency-widgets-for-elementor'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => array(
                     '{{WRAPPER}} .ccew-wrapper .ccew-secondary ,
@@ -730,7 +730,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Box_Shadow::get_type(),
             array(
                 'name' => 'box_shadow',
-                'label' => __('Box Shadow', 'ccew'),
+                'label' => __('Box Shadow', 'cryptocurrency-widgets-for-elementor'),
                 'selector' => '{{WRAPPER}} .ccew-wrapper,  div[id*=ccew-wrap]',
                 'condition' => array(
                     'ccew_widget_type!' => 'advanced_table',
@@ -742,7 +742,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'table_list_typography',
-                'label' => esc_html__('Table/List Heading Typography', 'ccew'),
+                'label' => esc_html__('Table/List Heading Typography', 'cryptocurrency-widgets-for-elementor'),
                 'selector' => '{{WRAPPER}} div[id*=ccew-wrap] table thead tr th,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-list-head',
                 'condition' => array(
@@ -764,7 +764,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'coin_name_typography',
-                'label' => esc_html__('Coin Name Typography', 'ccew'),
+                'label' => esc_html__('Coin Name Typography', 'cryptocurrency-widgets-for-elementor'),
                 'selector' => '{{WRAPPER}} div[id*=ccew-wrap] .ccew-wrapper.ccew-price-list .ccew-coin-name,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-coin-name,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-card-coin span,
@@ -786,7 +786,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'coin_symbol_typography',
-                'label' => esc_html__('Coin Symbol Typography', 'ccew'),
+                'label' => esc_html__('Coin Symbol Typography', 'cryptocurrency-widgets-for-elementor'),
                 'selector' => '{{WRAPPER}} div[id*=ccew-wrap] .ccew-wrapper.ccew-price-list .ccew-coin-symbol,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-coin-symbol,
                 {{WRAPPER}} div[id*=ccew-wrap] #ccew-coinslist_wrapper tbody .ccew_coin_symbol
@@ -807,7 +807,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'coin_price_typography',
-                'label' => esc_html__('Coin Price Typography', 'ccew'),
+                'label' => esc_html__('Coin Price Typography', 'cryptocurrency-widgets-for-elementor'),
                 'selector' => '{{WRAPPER}} div[id*=ccew-wrap] .ccew-wrapper.ccew-price-list .ccew-coin-price,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-coin-price,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-coin-price span.ccew-price,
@@ -833,7 +833,7 @@ class ccew__Widget extends \Elementor\Widget_Base
             \Elementor\Group_Control_Typography::get_type(),
             [
                 'name' => 'coin_other_typography',
-                'label' => esc_html__('Other Content Typography', 'ccew'),
+                'label' => esc_html__('Other Content Typography', 'cryptocurrency-widgets-for-elementor'),
                 'selector' => '{{WRAPPER}} div[id*=ccew-wrap] .ccew-coin-info .ccew-info-item span,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-wrapper .ccew-change-percent span,
                 {{WRAPPER}} div[id*=ccew-wrap] .ccew-wrapper .ccew-card-change span,
@@ -865,14 +865,14 @@ class ccew__Widget extends \Elementor\Widget_Base
         $this->start_controls_section(
             'ccewd_permotion_section',
             array(
-                'label' => __('Crypto Pro Plugins Demos', 'ccew'),
+                'label' => __('Crypto Pro Plugins Demos', 'cryptocurrency-widgets-for-elementor'),
                 'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
             )
         );
         $this->add_control(
             'ccew_important_note',
             array(
-                'label' => __('Pro plugins', 'ccew'),
+                'label' => __('Pro plugins', 'cryptocurrency-widgets-for-elementor'),
                 'type' => \Elementor\Controls_Manager::RAW_HTML,
                 'show_label' => false,
                 'raw' => '<ul class="ccew-promotion-plugins">
@@ -922,7 +922,7 @@ class ccew__Widget extends \Elementor\Widget_Base
 
         
         $settings = $this->get_settings_for_display();
-        $random_id = rand();
+        $random_id = wp_rand();
         $html_setting['widget_type'] = $settings['ccew_widget_type'];
         $html_setting['fiat_currency'] = !empty($settings['ccew_fiat_currency']) ? $settings['ccew_fiat_currency'] : 'USD';
 
@@ -961,15 +961,15 @@ class ccew__Widget extends \Elementor\Widget_Base
                 $html_setting['required_coins'] = (!empty($html_setting['numberof_coins'])) ? count($settings['ccew_custom_coin']) : '';
             }
 
-            $html_setting['prev'] = __('Previous', 'ccew');
-            $html_setting['next'] = __('Next', 'ccew');
-            $html_setting['no_data'] = __('No Coin Found', 'ccew');
+            $html_setting['prev'] = __('Previous', 'cryptocurrency-widgets-for-elementor');
+            $html_setting['next'] = __('Next', 'cryptocurrency-widgets-for-elementor');
+            $html_setting['no_data'] = __('No Coin Found', 'cryptocurrency-widgets-for-elementor');
             $html_setting['table_id'] = $random_id;
             $html_setting['pagination'] = ($html_setting['required_coins'] < $settings['ccew_pagination']) ? $html_setting['required_coins'] : $settings['ccew_pagination'];
             $html_setting['symbol'] = ccew_currency_symbol($html_setting['fiat_currency']);
             $cls = 'ccew-coinslist_wrapper';
             $id = 'ccew-coinslist_wrapper';
-            $html_setting['loading_lbl'] = __('Loading...', 'ccpw');
+            $html_setting['loading_lbl'] = __('Loading...', 'cryptocurrency-widgets-for-elementor');
         } elseif ($settings['ccew_widget_type'] == 'top_gainer_loser') {
             $html_setting['display_24h_changes'] = $settings['ccew_display_24h_changes'];
             $html_setting['sortby'] = $settings['ccew_gainer_loser_sortby'];
@@ -985,7 +985,7 @@ class ccew__Widget extends \Elementor\Widget_Base
         $wp_nonce = wp_create_nonce('ccew-create-widget');
         echo '<script type="application/json" class="ccew_htmlContainer" data-ajax-nonce=' . esc_attr($wp_nonce) . ' data-ajax-url=' . esc_attr(admin_url('admin-ajax.php')) . '>' . wp_kses_post($settings_json) . '</script><div class="ccew_html_container" id="ccew-wrap' . esc_attr($random_id) . '">';
         if (isset($html_setting['required_coins']) && $html_setting['required_coins'] == '' && $settings['ccew_widget_type'] == 'advanced_table') {
-            echo esc_html__('Please Select Coin', 'ccew');
+            echo esc_html__('Please Select Coin', 'cryptocurrency-widgets-for-elementor');
         } else {
 
             if ($settings['ccew_widget_type'] == 'advanced_table') {
@@ -993,7 +993,7 @@ class ccew__Widget extends \Elementor\Widget_Base
                 $db = new ccew_database();
                 $coins = $db->ccew_verify_coins_data();
             if ($coins === 0) {
-                    echo '<div id="ccew-error">' . __('No Coin Data Found.', 'ccew') . '</div>';
+                    echo '<div id="ccew-error">' . esc_html__('No Coin Data Found.', 'cryptocurrency-widgets-for-elementor') . '</div>';
                 }else{                   
 
                 echo '<div id="' . esc_attr($id) . '" class="' . esc_attr($cls) . '">
@@ -1001,18 +1001,17 @@ class ccew__Widget extends \Elementor\Widget_Base
 			class="display  ccew_table_widget table-striped table-bordered no-footer"
 			style="border:none!important;">
 			<thead>
-			<th data-classes="desktop ccew_coin_rank" data-index="rank">' . esc_html__('#', 'ccew') . '</th>
-            <th data-classes="desktop ccew_name" data-index="name">' . esc_html__('Name', 'ccew') . '</th>
-            <th data-classes="desktop ccew_coin_price" data-index="price">' . esc_html__('Price', 'ccew') . '</th>
-              <th data-classes="desktop ccew_coin_change24h" data-index="change_percentage_24h">' . esc_html__('Changes 24h', 'ccew') . '</th>
+			<th data-classes="desktop ccew_coin_rank" data-index="rank">' . esc_html__('#', 'cryptocurrency-widgets-for-elementor') . '</th>
+            <th data-classes="desktop ccew_name" data-index="name">' . esc_html__('Name', 'cryptocurrency-widgets-for-elementor') . '</th>
+            <th data-classes="desktop ccew_coin_price" data-index="price">' . esc_html__('Price', 'cryptocurrency-widgets-for-elementor') . '</th>
+              <th data-classes="desktop ccew_coin_change24h" data-index="change_percentage_24h">' . esc_html__('Changes 24h', 'cryptocurrency-widgets-for-elementor') . '</th>
 
-            <th data-classes="desktop ccew_coin_market_cap" data-index="market_cap">' . esc_html__('Market CAP', 'ccew') . '</th>';
+            <th data-classes="desktop ccew_coin_market_cap" data-index="market_cap">' . esc_html__('Market CAP', 'cryptocurrency-widgets-for-elementor') . '</th>';
 
 	                if ($user_selected_api == "coin_gecko") {
 
-		                    echo '<th data-classes="ccew_coin_total_volume" data-index="total_volume">' . esc_html__('Volume', 'ccew') . '</th>';
-
-                       echo '<th data-classes="ccew_coin_supply" data-index="supply">' . esc_html__('Supply', 'ccew') . '</th>';
+		                    echo '<th data-classes="ccew_coin_total_volume" data-index="total_volume">' . esc_html__('Volume', 'cryptocurrency-widgets-for-elementor') . '</th>';
+                       echo '<th data-classes="ccew_coin_supply" data-index="supply">' . esc_html__('Supply', 'cryptocurrency-widgets-for-elementor') . '</th>';
                 }
                 echo '
 			</tr></thead><tbody>

@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 class ccew_elementor_register {
 
 	public function __construct() {
@@ -17,7 +21,7 @@ class ccew_elementor_register {
 		\Elementor\Plugin::$instance->elements_manager->add_category(
 			'ccew',              // the name of the category
 			array(
-				'title' => esc_html__( 'Cryptocurrency Widgets', 'ccew' ),
+				'title' => esc_html__( 'Cryptocurrency Widgets', 'cryptocurrency-widgets-for-elementor' ),
 				'icon'  => 'fa fa-header', // default icon
 			),
 			1 // position
@@ -28,7 +32,8 @@ class ccew_elementor_register {
 		wp_enqueue_style(
 			'ccew-editor-styles',
 			esc_url(CCEW_URL . 'assets/css/ccew-editor-styles.css'),
-			array()
+			array(),
+			CCEW_VERSION
 		);
 	}
 

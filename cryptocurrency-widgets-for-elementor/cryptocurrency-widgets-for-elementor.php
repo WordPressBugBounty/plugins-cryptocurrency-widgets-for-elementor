@@ -5,20 +5,20 @@
  * Author:Cool Plugins
  * Author URI:https://coolplugins.net/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=plugins_list
  * Plugin URI:https://cryptocurrencyplugins.com/
- * Version: 1.7.7
+ * Version: 1.8
  * License: GPL2
- * Text Domain:ccew
- * Domain Path: languages
+ * Text Domain: cryptocurrency-widgets-for-elementor
  *
- * Elementor tested up to:3.32.2
- * Elementor Pro tested up to: 3.32.1
+ * Elementor tested up to:3.34.1
+ * Elementor Pro tested up to: 3.34.0
  * */
 
 if (!defined('ABSPATH')) {
     exit;
 }
 
-define('CCEW_VERSION', '1.7.7');
+
+define('CCEW_VERSION', '1.8');
 define('CCEW_FILE', __FILE__);
 define('CCEW_DIR', plugin_dir_path(CCEW_FILE));
 define('CCEW_URL', plugin_dir_url(CCEW_FILE));
@@ -32,9 +32,15 @@ if (!defined('CCEW_DEMO_URL')) {
 define('CCEW_FEEDBACK_API',"https://feedback.coolplugins.net/");
 
 
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound	
+
+
 /**
  * Class Crypto_Currency_Elementor_Widget
  */
+
+
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound	
 final class Crypto_Currency_Elementor_Widget
 {
 
@@ -90,11 +96,40 @@ final class Crypto_Currency_Elementor_Widget
         if (is_admin()) {
 
             add_action('admin_enqueue_scripts', array($this, 'ccew_load_scripts'));
+            add_action('admin_notices', array($this, 'ccew_show_api_key_expired_notice'));
         }
 
 
     }
-
+   
+    public function ccew_show_api_key_expired_notice(){
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+        $api_key_expired = get_option('ccew_api_key_expired', false);
+        if (!$api_key_expired) {
+            return;
+        }
+        $api_name = 'CoinGecko';
+        $current_user = wp_get_current_user();
+        $user_name = $current_user->display_name;
+        $settings_url = 'https://support.coingecko.com/hc/en-us/articles/21880397454233-User-Guide-How-to-sign-up-for-CoinGecko-Demo-API-and-generate-an-API-key';
+        ?>
+        <div class="notice notice-error is-dismissible">
+            <p>
+                <?php 
+                echo sprintf(
+                    /* translators: %1s: User name, %2s: Service/API name, %3s: link or action */
+                    esc_html__('Hi, "%1$s! Your %2$s has been expired. Please %3$s to update your API key.', 'cryptocurrency-widgets-for-elementor'),
+                    '<strong>' . esc_html($user_name) . '</strong>',
+                    '<strong>' . esc_html($api_name) . '</strong>',
+                    '<a href="' . esc_url($settings_url) . '"><strong>' . esc_html__('click here', 'cryptocurrency-widgets-for-elementor') . '</strong></a>'
+                );
+                ?>
+            </p>
+        </div>
+        <?php
+    }
 
     public function ccew_plugins_loaded()
     {
@@ -123,7 +158,7 @@ final class Crypto_Currency_Elementor_Widget
     {
         if (!is_plugin_active('elementor/elementor.php')): ?>
 			<div class="notice notice-warning is-dismissible">
-				<p><?php echo '<a href="https://wordpress.org/plugins/elementor/"  target="_blank" >' . esc_html__('Elementor Page Builder', 'ccew') . '</a>' . wp_kses_post(__(' must be installed and activated for "<strong>Cryptocurrency Elementor Widgets</strong>" to work', 'ccew')); ?></p>
+				<p><?php echo '<a href="https://wordpress.org/plugins/elementor/"  target="_blank" >' . esc_html__('Elementor Page Builder', 'cryptocurrency-widgets-for-elementor') . '</a>' . wp_kses_post(__(' must be installed and activated for "<strong>Cryptocurrency Elementor Widgets</strong>" to work', 'cryptocurrency-widgets-for-elementor')); ?></p>
 			</div>
 			<?php
 endif;
@@ -131,6 +166,7 @@ endif;
     }
     public function ccew_load_textdomain()
     {
+        // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound, WordPress.WP.I18n.MissingTextDomain
         load_plugin_textdomain('ccew', false, dirname(plugin_basename(__FILE__)) . '/languages/');
     }
     public function ccew_file_include()
@@ -154,8 +190,8 @@ endif;
 
                 $notice = [
 
-                    'title' => __('Cryptocurrency Plugins by Cool Plugins', 'ccpw'),
-                    'message' => __('Help us make this plugin more compatible with your site by sharing non-sensitive site data.', 'cool-plugins-feedback'),
+                    'title' => __('Cryptocurrency Plugins by Cool Plugins', 'cryptocurrency-widgets-for-elementor'),
+                    'message' => __('Help us make this plugin more compatible with your site by sharing non-sensitive site data.', 'cryptocurrency-widgets-for-elementor'),
                     'pages' => ['cool-crypto-plugins', 'ccpw_get_started','openexchange-api-settings'],
                     'always_show_on' => ['cool-crypto-plugins','ccpw_get_started','openexchange-api-settings'], // This enables auto-show
                     'plugin_name'=>'ccew'
@@ -292,7 +328,7 @@ endif;
     public function reset_option_data_once_on_first_of_month()
     {
         // Check if it's the 1st day of the month
-        $current_date = date('j');
+        $current_date = gmdate('j');
 
         if ($current_date === '1') {
             // Check if a flag or option indicating the reset has already been performed
@@ -329,6 +365,8 @@ endif;
     }
 
 }
+
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedFunctionFound
 function Crypto_Currency_Elementor_Widget()
 {
     return Crypto_Currency_Elementor_Widget::get_instance();

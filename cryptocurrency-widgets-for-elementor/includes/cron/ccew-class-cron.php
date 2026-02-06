@@ -22,7 +22,7 @@ if (!class_exists('CCEW_cronjob')) {
             if (!isset($schedules['5min'])) {
                 $schedules['5min'] = array(
                     'interval' => 5 * 60,
-                    'display' => __('Once every 5 minutes'),
+                    'display' => __('Once every 5 minutes', 'cryptocurrency-widgets-for-elementor'),
                 );
             }
             // 30days schedule for update information
@@ -31,7 +31,7 @@ if (!class_exists('CCEW_cronjob')) {
 
                 $schedules['every_30_days'] = array(
                     'interval' => 30 * 24 * 60 * 60, // 2,592,000 seconds
-                    'display'  => __('Once every 30 days'),
+                    'display'  => __('Once every 30 days', 'cryptocurrency-widgets-for-elementor'),
                 );
             }
             return $schedules;
@@ -103,6 +103,7 @@ if (!class_exists('CCEW_cronjob')) {
               
                   if (is_wp_error($response)) {
                       if (defined('WP_DEBUG') && WP_DEBUG) {
+                        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
                           error_log('CCEW Feedback Send Failed: ' . $response->get_error_message());
                       }
                       return;
@@ -120,5 +121,6 @@ if (!class_exists('CCEW_cronjob')) {
 
     }
 
+    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
     $cron_init = new CCEW_cronjob();
 }

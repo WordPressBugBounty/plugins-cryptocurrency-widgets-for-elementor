@@ -1,5 +1,9 @@
 <?php
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
 if ( ! class_exists( 'ccew_review_notice' ) ) {
 	class ccew_review_notice {
 		/**
@@ -18,7 +22,8 @@ if ( ! class_exists( 'ccew_review_notice' ) ) {
 		 */
 		public function ccew_dismiss_review_notice() {
 			// Check for nonce security
-			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( $_POST['nonce'], 'ccew-nonce' ) ) {
+			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce(wp_unslash($_POST['nonce']), 'ccew-nonce' ) ) {
 				wp_send_json_error( 'You don\'t have permission to hide notice.' );
 				return;
 			}
@@ -60,8 +65,8 @@ if ( ! class_exists( 'ccew_review_notice' ) ) {
 
 			// Check if installation days is greater than or equal to 3
 			if ( $diff_days >= 3) {
-				wp_enqueue_script( 'ccew-feedback-notice-script', CCEW_URL . 'admin/feedback-notice/js/ccew-admin-feedback-notice.js', array( 'jquery' ), null, true );
-				wp_enqueue_style( 'ccew-feedback-notice-styles', CCEW_URL . 'admin/feedback-notice/css/ccew-admin-feedback-notice.css' );
+				wp_enqueue_script( 'ccew-feedback-notice-script', CCEW_URL . 'admin/feedback-notice/js/ccew-admin-feedback-notice.js', array( 'jquery' ), CCEW_VERSION, true );
+				wp_enqueue_style( 'ccew-feedback-notice-styles', CCEW_URL . 'admin/feedback-notice/css/ccew-admin-feedback-notice.css', array(), CCEW_VERSION );
 				echo wp_kses_post( $this->ccew_create_notice_content() );
 			}
 		}
@@ -73,11 +78,11 @@ if ( ! class_exists( 'ccew_review_notice' ) ) {
 			$ajax_url           = esc_url(admin_url('admin-ajax.php'));
 			$ajax_callback      = esc_attr('ccew_dismiss_notice');
 			$wrap_cls           = esc_attr('notice notice-info is-dismissible');
-			$p_name             = esc_html__('Cryptocurrency Widgets For Elementor', 'ccew');
-			$like_it_text       = esc_html__('Rate Now! ★★★★★', 'ccew');
-			$already_rated_text = esc_html__('Already Reviewed', 'ccew');
-			$not_like_it_text   = esc_html__('No, not good enough, I do not like to rate it!', 'ccew');
-			$not_interested     = esc_html__('Not Interested', 'ccew');
+			$p_name             = esc_html__('Cryptocurrency Widgets For Elementor', 'cryptocurrency-widgets-for-elementor');
+			$like_it_text       = esc_html__('Rate Now! ★★★★★', 'cryptocurrency-widgets-for-elementor');
+			$already_rated_text = esc_html__('Already Reviewed', 'cryptocurrency-widgets-for-elementor');
+			$not_like_it_text   = esc_html__('No, not good enough, I do not like to rate it!', 'cryptocurrency-widgets-for-elementor');
+			$not_interested     = esc_html__('Not Interested', 'cryptocurrency-widgets-for-elementor');
 			$p_link             = esc_url( 'https://wordpress.org/support/plugin/cryptocurrency-widgets-for-elementor/reviews/#new-post' );
 
 			$nonce   = wp_create_nonce( 'ccew-nonce' );

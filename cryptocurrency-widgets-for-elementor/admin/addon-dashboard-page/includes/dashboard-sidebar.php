@@ -5,11 +5,15 @@
  * Addon dashboard sidebar.
  */
 
+if (!defined('ABSPATH')) {
+    exit;
+}
+
  if( !isset($this->main_menu_slug) ):
     return false;
  endif;
 
- $cool_support_email = "https://cryptocurrencyplugins.com/support/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=support&utm_content=dashboard";
+ $ccew_cool_support_email = "https://cryptocurrencyplugins.com/support/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=support&utm_content=dashboard";
 ?>
 
  <div class="cool-body-right">
@@ -20,7 +24,7 @@
       <li>Our crypto plugins have <b>10000+</b> active installs.</li>
       <li>For any query or support, please contact plugin support team.
       <br><br>
-      <a href="<?php echo esc_url($cool_support_email); ?>" target="_blank" class="button button-secondary">Premium Plugin Support</a>
+      <a href="<?php echo esc_url($ccew_cool_support_email); ?>" target="_blank" class="button button-secondary">Premium Plugin Support</a>
    </ul>
     </div>  
 

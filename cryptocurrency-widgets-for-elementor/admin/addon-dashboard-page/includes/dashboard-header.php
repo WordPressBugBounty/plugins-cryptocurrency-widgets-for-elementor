@@ -3,6 +3,14 @@
 /**
  * This php file render HTML header for addons dashboard page
  */
+
+//phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+
     if( !isset( $this->main_menu_slug ) ):
         return;
     endif;

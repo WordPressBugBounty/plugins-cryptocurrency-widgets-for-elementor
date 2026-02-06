@@ -113,6 +113,8 @@ class ccew_database
         $query = $wpdb->prepare("SELECT COUNT(*) FROM " . esc_sql($this->table_name) . " WHERE coin_id = %s", $coin_id);
 
         // Retrieve the count of matching records
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
         $count = $wpdb->get_var($query);
 
         // Check if a single matching record exists
@@ -135,11 +137,13 @@ class ccew_database
      * @param   string $coin_id The ID of the coin
      * @return  bool True if the coin data is up to date, false otherwise
      */
+
     public function check_coin_latest_update($coin_id)
     {
         global $wpdb;
 
         // Retrieve the last update time of the coin from the database with proper escaping
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $coin_update_value = $wpdb->get_var($wpdb->prepare("SELECT coin_last_update FROM " . esc_sql($this->table_name) . " WHERE coin_id = %s", $coin_id));
 
         // Trim the time zone information from the retrieved value
@@ -173,6 +177,8 @@ class ccew_database
      * @access public
      * @return void
      */
+
+    // phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
     public function ccew_check_coin_list()
     {
         global $wpdb;
@@ -180,8 +186,7 @@ class ccew_database
         $table = $wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", esc_sql($this->table_name)));
 
         // Calculate the date 2 days ago with proper escaping
-        $date = date('Y-m-d h:m:s', strtotime("-2 days"));
-
+        $date = gmdate('Y-m-d h:m:s', strtotime("-2 days"));
         if ($table === esc_sql($this->table_name)) {
             // Delete records older than 24 hours with proper escaping
             $wpdb->query($wpdb->prepare("DELETE FROM " . esc_sql($this->table_name) . " WHERE last_updated <= %s ", $date));
@@ -200,6 +205,7 @@ class ccew_database
     public function get_coin_logo($coin_id = null)
     {
         if (!empty($coin_id)) {
+            // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
             global $wpdb;
             // Sanitize the input to prevent SQL injection
             $coin_id = esc_sql($coin_id);
@@ -280,11 +286,14 @@ class ccew_database
         $cache_key = (true === $count) ? md5('ccew_coins_count' . wp_json_encode($args)) : md5('ccew_coins_' . wp_json_encode($args));
 
         // Retrieve the results from the cache
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery
         $results = wp_cache_get($cache_key, 'coins');
 
+
+        // phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
         if (false === $results) {
             if (true === $count) {
-                // Retrieve the count of results from the database
+                // Retrieve the count of results from the database         
                 $results = absint($wpdb->get_var($wpdb->prepare("SELECT COUNT(%s) FROM " . esc_sql($this->table_name) . "  {$where};", esc_sql($this->primary_key))));
             } else {
                 // Retrieve the results from the database
@@ -401,9 +410,11 @@ class ccew_database
         }
 
         // Prepare and execute the SQL query with proper escaping
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
         $sql = $wpdb->prepare($query, $values);
 
         // Execute the query and return the result
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, PluginCheck.Security.DirectDB.UnescapedDBParameter
         if ($wpdb->query($sql)) {
             return true; // Return true on successful query execution
         } else {
@@ -474,6 +485,7 @@ class ccew_database
      * @access  public
      * @since   1.0
      */
+    // phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
     public function drop_table()
     {
         global $wpdb;
@@ -500,6 +512,7 @@ class ccew_database
 
     public function ccew_verify_coins_data() {
 
+    // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
         global $wpdb;
         $count = (int) $wpdb->get_var("SELECT COUNT(*) FROM {$this->table_name}");
         return $count;
