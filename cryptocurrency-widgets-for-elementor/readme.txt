@@ -4,7 +4,7 @@ Tags: cryptocurrency,crypto price,bitcoin widget,elementor addon,crypto donation
 Requires at least:5.0
 Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag:1.8
+Stable tag:1.8.1
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,8 @@ https://www.youtube.com/watch?v=gFzCEBERiwc
 * **[Cryptocurrency Exchanges List Pro](https://cryptocurrencyplugins.com/wordpress-plugin/cryptocurrency-exchanges-list-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=celp_view_plugin):** Display real-time data from over 250 cryptocurrency exchanges on your website. Create automatic exchange pages showing trading pairs and volumes. Easily enable or disable exchanges as needed.
 
 * **[Pay With MetaMask](https://cryptocurrencyplugins.com/wordpress-plugin/pay-with-metamask-for-woocommerce-pro/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=get_pro&utm_content=cpmw_view_plugin):** If you run a WooCommerce store and want to accept cryptocurrency payments at checkout, our WooCommerce Crypto Payments plugin makes it simple. Customers can pay directly with crypto using Web3 wallets such as **MetaMask, WalletConnect, and more**. You can [test crypto payment integration in WooCommerce](https://paywithcryptocurrency.net/wordpress-plugin/test-cryptocurrency-payment/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=cpmw_view_demo) by purchasing a dummy product on our demo site using [faucet tokens](https://paywithcryptocurrency.net/plugin-features/test-networks-and-tokens/?utm_source=ccew_plugin&utm_medium=readme&utm_campaign=demo&utm_content=cpmw_faucet).
+
+**Use of 3rd Party Services:** This plugin connects to the Cool Plugins API to display information about related plugins inside the dashboard. It also offers optional usage tracking and optional feedback submission on deactivation. Data is sent only after explicit user consent. No hidden tracking is performed, and no frontend visitor or site user data is collected. For more details, please review our [Data Usage Policy](https://my.coolplugins.net/terms/usage-tracking/), [TOS](https://my.coolplugins.net/terms/), and [Privacy Policy](https://my.coolplugins.net/terms/privacy-policy/).
 
 ### Third Party API & License Information
 
@@ -143,6 +145,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 8. Cryptocurrency Donation Widget
 
 == Changelog ==
+
+= Version 1.8.1 | 12/02/2026 =
+* Tested up to: Elementor Version 3.35.4 and Elementor Pro Version 3.35.1.
 
 = Version 1.8| 16/01/2026 = 
 * Fixed: Fix issues reported by “Plugin Check” plugin.
