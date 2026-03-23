@@ -12,7 +12,7 @@ if ( ! class_exists( 'ccew_review_notice' ) ) {
 		public function __construct() {
 			// register actions
 			if ( is_admin() ) {
-				add_action( 'admin_notices', array( $this, 'ccew_admin_notice_for_reviews' ) );
+				add_action( 'ccew_display_admin_notices', array( $this, 'ccew_admin_notice_for_reviews' ) );
 				add_action( 'wp_ajax_ccew_dismiss_notice', array( $this, 'ccew_dismiss_review_notice' ) );
 			}
 		}

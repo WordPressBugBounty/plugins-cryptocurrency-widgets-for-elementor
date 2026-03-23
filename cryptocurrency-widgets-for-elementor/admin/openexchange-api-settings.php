@@ -21,7 +21,7 @@ if (!class_exists('Openexchange_api_settings')) {
 
         public function init_hooks()
         {
-            add_action('admin_notices', array($this, 'openexchange_api_key_notice'));
+            add_action('ccew_display_admin_notices', array($this, 'openexchange_api_key_notice'));
             add_action('admin_menu', array($this, 'openexchange_add_submenu'), 100);
             add_action('admin_init', array($this, 'openexchange_settings'));
             add_action('admin_head', array($this, 'openexchange_custom_js'));
