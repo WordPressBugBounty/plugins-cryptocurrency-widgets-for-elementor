@@ -67,7 +67,7 @@ if (!class_exists('CCWE_Settings')) {
             register_setting(
                 'ccew_option_group', // Option group
                 'ccew-api-settings', // Option name
-                'ccew_sanitize_api_settings' // Sanitize
+                array($this, 'ccew_sanitize_api_settings') // Sanitize
             );
 
             add_settings_section(
@@ -80,6 +80,11 @@ if (!class_exists('CCWE_Settings')) {
             add_settings_field('Api_key', 'Select API', array($this, 'api_key_fun'), 'ccew-api-settings', 'ccew_section_id');
 
             add_settings_field('ccew_delete_cache', 'Purge API Data Cache', array($this, 'ccew_purge_cache'), 'ccew-api-settings', 'ccew_section_id');
+        }
+
+        public function ccew_sanitize_api_settings($input)
+        {
+            return is_array($input) ? map_deep(wp_unslash($input), 'sanitize_text_field') : array();
         }
 
         /**
@@ -122,13 +127,19 @@ if (!class_exists('CCWE_Settings')) {
             </form>
 <?php
 
-            // $get_setings = isset($_GET['page']) ? $_GET['page'] : '';
-
-            $get_setings = (isset($_GET['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['_wpnonce'])), 'ccew_settings_nonce'))
-                ? sanitize_key(wp_unslash($_GET['page'] ?? ''))
+            $get_setings = (
+                isset( $_GET['_wpnonce'] ) &&
+                wp_verify_nonce(
+                    sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ),
+                    'ccew_settings_nonce'
+                )
+            )
+                ? ( isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : '' )
                 : '';
 
-            $update_setings = sanitize_text_field(wp_unslash($_GET['settings-updated'] ?? ''));
+            $update_setings = isset( $_GET['settings-updated'] )
+                ? sanitize_text_field( wp_unslash( $_GET['settings-updated'] ) )
+                : '';
 
             if ($get_setings == 'ccew-settings' && $update_setings == 'true') {
                 $db = new ccew_database();
@@ -137,28 +148,18 @@ if (!class_exists('CCWE_Settings')) {
                 delete_option('ccew_data_save');
             }
         }
-        public function ccew_delete_transient()
-        {
-            // Check for nonce security
-            // if (!wp_verify_nonce($_POST['nonce'], 'ccew-nonce')) {
-            //     die('You don\'t have permission to delete the cache.');
-            // }
-            if (
-                ! isset($_POST['nonce']) ||
-                ! wp_verify_nonce(
-                    sanitize_text_field(wp_unslash($_POST['nonce'])),
-                    'ccew-nonce'
-                )
-            ) {
-                wp_die(esc_html__('You don\'t have permission to delete the cache.', 'cryptocurrency-widgets-for-elementor'));
+        public function ccew_delete_transient() {
+            check_ajax_referer( 'ccew-nonce', 'nonce' );
+            if ( ! current_user_can( 'manage_options' ) ) {
+                wp_send_json_error(
+                    array(
+                        'message' => __( 'Insufficient permissions.', 'cryptocurrency-widgets-for-elementor' ),
+                    )
+                );
             }
-
-            // Delete cache if user has permssion to delete it.
-            if (current_user_can('manage_options')) {
-                delete_transient('ccew-saved-coindata');
-                delete_option('ccew_data_save');
-                wp_send_json_success();
-            }
+            delete_transient( 'ccew-saved-coindata' );
+            delete_option( 'ccew_data_save' );
+            wp_send_json_success();
         }
     }
 

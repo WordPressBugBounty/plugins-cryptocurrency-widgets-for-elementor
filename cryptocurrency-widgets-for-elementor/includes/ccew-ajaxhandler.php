@@ -8,11 +8,11 @@ if (!defined('ABSPATH')) {
 function ccew_getData()
 {
     if (!isset($_POST['nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'ccew-create-widget')) {
-        die('Please refresh window and check it again');
+        wp_send_json_error(array('message'=>__('Please refresh and try again','cryptocurrency-widgets-for-elementor')));
     }
     
     if (is_user_logged_in() && !current_user_can('read')) {
-        wp_die('You do not have permission to access this resource.', 'Unauthorized', array('response' => 403));
+        wp_send_json_error( array( 'message' => __( 'You do not have permission to access this resource.', 'cryptocurrency-widgets-for-elementor' ) ), 403 );
     }
     
     // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
@@ -142,8 +142,8 @@ function ccew_getData()
 
             if ($widget_type == 'list' || $widget_type == 'top_gainer_loser') {
                 $widget_type = 'list';
-                $chartprice = $coin['7d_chart'];
-                $comparechart = isset($chartprice) ? json_decode($chartprice) : '';
+                $chartprice = isset($coin['7d_chart']) ? $coin['7d_chart'] : '';
+                $comparechart = !empty($chartprice) ? json_decode($chartprice) : '';
                 $chart_first_value = isset($comparechart[0]) ? $comparechart[0] : "";
                 $chart_last_value = (is_array($comparechart)) ? $comparechart[count($comparechart) - 1] : "N/A";
                 if ($chart_last_value >= $chart_first_value) {
@@ -210,14 +210,15 @@ function ccew_getData()
                 $widget_layout = sanitize_file_name($widget_type); 
                 
                 // File path ko define aur validate karna
-                $file_path = esc_attr(CCEW_DIR) . 'layouts/ccew-' . $widget_layout . '.php';
+                $file_path = CCEW_DIR . 'layouts/ccew-' . $widget_layout . '.php';
+                $real_file = realpath($file_path);
+                $real_layouts = realpath(CCEW_DIR . 'layouts/');
                 
                 // Validate karna ki file exist karti hai aur woh sirf layouts directory mein hi hai
-                if (file_exists($file_path) && strpos(realpath($file_path), realpath(CCEW_DIR . 'layouts/')) === 0) {
-                    require $file_path;
+                if (false !== $real_file && false !== $real_layouts && 0 === strpos($real_file, $real_layouts . DIRECTORY_SEPARATOR)) {
+                    require $real_file;
                 } else {
-                    // Agar file invalid ya directory ke bahar hai toh error handle karna
-                    wp_die('Invalid widget type specified.');
+                    wp_send_json_error( array( 'message' => __( 'Invalid widget type specified.', 'cryptocurrency-widgets-for-elementor' ) ), 400 );
                 }
             }
 

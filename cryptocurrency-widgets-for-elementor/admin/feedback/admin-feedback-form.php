@@ -121,7 +121,7 @@ class cp_feedback {
 		global $wpdb;
 
 		$server_info = [
-		'server_software'        => sanitize_text_field(wp_unslash($_SERVER['SERVER_SOFTWARE'] ?? 'N/A')),
+		'server_software'        => sanitize_text_field($_SERVER['SERVER_SOFTWARE'] ?? 'N/A'),
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		'mysql_version'          => sanitize_text_field($wpdb->get_var("SELECT VERSION()")),
 		'php_version'            => sanitize_text_field(phpversion()),
@@ -182,6 +182,8 @@ class cp_feedback {
 	function submit_deactivation_response() {
 		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field(wp_unslash($_POST['_wpnonce'])), '_cool-plugins_deactivate_feedback_nonce' ) ) {
 			wp_send_json_error();
+		} elseif ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => __( 'You do not have permission to submit plugin feedback.', 'cryptocurrency-widgets-for-elementor' ) ) );
 		} else {
 			$reason             = isset($_POST['reason']) ? sanitize_text_field(wp_unslash( $_POST['reason'] )) : "";
 			$deactivate_reasons = array(
@@ -216,13 +218,14 @@ class cp_feedback {
          	$install_date 		= get_option('ccew-install-date');
 			$uni_id      		= '3';
 			$site_id = $site_url . '-' . $install_date . '-' .$uni_id;
+			$user_info          = $this->cpfm_get_user_info();
 			$response          = wp_remote_post(
 				$this->feedback_url,
 				array(
 					'timeout' => 30,
 					    'body'    => array(
-						'server_info' => serialize($this->cpfm_get_user_info()['server_info']), 
-						'extra_details' => serialize($this->cpfm_get_user_info()['extra_details']),
+						'server_info'   => wp_json_encode( $user_info['server_info'] ),
+						'extra_details' => wp_json_encode( $user_info['extra_details'] ),
 						'plugin_version' => $this->plugin_version,
 						'plugin_initial'  => isset($plugin_initial) ? sanitize_text_field($plugin_initial) : 'N/A',
 						'plugin_name'    => $this->plugin_name,
@@ -236,7 +239,7 @@ class cp_feedback {
 				)
 			);
 
-			die( json_encode( array( 'response' => $response ) ) );
+			wp_send_json_success( array( 'response' => $response ) );
 		}
 
 	}

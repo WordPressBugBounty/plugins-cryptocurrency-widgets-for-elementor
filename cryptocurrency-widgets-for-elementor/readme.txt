@@ -2,9 +2,9 @@
 Contributors: narinder-singh,satindersingh,coolplugins
 Tags: cryptocurrency,crypto price,bitcoin widget,elementor addon,crypto donations
 Requires at least:5.0
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 5.6
-Stable tag: 1.9.2
+Stable tag: 1.9.3
 License: GPL2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -145,6 +145,12 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 8. Cryptocurrency Donation Widget
 
 == Changelog ==
+
+= Version 1.9.3 | 11/06/2026 =
+* Fixed: Cron-related Issues.
+* Improved: Code optimizations and internal improvements.
+* Improved: Updated Donation Box functionality.
+* Tested Upto: WordPress version 7.0.
 
 = Version 1.9.2 | 02/04/2026 =
 * Tested Upto: Elementor 4.0.0 and Elementor Pro 4.0.0

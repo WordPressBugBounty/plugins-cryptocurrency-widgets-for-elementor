@@ -41,7 +41,7 @@ function ccew_widget_coin_peprika_insert_data()
 
     if (is_array($coin_info) && !empty($coin_info)) {
         foreach ($coin_info as $coin) {
-            if (contains_emoji($coin->name) || contains_emoji($coin->symbol) ||  contains_emoji($coin->id)) {
+            if (contains_emoji($coin['name']) || contains_emoji($coin['symbol']) || contains_emoji($coin['id'])) {
                 continue;
             }
             $response['coin_id'] = ccew_coin_array($coin['id']);
@@ -116,13 +116,13 @@ function ccew_widget_insert_data()
             'sslverify' => false,
         )
     );
-    if($request['response']['code'] == 401) {
-        update_option('ccew_api_key_expired', true);
-        return false;
-    }
     if (is_wp_error($request)) {
         update_option('ccew_api_key_expired', true);
         return false; // Bail early
+    }
+    if($request['response']['code'] == 401) {
+        update_option('ccew_api_key_expired', true);
+        return false;
     }
     $body = wp_remote_retrieve_body($request);
     $coin_info = json_decode($body);
@@ -325,13 +325,13 @@ function ccew_single_coin_update($coin_id)
             'sslverify' => false,
         )
     );
-    if($request['response']['code'] == 401) {
-        update_option('ccew_api_key_expired', true);
-        return false;
-    }
     if (is_wp_error($request)) {
         update_option('ccew_api_key_expired', true);
         return false; // Bail early
+    }
+    if($request['response']['code'] == 401) {
+        update_option('ccew_api_key_expired', true);
+        return false;
     }
     $body = wp_remote_retrieve_body($request);
     $coin_info = json_decode($body);
@@ -810,8 +810,9 @@ function ccew_coin_list_logos_default($coin_id, $size = 32)
 {
     $logo_html = '';
     $coin_logo_info = array();
-    $coin_svg = esc_url(CCEW_DIR . '/assets/images/logos/' . $coin_id . '.svg');
-    $coin_pngs = esc_url(CCEW_DIR . '/assets/images/logos/' . $coin_id . '.png');
+    $coin_id = sanitize_file_name($coin_id);
+    $coin_svg = CCEW_DIR . '/assets/images/logos/' . $coin_id . '.svg';
+    $coin_pngs = CCEW_DIR . '/assets/images/logos/' . $coin_id . '.png';
     if (file_exists($coin_svg)) {
         return $logo_path = esc_url(CCEW_URL . 'assets/images/logos/' . $coin_id . '.svg');
     } else if (file_exists($coin_pngs)) {

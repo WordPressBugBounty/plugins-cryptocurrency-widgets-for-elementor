@@ -193,9 +193,9 @@ class ccew_call_ajax extends elementorModules.frontend.handlers.Base {
                                     case 'name':
                                         if (typeof dynamicLink != 'undefined' && dynamicLink != "") {
                                             var coinLink = currencyLink + '/' + row.symbol + '/' + row.id;
-                                            var html = '<div class="' + classes + '"><a class="ccew_links" title="' + row.name + '" href="' + coinLink + '"><span class="ccew_coin_logo">' + row.logo + '</span><span class="ccew_coin_symbol">(' + row.symbol + ')</span><br/><span class="ccew_coin_name ccew-desktop">' + row.name + '</span></a></div>';
+                                            var html = jQuery('<div>', { class: classes }).append(jQuery('<a>', { class: 'ccew_links', title: row.name, href: (/^(https?:)?\/\//i.test(coinLink) ? coinLink : '#') }).append(jQuery('<span>', { class: 'ccew_coin_logo' }).html(row.logo), jQuery('<span>', { class: 'ccew_coin_symbol', text: '(' + row.symbol + ')' }), jQuery('<br>'), jQuery('<span>', { class: 'ccew_coin_name ccew-desktop', text: row.name }))).prop('outerHTML');
                                         } else {
-                                            var html = '<div class="' + classes + '"><span class="ccew_coin_logo">' + row.logo + '</span><span class="ccew_coin_symbol">(' + row.symbol + ')</span><br/><span class="ccew_coin_name ccew-desktop">' + data + '</span></div>';
+                                            var html = jQuery('<div>', { class: classes }).append(jQuery('<span>', { class: 'ccew_coin_logo' }).html(row.logo), jQuery('<span>', { class: 'ccew_coin_symbol', text: '(' + row.symbol + ')' }), jQuery('<br>'), jQuery('<span>', { class: 'ccew_coin_name ccew-desktop', text: data })).prop('outerHTML');
                                         }
                                         return html;
                                     case 'price':

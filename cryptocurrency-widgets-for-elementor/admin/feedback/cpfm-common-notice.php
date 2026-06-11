@@ -227,7 +227,7 @@ class CPFM_Feedback_Notice {
         $output .= '</div>'; 
      
         if ($unread_count > 0) {
-            esc_html( $output );
+            echo wp_kses_post( $output );
         }
     }
 }

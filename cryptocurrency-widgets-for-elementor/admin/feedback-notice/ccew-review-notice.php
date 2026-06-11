@@ -23,7 +23,7 @@ if ( ! class_exists( 'ccew_review_notice' ) ) {
 		public function ccew_dismiss_review_notice() {
 			// Check for nonce security
 			// phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce(wp_unslash($_POST['nonce']), 'ccew-nonce' ) ) {
+			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['nonce'])), 'ccew-nonce' ) ) {
 				wp_send_json_error( 'You don\'t have permission to hide notice.' );
 				return;
 			}

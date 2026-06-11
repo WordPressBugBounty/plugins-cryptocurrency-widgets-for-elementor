@@ -137,4 +137,4 @@ if ( ! empty( $all_coin_wall_add ) && is_array( $all_coin_wall_add ) && array_fi
 	$output .= '<h6>' . esc_html__( 'Please Add coin wallet address in plugin settings panel', 'cryptocurrency-widgets-for-elementor' ) . '</h6>';
 }
 
-esc_html( $output );
+echo $output; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

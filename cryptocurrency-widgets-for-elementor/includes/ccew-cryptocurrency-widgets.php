@@ -909,13 +909,21 @@ class ccew__Widget extends \Elementor\Widget_Base
             $user_selected_api = (!isset($selected_api['select_api']) && empty($selected_api['select_api'])) ? 'coin_gecko' : sanitize_text_field($selected_api['select_api']);
             if (isset($selected_api['select_api'])) {
                 if (($selected_api['select_api'] == 'coin_gecko') && (!ccew_check_user())) {
-                    echo ('Please enter Coingecko Free Api Key to get this plugin works.');
+                    echo sprintf(
+                        /* translators: %s: API provider name */
+                        esc_html__( 'Please enter %s Free API Key to make this plugin work.', 'cryptocurrency-widgets-for-elementor' ),
+                        'Coingecko'
+                    );
                     return;
                 }
             }elseif (!$selected_api) {
                 // Handle the case where $selected_api is false
                 if ((!ccew_check_user())) {
-                    echo ('Please enter Coingecko Free Api Key to get this plugin works.');
+                    echo sprintf(
+                        /* translators: %s: API provider name */
+                        esc_html__( 'Please enter %s Free API Key to make this plugin work.', 'cryptocurrency-widgets-for-elementor' ),
+                        'Coingecko'
+                    );
                     return;
                 }
             }
@@ -983,7 +991,7 @@ class ccew__Widget extends \Elementor\Widget_Base
 
         $settings_json = json_encode($html_setting);
         $wp_nonce = wp_create_nonce('ccew-create-widget');
-        echo '<script type="application/json" class="ccew_htmlContainer" data-ajax-nonce=' . esc_attr($wp_nonce) . ' data-ajax-url=' . esc_attr(admin_url('admin-ajax.php')) . '>' . wp_kses_post($settings_json) . '</script><div class="ccew_html_container" id="ccew-wrap' . esc_attr($random_id) . '">';
+        echo '<script type="application/json" class="ccew_htmlContainer" data-ajax-nonce="' . esc_attr($wp_nonce) . '" data-ajax-url="' . esc_attr(admin_url('admin-ajax.php')) . '">' . wp_kses_post($settings_json) . '</script><div class="ccew_html_container" id="ccew-wrap' . esc_attr($random_id) . '">';
         if (isset($html_setting['required_coins']) && $html_setting['required_coins'] == '' && $settings['ccew_widget_type'] == 'advanced_table') {
             echo esc_html__('Please Select Coin', 'cryptocurrency-widgets-for-elementor');
         } else {

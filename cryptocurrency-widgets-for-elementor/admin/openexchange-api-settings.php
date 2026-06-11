@@ -57,7 +57,7 @@ if (!class_exists('Openexchange_api_settings')) {
 
         public function openexchange_settings()
         {
-            register_setting('Openexchange_option_group', 'openexchange-api-settings', 'sanitize_api_settings');
+            register_setting('Openexchange_option_group', 'openexchange-api-settings', array($this, 'sanitize_api_settings'));
 
             // Add a section for Open Exchange Rates API
             add_settings_section(
@@ -208,6 +208,11 @@ if (!class_exists('Openexchange_api_settings')) {
             }
         } //end of openexchange_settings
 
+        public function sanitize_api_settings($input)
+        {
+            return is_array($input) ? map_deep(wp_unslash($input), 'sanitize_text_field') : array();
+        }
+
         function ccew_get_extra_info($cpfm_opt_in)
         {
 
@@ -218,13 +223,19 @@ if (!class_exists('Openexchange_api_settings')) {
                 $cpfm_opt_in = $api_option['ccew_extra_info'];
             }
 
-            $checked = ($cpfm_opt_in === true) ? 'checked' : '';
+            $checked = ($cpfm_opt_in === 'yes') ? 'checked' : '';
+
             $options = get_option('openexchange-api-settings', []);
 
+            $setting_check = (
+                isset($options['ccew_extra_info']) &&
+                (
+                    $options['ccew_extra_info'] === true ||
+                    $options['ccew_extra_info'] === 'on'
+                )
+            ) ? 'checked' : '';
 
-            $setting_check = isset($options['ccew_extra_info']) ? 'checked' : "";
-
-            $check = isset($setting_check)  ? $setting_check : $checked;
+            $check = !empty($setting_check) ? $setting_check : $checked;
             add_settings_field(
                 'ccew_extra_info',
                 'Usage Data Sharing',
