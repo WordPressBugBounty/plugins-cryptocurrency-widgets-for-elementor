@@ -5,7 +5,7 @@
  * Author:Cool Plugins
  * Author URI:https://coolplugins.net/?utm_source=ccew_plugin&utm_medium=inside&utm_campaign=author_page&utm_content=plugins_list
  * Plugin URI:https://cryptocurrencyplugins.com/
- * Version: 1.9.3
+ * Version: 1.9.4
  * License: GPL2
  * Text Domain: cryptocurrency-widgets-for-elementor
  *
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 }
 
 
-define('CCEW_VERSION', '1.9.3');
+define('CCEW_VERSION', '1.9.4');
 define('CCEW_FILE', __FILE__);
 define('CCEW_DIR', plugin_dir_path(CCEW_FILE));
 define('CCEW_URL', plugin_dir_url(CCEW_FILE));
